@@ -1,0 +1,19 @@
+.col-lg-6.offset-lg-3.admin-div{
+    border: 5px solid ;
+    border-image: linear-gradient(45deg, red , blue) 1;
+    margin-top:8rem;
+    padding:2rem 6rem;
+}
+input.btn.btn-ticket{
+   background: #5d5d9f;
+   color: white;
+
+} 
+label.form-label.col-sm-3{
+    padding-top:0.5rem;
+}
+.text-contact{
+    font-weight: 700;
+}
+                  
+
