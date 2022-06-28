@@ -15,5 +15,28 @@ label.form-label.col-sm-3{
 .text-contact{
     font-weight: 700;
 }
+.col-lg-6.mb-4.dash_content{
+    height:240;
+}
+button.btn.btn-primary.theatre_btn{
+    float:right;
+}
+.sidebar-brand-text.mx-3.book_heading{
+    background-image: linear-gradient(to right,#a31e49 10%,#342076 100%);
+    padding: 1rem;
+}
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.table_links{
+    float: left;
+}
+label.form-label.required.control-label:after
+{
+    content: " *";
+    color: red;
+}
+label.form-label.required.control-label.pt-3
+{
+    font-weight: 500;
+    color: black;
+}
                   
 

@@ -17,4 +17,9 @@
             <cflocation  url="../admin/index.cfm?status=#local.status#" addtoken="no">            
         </cfif>   
     </cffunction>
+
+    <cffunction name="doAdminLogout" access="remote" output="false">
+        <cfset structDelete(session, "sessionUser")>
+        <cflocation url="../admin/index.cfm" addtoken="no">
+    </cffunction>
 </cfcomponent>
