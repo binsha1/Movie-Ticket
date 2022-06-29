@@ -12,7 +12,7 @@
                                         Invalid Credentials!!
                                 </div>
                             </cfif>                      
-                        <form method='post' name="img_form" action="../components/results.cfc?method=doLogin" class="pt-3">
+                        <form method='post' name="img_form" action="../components/controller.cfc?method=doLogin" class="pt-3">
                             <div class="form-group row">
                                 <label class="form-label col-sm-3" >User Name: </label>
                                 <div class='col-sm-9'>

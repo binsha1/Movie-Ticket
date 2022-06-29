@@ -35,13 +35,13 @@
             <li class="nav-item active">
                 <a class="nav-link" href="dashboard.cfm">
                     <i class="fa-solid fa-grid"></i>
-                    <span>Dashboard</span></a>
+                    <span>Admin Dashboard</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">         
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="theatre.cfm" >
+                <a class="nav-link collapsed" href="theatre_list.cfm" >
                     <i class="fa-solid fa-building"></i>
                     <span>Manage Theatres</span>
                 </a>                
@@ -137,7 +137,7 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a href="../components/results.cfc?method=doAdminLogout" class="btn btn-light">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
+                            <a href="../components/controller.cfc?method=doAdminLogout" class="btn btn-light">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
                         </li>
                     </ul>
                 </nav>              

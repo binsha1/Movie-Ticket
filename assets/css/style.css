@@ -38,5 +38,9 @@ label.form-label.required.control-label.pt-3
     font-weight: 500;
     color: black;
 }
+.modal-header{
+    background-image: linear-gradient(to right,#a31e49 10%,#342076 100%);
+    color:white;
+}
                   
 

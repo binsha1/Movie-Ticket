@@ -12,7 +12,7 @@
 
     <!---OnApplicationStart Method--->
     <cffunction name="OnApplicationStart" returntype="boolean" access="public">
-        <cfset application.obj=createObject('component','components.results')>
+        <cfset application.obj=createObject('component','components.controller')>
         <cfreturn true>
     </cffunction>
 
