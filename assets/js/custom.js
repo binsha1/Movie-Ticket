@@ -166,8 +166,11 @@ function selectElementContents(el) {
 
     $(document).ready(function() {
         $('#example').DataTable( {
+<<<<<<< HEAD
             
             
+=======
+>>>>>>> b55d4285e29a5ae261d4f11cf740e059c91cf073
             dom: 'Bfrtip',
             buttons: [
                 'copy',  
