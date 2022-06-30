@@ -54,8 +54,16 @@
     <!-- Page level plugins -->
     <script src="../assets/admin_template/vendor/chart.js/Chart.min.js"></script>
     <script src="../assets/admin_template/vendor/datatables/jquery.dataTables.min.js"></script>
+     <script src="../assets/admin_template/vendor/datatables/jquery-3.5.1.js"></script>
+     <script src="../assets/admin_template/vendor/tabledata/buttons/js/dataTables.buttons.min.js"></script>
+      <script src="../assets/admin_template/vendor/tabledata/JSZip-2.5.0/jszip.min.js"></script>
+       <script src="../assets/admin_template/vendor/tabledata/pdfmake/pdfmake.min.js"></script>
+    <script src="../assets/admin_template/vendor/tabledata/pdfmake/vfs_fonts.js"></script>
+    <script src="../assets/admin_template/vendor/tabledata/buttons/js/buttons.html5.min.js"></script>
     <script src="../assets/admin_template/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+    
+    
+    <script src="../assets/admin_template/vendor/datatables/datatables.min.js"></script>
     <!-- Page level custom scripts -->
     <script src="../assets/admin_template/js/demo/chart-area-demo.js"></script>
     <script src="../assets/admin_template/js/demo/chart-pie-demo.js"></script>
