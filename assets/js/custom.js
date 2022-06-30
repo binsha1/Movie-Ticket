@@ -48,6 +48,7 @@ $('.title').on('click',function(){
         $('.email_alert').text(" ");
         $('.phone_alert').text(" ");
         $('[name="phone"]').val("");
+        $("#output").removeAttr("src");
         $('#formId').attr('action', '../components/controller.cfc?method=createTheatre'); 
     }
 });
@@ -132,3 +133,100 @@ function checkTheatreEmail()
     });
        
    }
+   function printTable() {
+    
+    var printContents = document.getElementById('tableData').innerHTML;    
+    var originalContents = document.body.innerHTML;   
+    document.body.innerHTML = printContents;   
+    window.print(); 
+    //document.body.innerHTML = originalContents;
+}
+function selectElementContents(el) {
+    var body = document.body, range, sel;
+    if (document.createRange && window.getSelection) {
+        range = document.createRange();
+        sel = window.getSelection();
+        sel.removeAllRanges();
+        try {
+            range.selectNodeContents(el);
+            sel.addRange(range);
+        } catch (e) {
+            range.selectNode(el);
+            sel.addRange(range);
+        }
+        document.execCommand("copy");
+
+    } else if (body.createTextRange) {
+        range = body.createTextRange();
+        range.moveToElementText(el);
+        range.select();
+        range.execCommand("Copy");
+    }
+}
+
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            
+            
+            dom: 'Bfrtip',
+            buttons: [
+                'copy',  
+                {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: [ 1, 2, 3, 4 ]
+                    }
+                },
+                {
+                    extend: 'csvHtml5',
+                    exportOptions: {
+                        columns: [ 1, 2, 3, 4 ]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: [ 1, 2, 3, 4 ]
+                    }
+                },
+                'print', 'colvis'
+            ]
+            
+           
+    } );
+});
+    
+      
+
+    /*$('#dataTable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: [ 0, ':visible' ]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 5 ]
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            'colvis'
+        ]
+    } );
+} );*/
+

@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- Custom styles for this template-->
     <link href="../assets/admin_template/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../assets/admin_template/vendor/tabledata/DataTable/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../assets/admin_template/vendor/tabledata/DataTable/css/datatables.css" rel="stylesheet">
+    <link href="../assets/admin_template/vendor/tabledata/DataTable/css/datatables.min.css" rel="stylesheet">
+    <link href="../assets/admin_template/vendor/tabledata/buttons/css/buttons.dataTables.min.css" rel="stylesheet">
     <link href="../assets/admin_template/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body id="page-top">

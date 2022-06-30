@@ -10,7 +10,6 @@
                 <th >Email</th>
                 <th >Phone</th>
                 <th >Address</th>
-                
             </tr>
         </thead>
         <cfoutput query="data">
@@ -29,3 +28,4 @@
 </cfdocument>
 <cfheader name="Content-Disposition" value="attachment;filename=theatre_data.pdf">
 <cfcontent type="application/octet-stream" file="#expandPath('.')#\theatre_data.pdf" deletefile="Yes">
+

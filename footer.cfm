@@ -1,3 +1,3 @@
 </body>
-<script src="assets/js/validate.js"></script>
+<script src="../assets/js/custom.js"></script>
 </html>

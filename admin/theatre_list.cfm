@@ -42,35 +42,35 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark table_links">  
+            <!---<nav class="navbar navbar-expand-lg navbar-dark bg-dark table_links">  
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                     <li class="nav-item" >
-                        <a class="nav-link table_nav" href="#">Copy <span class="sr-only">(current)</span></a>
+                        <a class="nav-link table_nav" onclick="selectElementContents( document.getElementById('dataTable') );">Copy <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link table_nav" href="#">CSV</a>
+                        <a class="nav-link table_nav" href="theatre_csv.cfm">CSV</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link table_nav" href="#">Excel</a>
+                        <a class="nav-link table_nav" href="theatre_excel.cfm">Excel</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link table_nav" href="theatre_pdf.cfm">PDF</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link table_nav" href="#">Print</a>
+                        <a class="nav-link table_nav" href="theatre_print.cfm">Print</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#">Column Visibilty</a>
                     </li>
                     </ul>                    
                 </div>
-            </nav>
+            </nav>--->
             <button type="button" class="btn btn-primary theatre_btn title" data-bs-toggle="modal" data-id="0" data-bs-target=".myModal"  >Add New Theatre</button>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0" >
+            <div class="table-responsive" id="tableList">
+                <table class="table table-bordered table-striped" id="example" width="100%" cellspacing="0" >
                     <thead>
                         <tr>
                             <th >Photo</th>
@@ -119,4 +119,6 @@
 </div>
 <cfinclude  template="../modals/create_theatre.cfm">
 <cfinclude  template="dash_footer.cfm">
+
+		
 
