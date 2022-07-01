@@ -52,6 +52,45 @@ $('.title').on('click',function(){
         $('#formId').attr('action', '../components/controller.cfc?method=createTheatre'); 
     }
 });
+
+$('.screen').on('click',function(){
+    var screen_id=$(this).data('id'); 
+    var theatre_id=$(this).data('tid');        
+    if(screen_id>0)    {
+        $("#screen_title").text("EDIT SCREEN");
+        $.ajax({   
+                    url: "../components/controller.cfc",
+                    type: 'get',
+                    dataType:"json",
+                    data:{
+                    method:"getScreen",
+                    id:theatre_id              
+                    },
+                    success: function(data)
+                    {
+                        console.log(data);                       
+                        $('#screen_name').val(data[0].theatre_name);
+                        $('#email').val(data[0].email_id);
+                        $('[name="phone"]').val(data[0].phone);                         
+                        $('#address').val(data[0].address);
+                        $('#street').val(data[0].street_name);                        
+                        $('[name="pincode"]').val(data[0].pincode);                                                           
+                        $("#output").attr("src", "../uploads/"+data[0].photo);
+                        $('input type=[file]').val(data[0].photo);                        
+                        $('#formId').attr('action', '../components/controller.cfc?method=editTheatre&id='+data[0].id);             
+                    }         
+                });  
+    }
+    else
+    {        
+        $("#screen_title").text("ADD SCREEN");
+        $('#theatre_id').val(theatre_id);
+        $('#screen_name').val("");
+        $('#gold_rate').val("");        
+        $('#silver_rate').val("");        
+        $('#formId').attr('action', '../components/controller.cfc?method=createScreen'); 
+    }
+});
 function validateCreate(){
     
     var pincode=document.querySelector('input[name=pincode]');
@@ -165,14 +204,17 @@ function selectElementContents(el) {
 }
 
     $(document).ready(function() {
-        $('#example').DataTable( {
-<<<<<<< HEAD
-            
-            
-=======
->>>>>>> b55d4285e29a5ae261d4f11cf740e059c91cf073
+        /*$('#example').DataTable( {
             dom: 'Bfrtip',
             buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print','colvis'
+            ]
+        } );*/
+        $('#example').DataTable( {            
+            
+            dom: 'Bfrtip',
+            buttons: [
+                
                 'copy',  
                 {
                     extend: 'excelHtml5',
@@ -192,11 +234,18 @@ function selectElementContents(el) {
                         columns: [ 1, 2, 3, 4 ]
                     }
                 },
-                'print', 'colvis'
+                'print',
+                
+                 'colvis'
             ]
             
            
     } );
+    $('#screen_table').DataTable( { 
+        
+    });
+    $('#show_table').DataTable( { 
+    });
 });
     
       

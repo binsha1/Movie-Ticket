@@ -47,12 +47,12 @@ a.btn.btn-dboard{
     background: #050b35;
     color:white;
 }
-                  
+                 
 .dt-buttons {
     background: #5A5C68;
     margin-bottom: 1rem;
 }
-button.dt-button.buttons-copy.buttons-html5,button.dt-button.buttons-excel.buttons-html5,
+button.dt-button.buttons-copy.buttons-html5,button.dt-button.buttons-excel.buttons-html5,button.dt-button.buttons-print,
 button.dt-button.buttons-pdf.buttons-html5,button.dt-button.buttons-collection.buttons-colvis {
     color:white;
     

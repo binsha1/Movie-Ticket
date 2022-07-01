@@ -99,13 +99,16 @@
                     <tbody>
                     <cfoutput query='res'>
                         <cfset addr=address & ", " & street_name & ", " & pincode &" .">
+                        <cfset key= GenerateSecretKey("AES")  >
+                        <cfset enc_theatre=encrypt(theatre_name,key,'AES/GCM/NoPadding','Hex')>
+                        <cfset theatre_id=encrypt(id,key,'AES/GCM/NoPadding','Hex')>
                         <tr>
                             <td><img src="../uploads/#photo#" class="img-fluid"></td>
                             <td>#theatre_name#</td>
                             <td>#email_id#</td>
                             <td>#phone#</td>
                             <td>#addr#</td>
-                            <td><button class="btn btn-outline-primary">Manage Screen & Time</button></td>
+                            <td><a href="screen_time.cfm?theatre=#enc_theatre#&theatre_id=#theatre_id#&key=#key#" class="btn btn-outline-primary">Manage Screen & Time</a></td>
                             <td><button class="btn btn-outline-primary edit title" id="edit" data-bs-toggle="modal" data-bs-target=".myModal" data-id="#id#" >Edit</button></td>
                             <td><a href="../components/controller.cfc?method=deleteTheatre&id=#id#" class="btn btn-outline-primary">Delete</a></td>
                         </tr>

@@ -1,6 +1,6 @@
 <!--Create Modal -->                        
 <div class="modal myModal" >
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <form method='post' action="" name="img_form" id="formId" enctype='multipart/form-data' >
             <div class="modal-content">
                 <!-- Modal Header -->

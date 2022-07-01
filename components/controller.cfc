@@ -96,6 +96,13 @@
         <cfreturn theatre_details>
     </cffunction>
 
+    <cffunction name="screenDetails" access="public" output="true">
+        <cfquery name="screen_details"  result="res">
+            SELECT * FROM movie_ticket.screen;
+        </cfquery>
+        <cfreturn screen_details>
+    </cffunction>
+
     <cffunction name="deleteTheatre" access="remote" output="true">
         <cfargument  name="id" type="string">        
         <cfset local.status=hash("5","sha")>        
@@ -104,6 +111,16 @@
             WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>        
         <cflocation  url="../admin/theatre_list.cfm?status=#local.status#" addtoken="no">  
+    </cffunction>
+
+    <cffunction name="deleteScreen" access="remote" output="true">
+        <cfargument  name="id" type="string">        
+        <cfset local.status=hash("3","sha")>        
+        <cfquery name="delete_screen"  result="theatre_del">
+            DELETE FROM movie_ticket.screen 
+            WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>        
+        <cflocation  url="../admin/screen_time.cfm?status=#local.status#" addtoken="no">  
     </cffunction>
 
     <cffunction name="getTheatre" access="remote" returnFormat = "json">
@@ -199,4 +216,51 @@
         </cfquery>  
         <cfreturn phone_res> 
     </cffunction>
+
+    <cffunction name="createScreen" access="remote" output="true">       
+        <cfargument  name="screen_name" type="string">
+        <cfargument  name="gold_rate" type="float">
+        <cfargument  name="silver_rate" type="float">
+        <cfargument  name="theatre_id" type="integer">
+        <cfquery name="theatre_data" result="name_res">
+            SELECT theatre_name FROM movie_ticket.theatre WHERE id=<cfqueryparam value="#arguments.theatre_id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        <cfquery name="screen_data" result="data_res">
+            SELECT screen_name FROM movie_ticket.screen WHERE screen_name=<cfqueryparam value="#arguments.screen_name#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        <cfif data_res.RecordCount NEQ 0>
+            <cfset local.status=hash('5','sha')>
+        </cfif>
+        <cfif name_res.RecordCount NEQ 0>
+            <cfset local.theatre_name=theatre_data.theatre_name>
+            <cfset local.key= GenerateSecretKey("AES")  >
+            <cfset local.enc_theatre=encrypt(local.theatre_name,local.key,'AES/GCM/NoPadding','Hex')>
+            <cfset local.theatre_id=encrypt(arguments.theatre_id,key,'AES/GCM/NoPadding','Hex')>
+        </cfif>
+        <cfif arguments.screen_name!="" && arguments.gold_rate!="" && arguments.silver_rate!="">
+            <cfif data_res.RecordCount EQ 0>
+                <cfquery name="add_screen" result="screen_res">
+                    INSERT INTO movie_ticket.screen(                        
+                        screen_name,
+                        gold_rate,
+                        silver_rate,
+                        theatre_id
+                        ) 
+                    VALUES(                            
+                            <cfqueryparam value="#arguments.screen_name#" cfsqltype="CF_SQL_VARCHAR">,
+                            <cfqueryparam value="#arguments.gold_rate#" cfsqltype="CF_SQL_DOUBLE">,
+                            <cfqueryparam value="#arguments.silver_rate#" cfsqltype="CF_SQL_DOUBLE">,
+                            <cfqueryparam value="#arguments.theatre_id#" cfsqltype="CF_SQL_INTEGER">                                                                                       
+                            )
+                </cfquery>
+                <cfif screen_res.RecordCount NEQ 0>
+                    <cfset  local.status=hash('1','sha')>
+                </cfif>        
+            </cfif>            
+        <cfelse>
+            <cfset local.status=hash('4','sha')>            
+        </cfif>
+        <cflocation  url="../admin/screen_time.cfm?theatre=#local.enc_theatre#&theatre_id=#local.theatre_id#&key=#local.key#&status=#local.status#" addtoken="no">  
+    </cffunction>              
+
 </cfcomponent>
