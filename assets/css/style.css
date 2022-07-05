@@ -61,3 +61,10 @@ button.dt-button.buttons-csv.buttons-html5 {
     color:white;
     
 }
+.wall-show{
+    padding-top:8rem;
+}
+img.img-fluid.img-poster, img.img-fluid.img-wall{
+    width: 300;
+    height: 100;
+}

@@ -1,9 +1,9 @@
 <cfparam  name="status" default="v">
-
+<!---<cfparam  name="theatre" default="v">--->
 <cfparam  name="theatre_id" default="v">
 <cfparam  name="key" default="v">
 <cfset theId=toString(toBinary(theatre_id))>
-<cfset screen_data=application.obj.screenDetails(theId)>
+
 <cfinclude  template="dash_header.cfm">
 <div class="container-fluid">    
     <!-- Page Heading -->
@@ -14,17 +14,17 @@
     <cfif status EQ hash('1','sha')>
         <div class="alert alert-success alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                 Added Successfully !!
+                Added Successfully !!
         </div>
     <cfelseif status EQ hash('2','sha')>
         <div class="alert alert-success alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Updated Successfully !!
+                Updated Successfully!!                
         </div>
     <cfelseif status EQ hash('3','sha')>
-        <div class="alert alert-success alert-dismissible">
+        <div class="alert alert-danger alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Deleted Successfully !!
+                Deleted Successfully!!
         </div>
     <cfelseif status EQ hash('4','sha')>
         <div class="alert alert-danger alert-dismissible">
@@ -46,17 +46,17 @@
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 Theatre Updated Successfully !!
         </div> 
-    <cfelseif status EQ hash('9','sha')>
-        <div class="alert alert-danger alert-dismissible">
+     <cfelseif status EQ hash('8','sha')>
+        <div class="alert alert-success alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Screen Time Exists for the show !!
-        </div>       
+                Screen Time Added Successfully !!
+        </div>         
     </cfif>
     <div class="row">
         <div class="col-lg-6">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <cfoutput>
+                   <cfoutput>
                         <button type="button" class="btn btn-primary theatre_btn screen mb-3 " data-bs-toggle="modal" data-id="0" data-tid="#theId#" data-bs-target=".screenModal"  >Add New Screen</button>
                     </cfoutput>
                 </div>
@@ -88,8 +88,8 @@
                                     <td>#screen_name#</td>
                                     <td>#gold_rate#</td>
                                     <td>#silver_rate#</td>                                   
-                                    <td><button class="btn btn-outline-primary edit screen" id="edit" data-bs-toggle="modal" data-bs-target=".screenModal" data-id="#id#" data-tid="#theId#" >Edit</button></td>
-                                    <td><a href="../components/controller.cfc?method=deleteScreen&id=#id#&theatre_id=#theId#" class="btn btn-outline-primary">Delete</a></td>
+                                    <td><button class="btn btn-outline-primary edit screen" id="edit" data-bs-toggle="modal" data-bs-target=".screenModal" data-id="#id#" data-tid="#theId#">Edit</button></td>
+                                    <td><a href="../components/controller.cfc?method=deleteScreen&id=#id#&theatre_id=#theatre_id#" class="btn btn-outline-primary">Delete</a></td>
                                 </tr>
                             </cfoutput>                    
                             </tbody>
@@ -102,7 +102,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <cfoutput>
-                        <button type="button" class="btn btn-primary theatre_btn s_time mb-3 " data-bs-toggle="modal" data-id="0" data-tid="#theId#" data-bs-target=".timeModal"  >Add New ShowTime</button>
+                        <button type="button" class="btn btn-primary theatre_btn time mb-3 " data-bs-toggle="modal" data-id="0" data-tid="#theId#" data-bs-target=".timeModal"  >Add New ShowTime</button>
                     </cfoutput>
                 </div>
                 <div class="card-body">                    
@@ -126,20 +126,17 @@
                                     <th >Delete</th>
                                 </tr>
                             </tfoot>
-                            <cfset time_data=application.obj.timeDetails(theId)>          
+                            <cfset time_data=application.obj.timeDetails(theId)>              
                             <tbody>
-                            <cfif time_data.RecordCount NEQ 0>
-                                <cfoutput query='time_data'>
-                                    
-                                    <tr>                                    
-                                        <td>#show_name#</td>
-                                        <td>#screen_name#</td>
-                                        <td>#start_time#</td>                                   
-                                        <td><button class="btn btn-outline-primary edit s_time" id="s_edit" data-bs-toggle="modal" data-bs-target=".timeModal" data-id="#id#" data-tid="#theId#" >Edit</button></td>
-                                        <td><a href="../components/controller.cfc?method=deleteScreenTime&id=#id#&theatre_id=#theId#" class="btn btn-outline-primary">Delete</a></td>
-                                    </tr>
-                                </cfoutput>                    
-                            </cfif>
+                            <cfoutput query='time_data'>                                
+                                <tr>                                    
+                                    <td>#show_name#</td>
+                                    <td>#screen_name#</td>
+                                    <td>#start_time#</td>                                   
+                                    <td><button class="btn btn-outline-primary edit time" id="edit" data-bs-toggle="modal" data-bs-target=".timeModal" data-id="#id#" data-tid="#theId#" >Edit</button></td>
+                                    <td><a href="../components/controller.cfc?method=deleteScreen&id=#id#" class="btn btn-outline-primary">Delete</a></td>
+                                </tr>
+                            </cfoutput>                    
                             </tbody>
                         </table>
                     </div>

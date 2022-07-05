@@ -51,7 +51,7 @@
                 </a>                
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#"  >
+                <a class="nav-link collapsed" href="movie_list.cfm"  >
                     <i class="fa-solid fa-film"></i>
                     <span>Manage Movies</span>
                 </a>                
