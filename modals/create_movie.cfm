@@ -100,10 +100,20 @@
                                     <label class="form-label required control-label pt-3">Upload Wallpaper</label>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input class="form-control" id="poster" type="file" accept=".png,.jpg,.jpeg" name="poster" required onchange="loadPoster(event)">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="posterInput" required accept=".png,.jpg,.jpeg" name="poster" onchange="loadPoster(event)">
+                                        <label class="custom-file-label" for="posterInput">Choose file...</label>
+                                    </div>
+                                   <!---- <input class="form-control" id="poster" type="file" accept=".png,.jpg,.jpeg" name="poster" required onchange="loadPoster(event)">
+                                --->
                                 </div>
                                 <div class="col-lg-6">
-                                    <input class="form-control" id="wallpaper" type="file" accept=".png,.jpg,.jpeg" name="wallpaper" required onchange="loadWallPaper(event)">
+                                   <!--- <input class="form-control" id="wallpaper" type="file" accept=".png,.jpg,.jpeg" name="wallpaper" required onchange="loadWallPaper(event)">
+                                        --->
+                                    <div class="custom-file">
+                                            <input type="file" class="custom-file-input wall-input" id="wallInput" required accept=".png,.jpg,.jpeg" name="wallpaper"  onchange="loadWallPaper(event)">
+                                            <label class="custom-file-label" for="wallInput" > </label>
+                                    </div>
                                 </div>                                                     
                             </div>
                             <div class="form-group row">

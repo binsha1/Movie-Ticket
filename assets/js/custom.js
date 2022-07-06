@@ -27,6 +27,19 @@ var loadFile = function(event) {
 $("#imgInp").change(function(){
     readURL(this);
 });
+
+
+document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+    var name = document.getElementById("posterInput").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });
+  document.querySelector('.wall-input').addEventListener('change', function (e) {
+    var name = document.getElementById("wallInput").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });
+
 $('.title').on('click',function(){
     var theatre_id=$(this).data('id');      
     if(theatre_id>0)    {
@@ -75,29 +88,32 @@ $('.movie').on('click',function(){
     if(movie_id>0)    {
         $("#movie_title").text("EDIT MOVIE");
         $.ajax({   
-                    url: "../components/controller.cfc",
+                    url: "../components/movie.cfc",
                     type: 'get',
                     dataType:"json",
                     data:{
                     method:"getMovie",
-                    id:movie_id           
+                    movId:movie_id           
                     },
                     success: function(data)
                     {
                         console.log(data);                       
                         $('#movie_name').val(data[0].movie_name);
                         $('#release_date').val(data[0].release_date);
+                        $("label[for = posterInput]").text(data[0].poster);                       
+                        $("label[for = wallInput]").text(data[0].wallpaper);                        
                         $('#movie_format').val(data[0].movie_format);                         
                         $('#genre').val(data[0].genre);
                         $('#language').val(data[0].language); 
                         $('#duration').val(data[0].duration);  
                         $('#trailer_url').val(data[0].trailer_url); 
-                        $('#description').val(data[0].description);                      
-                        $('[name="pincode"]').val(data[0].pincode);                                                           
+                        $('#description').val(data[0].description);                     
+                                                           
                         $("#output").attr("src", "../uploads/"+data[0].poster);
-                        $("#output2").attr("src", "../uploads/"+data[0].wallpaper);
+                        $("#output2").attr("src", "../uploads/"+data[0].wallpaper);                        
+                        
                         //$('input type=[file]').val(data[0].photo);                        
-                        $('#movieId').attr('action', '../components/controller.cfc?method=editMovie&id='+data[0].id);             
+                        $('#movieId').attr('action', '../components/movie.cfc?method=editMovie&id='+data[0].id);             
                     }         
                 });  
     }
@@ -113,10 +129,11 @@ $('.movie').on('click',function(){
         $('#trailer_url').val("");
         $('#description').val("");
         $('.movie_alert').text(" ");
-        $('.trailer_alert').text(" ");
-        $('[name="phone"]').val("");
+        $('.trailer_alert').text(" "); 
+        $("label[for = posterInput]").text("Choose File ..."); 
+        $("label[for = wallInput]").text("Choose File ...");    
         $("#output").removeAttr("src");
-        $('#movieId').attr('action', '../components/controller.cfc?method=createMovie'); 
+        $('#movieId').attr('action', '../components/movie.cfc?method=createMovie'); 
     }
 });
 
@@ -159,6 +176,40 @@ $('.s_time').on('click',function(){
     var t_id=$(this).data('id');
     var theatre_id=$(this).data('tid');        
     if(t_id>0)    {
+        $("#time_title").text("EDIT SCREEN SHOW TIME");        
+        $.ajax({   
+                    url: "../components/controller.cfc",
+                    type: 'get',
+                    dataType:"json",
+                    data:{
+                    method:"getScreenTime",
+                    time_id:t_id              
+                    },
+                    success: function(data)
+                    {
+                        console.log(data);                       
+                        $('#show_name').val(data[0].show_name);
+                        $('#t_id').val(data[0].theatre_id);
+                        $("#screen_name option[value='"+data[0].screen_id+"']").attr("selected", "selected");                                      
+                        $('#start_time').val(data[0].start_time);                                         
+                        $('#timeForm').attr('action', '../components/controller.cfc?method=editScreenTime&id='+data[0].id);             
+                    }         
+                });  
+    }
+    else
+    {        
+        $("#time_title").text("ADD SCREEN SHOW TIME");
+        $('#t_id').val(theatre_id);
+        $('#show_name').val("");
+        $("#screen_name option[value='']").attr("selected", "selected");        
+        $('#start_time').val("");        
+        $('#timeForm').attr('action', '../components/controller.cfc?method=createScreenTime'); 
+    }
+});
+$('.cast').on('click',function(){    
+    var c_id=$(this).data('id');
+    var theatre_id=$(this).data('tid');        
+    if(c_id>0)    {
         $("#time_title").text("EDIT SCREEN SHOW TIME");        
         $.ajax({   
                     url: "../components/controller.cfc",
@@ -304,7 +355,7 @@ function checkTheatreEmail()
    {
        var movie=$('#movie_name').val();            
        $.ajax({   
-        url: "../components/controller.cfc",
+        url: "../components/movie.cfc",
         type: 'get',
         dataType:"json",
         data:{
@@ -333,7 +384,7 @@ function checkTheatreEmail()
    {
        var trailer=$('#trailer_url').val();            
        $.ajax({   
-        url: "../components/controller.cfc",
+        url: "../components/movie.cfc",
         type: 'get',
         dataType:"json",
         data:{

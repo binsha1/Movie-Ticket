@@ -81,11 +81,10 @@
                             <th >Delete</th>
                         </tr>
                     </tfoot>
-                    <cfset res=application.obj.movieDetails()>                    
+                    <cfset res=application.movie.movieDetails()>                    
                     <tbody>
-                    <cfoutput query='res'>
-                                             
-                        <!---<cfset local.theatre_id=toBase64(id)> ---->
+                    <cfoutput query='res'>                                             
+                        <cfset local.movie_id=toBase64(id)> 
                         <tr>
                             <td><img src="../uploads/#poster#" class="img-fluid img-poster"></td>
                             <td><img src="../uploads/#wallpaper#" class="img-fluid img-wall"></td>
@@ -97,9 +96,9 @@
                             <td>#duration#</td>
                             <td>#description#</td>
                             <td><a href="#trailer_url#">#trailer_url#</a></td>
-                            <td><a href="##" class="btn btn-outline-primary">Manage Cast & Crew</a></td>
+                            <td><a href="cast_crew.cfm?movie_id=#local.movie_id#" class="btn btn-outline-primary">Manage Cast & Crew</a></td>
                             <td><button class="btn btn-outline-primary edit movie" id="edit" data-bs-toggle="modal" data-bs-target=".movieModal" data-id="#id#" >Edit</button></td>
-                            <td><a href="../components/controller.cfc?method=deleteMovie&id=#id#" class="btn btn-outline-primary">Delete</a></td>
+                            <td><a href="../components/movie.cfc?method=deleteMovie&id=#id#" class="btn btn-outline-primary">Delete</a></td>
                         </tr>
                     </cfoutput>                    
                     </tbody>
