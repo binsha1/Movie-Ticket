@@ -7,13 +7,48 @@ var loadFile = function(event) {
     reader.readAsDataURL(event.target.files[0]);
   };
 
+
+  var loadPoster = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+  var loadWallPaper = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output2');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
 $("#imgInp").change(function(){
     readURL(this);
 });
-$('.title').on('click',function(){
-    var theatre_id=$(this).data('id');      
-    if(theatre_id>0)    {
-        $("#modal_title").text("EDIT CONTACT");
+
+
+document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+    var name = document.getElementById("posterInput").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });
+  document.querySelector('.wall-input').addEventListener('change', function (e) {
+    var name = document.getElementById("wallInput").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });
+
+  $('#theatre_btn').on('click',function(){
+    alert('dfdfh');
+  });
+/*$('.theatre').on('click',function(){
+    alert('dfgdf');
+    var th_id=$(this).data('id'); 
+    alert(th_id);     
+    if(th_id>0)    {
+        $("#theatre_title").text("EDIT THEATRE");
         $.ajax({   
                     url: "../components/controller.cfc",
                     type: 'get',
@@ -39,7 +74,7 @@ $('.title').on('click',function(){
     }
     else
     {        
-        $("#modal_title").text("ADD THEATRE");
+        $("#theatre_title").text("ADD THEATRE");
         $('#theatre_name').val("");
         $('#email').val("");        
         $('#address').val("");
@@ -51,12 +86,79 @@ $('.title').on('click',function(){
         $("#output").removeAttr("src");
         $('#formId').attr('action', '../components/controller.cfc?method=createTheatre'); 
     }
+});*/
+
+$('.movie').on('click',function(){
+    var movie_id=$(this).data('id');      
+    if(movie_id>0)    {
+        $("#movie_title").text("EDIT MOVIE");
+        $.ajax({   
+                    url: "../components/movie.cfc",
+                    type: 'get',
+                    dataType:"json",
+                    data:{
+                    method:"getMovie",
+                    movId:movie_id           
+                    },
+                    success: function(data)
+                    {
+                        console.log(data);                       
+                        $('#movie_name').val(data[0].movie_name);
+                        $('#release_date').val(data[0].release_date);
+                        $("label[for = posterInput]").text(data[0].poster);                       
+                        $("label[for = wallInput]").text(data[0].wallpaper);                        
+                        $('#movie_format').val(data[0].movie_format);                         
+                        $('#genre').val(data[0].genre);
+                        $('#language').val(data[0].language); 
+                        $('#duration').val(data[0].duration);  
+                        $('#trailer_url').val(data[0].trailer_url); 
+                        $('#description').val(data[0].description);                     
+                                                           
+                        $("#output").attr("src", "../uploads/"+data[0].poster);
+                        $("#output2").attr("src", "../uploads/"+data[0].wallpaper);                        
+                        $('#posterInput').prop('required',false);
+                        $('#wallInput').prop('required',false);
+                        //$('input type=[file]').val(data[0].photo);                        
+                        $('#movieId').attr('action', '../components/movie.cfc?method=editMovie&id='+data[0].id);             
+                    }         
+                });  
+    }
+    else
+    {        
+        $("#movie_title").text("ADD MOVIE");
+        $('#movie_name').val("");
+        $('#release_date').val("");        
+        $('#movie_format').val("");
+        $('#genre').val("");       
+        $('#language').val("");
+        $('#duration').val("");
+        $('#trailer_url').val("");
+        $('#description').val("");
+        $('.movie_alert').text(" ");
+        $('.trailer_alert').text(" "); 
+        $("label[for = posterInput]").text("Choose File ..."); 
+        $("label[for = wallInput]").text("Choose File ..."); 
+        $('#posterInput').prop('required',true);
+        $('#wallInput').prop('required',true);   
+        $("#output").removeAttr("src");
+        $('#movieId').attr('action', '../components/movie.cfc?method=createMovie'); 
+    }
+});
+
+$('.cast').on('click',function(){
+    var s_id=$(this).data('id');
+    var movie_id=$(this).data('tid');        
+    if(s_id==0)
+    {
+        $('#movie_id').val(movie_id);
+    }
 });
 
 $('.screen').on('click',function(){
-    var screen_id=$(this).data('id'); 
+    var s_id=$(this).data('id');
+    alert(s_id);
     var theatre_id=$(this).data('tid');        
-    if(screen_id>0)    {
+    if(s_id>0)    {
         $("#screen_title").text("EDIT SCREEN");
         $.ajax({   
                     url: "../components/controller.cfc",
@@ -64,20 +166,16 @@ $('.screen').on('click',function(){
                     dataType:"json",
                     data:{
                     method:"getScreen",
-                    id:theatre_id              
+                    screen_id:s_id              
                     },
                     success: function(data)
                     {
                         console.log(data);                       
-                        $('#screen_name').val(data[0].theatre_name);
-                        $('#email').val(data[0].email_id);
-                        $('[name="phone"]').val(data[0].phone);                         
-                        $('#address').val(data[0].address);
-                        $('#street').val(data[0].street_name);                        
-                        $('[name="pincode"]').val(data[0].pincode);                                                           
-                        $("#output").attr("src", "../uploads/"+data[0].photo);
-                        $('input type=[file]').val(data[0].photo);                        
-                        $('#formId').attr('action', '../components/controller.cfc?method=editTheatre&id='+data[0].id);             
+                        $('#screen_name').val(data[0].screen_name);
+                        $('#theatre_id').val(data[0].theatre_id);
+                        $('#gold_rate').val(data[0].gold_rate);                                                
+                        $('#silver_rate').val(data[0].silver_rate);                                         
+                        $('#screenForm').attr('action', '../components/controller.cfc?method=editScreen&id='+data[0].id);             
                     }         
                 });  
     }
@@ -88,9 +186,46 @@ $('.screen').on('click',function(){
         $('#screen_name').val("");
         $('#gold_rate').val("");        
         $('#silver_rate').val("");        
-        $('#formId').attr('action', '../components/controller.cfc?method=createScreen'); 
+        $('#screenForm').attr('action', '../components/controller.cfc?method=createScreen'); 
     }
 });
+
+$('.s_time').on('click',function(){    
+    var t_id=$(this).data('id');
+    var theatre_id=$(this).data('tid');        
+    if(t_id>0)    {
+        $("#time_title").text("EDIT SCREEN SHOW TIME");        
+        $.ajax({   
+                    url: "../components/controller.cfc",
+                    type: 'get',
+                    dataType:"json",
+                    data:{
+                    method:"getScreenTime",
+                    time_id:t_id              
+                    },
+                    success: function(data)
+                    {
+                        console.log(data);                       
+                        $('#show_name').val(data[0].show_name);
+                        $('#t_id').val(data[0].theatre_id);
+                        $("#screen_name option[value='"+data[0].screen_id+"']").attr("selected", "selected");                                      
+                        $('#start_time').val(data[0].start_time);                                         
+                        $('#timeForm').attr('action', '../components/controller.cfc?method=editScreenTime&id='+data[0].id);             
+                    }         
+                });  
+    }
+    else
+    {        
+        $("#time_title").text("ADD SCREEN SHOW TIME");
+        $('#t_id').val(theatre_id);
+        $('#show_name').val("");
+        $("#screen_name option[value='']").attr("selected", "selected");        
+        $('#start_time').val("");        
+        $('#timeForm').attr('action', '../components/controller.cfc?method=createScreenTime'); 
+    }
+});
+
+
 function validateCreate(){
     
     var pincode=document.querySelector('input[name=pincode]');
@@ -172,6 +307,124 @@ function checkTheatreEmail()
     });
        
    }
+   function checkScreen()
+   {
+       var screen=$('#screen_name').val();            
+       $.ajax({   
+        url: "../components/controller.cfc",
+        type: 'get',
+        dataType:"json",
+        data:{
+        method:"getScreenName",
+          screen_name:screen              
+        },
+        success: function(data)
+        {
+            console.log(data);            
+            if(data.RECORDCOUNT==1)
+            {                
+                $('.screen_alert').text("Screen Name Already Exists!!");
+                $('#screen_btn').prop('disabled', true);                
+            }
+            else{
+
+                $('.screen_alert').text(" ");
+                $('#screen_btn').prop('disabled', false);
+            }                         
+        }         
+    });
+       
+   }
+
+   function checkMovie()
+   {
+       var movie=$('#movie_name').val();            
+       $.ajax({   
+        url: "../components/movie.cfc",
+        type: 'get',
+        dataType:"json",
+        data:{
+        method:"getMovieName",
+          movie_name:movie             
+        },
+        success: function(data)
+        {
+            console.log(data);            
+            if(data.RECORDCOUNT==1)
+            {                
+                $('.movie_alert').text("Movie Name Already Exists!!");
+                $('#mov_btn').prop('disabled', true);                
+            }
+            else{
+
+                $('.movie_alert').text(" ");
+                $('#mov_btn').prop('disabled', false);
+            }                         
+        }         
+    });
+       
+   }
+
+   function checkTrailerUrl()
+   {
+       var trailer=$('#trailer_url').val();            
+       $.ajax({   
+        url: "../components/movie.cfc",
+        type: 'get',
+        dataType:"json",
+        data:{
+        method:"getTrailerUrl",
+          trailer_name:trailer         
+        },
+        success: function(data)
+        {
+            console.log(data);            
+            if(data.RECORDCOUNT==1)
+            {                
+                $('.trailer_alert').text("Trailer Url Already Exists!!");
+                $('#mov_btn').prop('disabled', true);                
+            }
+            else{
+
+                $('.trailer_alert').text(" ");
+                $('#mov_btn').prop('disabled', false);
+            }                         
+        }         
+    });
+       
+   }
+   function checkGoldRate()
+   {
+    var elemId=document.getElementById('gold_rate');
+    if(isNaN(elemId.value))
+    //const pattern = /^[0-9]$/;
+     {
+        $('.gold_alert').text('Only Numbers Allowed');
+       // $('#screen_btn').prop('disabled', true);
+              
+    }
+    else{
+        $('.gold_alert').text('');
+        //$('#screen_btn').prop('disabled', false);
+    }
+
+   }
+   function checkSilverRate()
+   {
+    var elemId=document.getElementById('silver_rate');
+    if(isNaN(elemId.value))
+    //const pattern = /^[0-9]$/;
+     {
+        $('.silver_alert').text('Only Numbers Allowed');
+        //$('#screen_btn').prop('disabled', true);
+              
+    }
+    else{
+        $('.silver_alert').text('');
+        //$('#screen_btn').prop('disabled', false);
+    }
+
+   }
    function printTable() {
     
     var printContents = document.getElementById('tableData').innerHTML;    
@@ -246,6 +499,34 @@ function selectElementContents(el) {
     });
     $('#show_table').DataTable( { 
     });
+    $('#movie_table').DataTable( { 
+        dom: 'Bfrtip',
+        buttons: [
+            
+            'copy',  
+            {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: [ 2, 3, 4,5,6,7,8,9 ]
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                    columns: [ 2, 3, 4,5,6,7,8,9 ]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: [ 2, 3, 4,5,6,7,8,9 ]
+                }
+            },
+            'print',
+            
+             'colvis'
+        ]
+    });
 });
     
       
@@ -281,4 +562,3 @@ function selectElementContents(el) {
         ]
     } );
 } );*/
-

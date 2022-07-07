@@ -127,7 +127,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="img-show">
-                                <img id="output" class="img-fluid "  />
+                                <img id="output" class="img-fluid"  />
                             </div>
                             <div class="wall-show">
                                 <img id="output2" class="img-fluid"  />

@@ -108,7 +108,20 @@
     </div>
 
 </div>
+
 <cfinclude  template="../modals/create_movie.cfm">
+<script>
+     document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+    var name = document.getElementById("posterInput").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });
+  document.querySelector('.wall-input').addEventListener('change', function (e) {
+    var name = document.getElementById("wallInput").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });
+</script>
 <cfinclude  template="dash_footer.cfm">
 
 		

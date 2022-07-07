@@ -1,5 +1,5 @@
 <cfcomponent>
-        <!----- Movie Functions -----> 
+    <!------------------------Movie Functions ----------------------------> 
     <!-----------------------Create Movie --------------------------->
         <cffunction  name="createMovie" access="remote" output="true">
         <cfargument  name="movie_name" type="string">
@@ -83,6 +83,7 @@
         <cflocation  url="../admin/movie_list.cfm?status=#local.status#" AddToken="no">
 
     </cffunction>
+    
      <!-----------------------Edit Movie --------------------------->
 
     <cffunction name="editMovie" access="remote" output="true">
@@ -98,14 +99,15 @@
         <cfargument  name="description" type="string">
         <cfargument  name="id" type="integer">
         <cfset local.thisDir = expandPath("../uploads")>
-
+       
         <cfquery name="fetchPoster"  result="poster_res">
             SELECT poster FROM movie_ticket.movie WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery> 
+        
         <cfquery name="fetchWall"  result="wall_res">
             SELECT wallpaper FROM movie_ticket.movie WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfif len(trim(arguments.poster) ) >      
+        <cfif  len(trim(arguments.poster) ) >      
             <cffile action="upload" fileField="form.poster"  destination="#thisDir#" result="fileUpload" nameconflict="overwrite">
             <cfif fileupload.filesize lt 1000000>            
                 <cfset local.poster=fileupload.serverfile >
@@ -114,7 +116,7 @@
             </cfif>
         <cfelseif poster_res.RecordCount EQ 1>
             <cfoutput query="fetchPoster">
-                <cfset local.poster=poster >
+                <cfset local.poster=fetchPoster.poster >
             </cfoutput> 
         </cfif>
         <cfif len(trim(arguments.wallpaper))>
@@ -126,7 +128,7 @@
             </cfif>
         <cfelseif wall_res.RecordCount EQ 1>
             <cfoutput query="fetchWall">
-                <cfset local.wallpaper=wallpaper >
+                <cfset local.wallpaper=fetchWall.wallpaper >
             </cfoutput>                               
         </cfif>
         <cfquery name="movie_exists" result="movie_res">
@@ -182,12 +184,12 @@
         <cfargument name="movId" type="integer" required="false" >
         <cfquery name="movie" result="movie_data" returntype="array" >
             SELECT * FROM movie_ticket.movie
-            WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+            WHERE id=<cfqueryparam value="#arguments.movId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>  
         <cfreturn movie> 
     </cffunction>
 
-    <!--------------------------Get Movie Name ---------------->
+    <!--------------------------Get Movie Name --------------------------->
     <cffunction name="getMovieName" access="remote" returnFormat = "json">
         <cfargument name="movie_name" type="string"  >
         <cfquery name="movie" result="movie_data" returntype="array">
@@ -225,5 +227,92 @@
         </cfquery>
         <cfreturn movie_details>
     </cffunction>
-    <!----- Movie Functions ----->
+    <!------------------------- Movie Functions -------------------------->
+
+    <!--------------------------Cast Functions----------------------------->
+    
+    <!--------------------------Create Cast for movie------------------------>
+     <cffunction name="createCast" access="remote" output="true">       
+        <cfargument  name="character_name" type="string">
+        <cfargument  name="actor_name" type="string">
+        <cfargument  name="actor_photo" type="string">
+        <cfargument  name="movie_id" type="integer">
+        <cfset local.movie_id=toBase64(arguments.movie_id)>
+        <cfset local.thisDir = expandPath("../uploads")>     
+        <cfif len(trim(arguments.actor_photo) ) >      
+            <cffile action="upload" fileField="form.actor_photo"  destination="#thisDir#" result="fileUpload" nameconflict="overwrite">
+            <cfif fileupload.filesize lt 1000000>            
+                <cfset local.filename=fileupload.serverfile >
+            <cfelse>
+                <cfset local.status=hash('6','sha')>  
+            </cfif>
+        </cfif>
+        <cfquery name="charName" result="char_name_res">
+            SELECT character_name FROM movie_ticket.cast 
+            WHERE character_name=<cfqueryparam value="#arguments.character_name#" cfsqltype="CF_SQL_VARCHAR">
+            AND movie_id=<cfqueryparam value="#arguments.movie_id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>        
+        <cfquery name="actorName" result="actor_name_res">
+            SELECT actor_name FROM movie_ticket.cast 
+            WHERE actor_name=<cfqueryparam value="#arguments.actor_name#" cfsqltype="CF_SQL_VARCHAR">
+            AND movie_id=<cfqueryparam value="#arguments.movie_id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        <cfif char_name_res.RecordCount NEQ 0>
+            <cfset local.status=hash('5','sha')>
+        </cfif>
+        <cfif actor_name_res.RecordCount NEQ 0>
+            <cfset local.status=hash('7','sha')>
+        </cfif>
+
+        <cfif arguments.character_name !="" && arguments.actor_name!="" >
+            <cfif charName.RecordCount EQ 0 AND actorName.RecordCount EQ 0 AND fileupload.filesize lt 1000000>
+                <cfquery name="add_cast" result="cast_res">
+                    INSERT INTO movie_ticket.cast(                        
+                        character_name,
+                        actor_name,
+                        actor_photo,
+                        movie_id
+                        ) 
+                    VALUES(                            
+                            <cfqueryparam value="#arguments.character_name#" cfsqltype="CF_SQL_VARCHAR">,
+                            <cfqueryparam value="#arguments.actor_name#" cfsqltype="CF_SQL_VARCHAR">,
+                            <cfqueryparam value="#local.filename#" cfsqltype="CF_SQL_VARCHAR">,
+                            <cfqueryparam value="#arguments.movie_id#" cfsqltype="CF_SQL_INTEGER">                                                                                       
+                            )
+                </cfquery>                
+                <cfif cast_res.RecordCount EQ 1>
+                        <cfset local.status=hash('1','sha')>
+                </cfif>
+            <cfelse>
+                <cflocation  url="../admin/cast_crew.cfm?movie_id=#local.movie_id#&status=#local.status#" AddToken="no">
+            </cfif>
+        <cfelse>
+            <cfset local.status=hash('4','sha')>
+        </cfif>
+        <cflocation  url="../admin/cast_crew.cfm?movie_id=#local.movie_id#&status=#local.status#" AddToken="no">
+    </cffunction>
+
+    <!--------------------------Details of cast of a movie----------------------------->
+    <cffunction  name="castDetails"  access="public">
+        <cfargument  name="movId" type="integer">
+        <cfquery name="cast" result="cast_res">
+            SELECT * FROM movie_ticket.cast WHERE movie_id=<cfqueryparam value="#arguments.movId#" cfsqltype="CF_SQL_INTEGER" >
+        </cfquery>
+        <cfreturn cast>
+    </cffunction>
+
+    <!--------------------------Delete a Cast of a Movie----------------------------->
+    <cffunction  name="deleteCast"  access="remote">
+        <cfargument  name="id" type="integer">
+        <cfargument  name="movie_id" type="integer">
+        <cfset local.enc_movie=toBase64(arguments.movie_id)>              
+        <cfset local.status=hash("3","sha")>        
+        <cfquery name="delete_cast"  result="cast_del">
+            DELETE FROM movie_ticket.cast
+            WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>        
+        <cflocation  url="../admin/cast_crew.cfm?movie_id=#local.enc_movie#&status=#local.status#" addtoken="no">  
+    </cffunction>
+
+    <!--------------------------Cast Functions----------------------------->
 </cfcomponent>

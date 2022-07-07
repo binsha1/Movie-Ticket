@@ -8,14 +8,14 @@
     <!-- Page Heading -->
     <a href="movie_list.cfm" class="btn btn-outline-primary"><i class="fa-solid fa-arrow-left"></i> Back</a>
     <cfset movie_data=application.movie.getMovie(movId)>
-    <h4 class="h3 mb-2 text-gray-800 text-center">Manage Screen and Show Time for <b><cfloop array="#movie_data#" index="i">
+    <h4 class="h3 mb-2 text-gray-800 text-center">Manage Cast & Crew for <b><cfloop array="#movie_data#" index="i">
         <cfoutput>#i.movie_name#
         </cfoutput>
     </cfloop>   </b></h4>
     <cfif status EQ hash('1','sha')>
         <div class="alert alert-success alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                 Added Successfully !!
+                 Cast Added Successfully !!
         </div>
     <cfelseif status EQ hash('2','sha')>
         <div class="alert alert-success alert-dismissible">
@@ -25,7 +25,7 @@
     <cfelseif status EQ hash('3','sha')>
         <div class="alert alert-success alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Deleted Successfully !!
+               Cast Deleted Successfully !!
         </div>
     <cfelseif status EQ hash('4','sha')>
         <div class="alert alert-danger alert-dismissible">
@@ -35,7 +35,7 @@
     <cfelseif status EQ hash('5','sha')>
         <div class="alert alert-danger alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Screen Name Already Exists!!
+                Cast Name Already Exists for the Movie!!
         </div>
     <cfelseif status EQ hash('6','sha')>
         <div class="alert alert-danger alert-dismissible">
@@ -43,9 +43,9 @@
                 Please upload a file of size less than 1 MB!!
         </div>
     <cfelseif status EQ hash('7','sha')>
-        <div class="alert alert-success alert-dismissible">
+        <div class="alert alert-danger alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Theatre Updated Successfully !!
+               Actor Name Already Exists for the Movie!!
         </div> 
     <cfelseif status EQ hash('9','sha')>
         <div class="alert alert-danger alert-dismissible">
@@ -58,12 +58,12 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <cfoutput>
-                        <button type="button" class="btn btn-primary theatre_btn cast mb-3 " data-bs-toggle="modal" data-id="0" data-tid="#movId#" data-bs-target=".castModal"  >Add New Cast</button>
+                        <button type="button" class="btn btn-primary theatre_btn cast mb-3 " data-bs-toggle="modal" data-id="0" data-mid="#movId#" data-bs-target=".castModal"  >Add New Cast</button>
                     </cfoutput>
                 </div>
                 <div class="card-body">                    
                     <div class="table-responsive" id="tableList">
-                        <table class="table table-bordered table-striped" id="screen_table" width="100%" cellspacing="0" >
+                        <table class="table table-bordered table-striped" id="cast_table" width="100%" cellspacing="0" >
                             <thead>
                                 <tr>
                                     <th >Photo</th>
@@ -80,18 +80,17 @@
                                     <th >Delete</th>
                                 </tr>
                             </tfoot>
-                            <!---<cfset res=application.movie.Details(theId)>                  
+                            <cfset res=application.movie.castDetails(movId)>                
                             <tbody>
                             <cfoutput query='res'>                            
                                 <tr>                                    
-                                    <td>#screen_name#</td>
-                                    <td>#gold_rate#</td>
-                                    <td>#silver_rate#</td>                                   
-                                    <td><button class="btn btn-outline-primary edit screen" id="edit" data-bs-toggle="modal" data-bs-target=".screenModal" data-id="#id#" data-tid="#theId#" >Edit</button></td>
-                                    <td><a href="../components/controller.cfc?method=deleteScreen&id=#id#&theatre_id=#theId#" class="btn btn-outline-primary">Delete</a></td>
+                                    <td><img src="../uploads/#actor_photo#"class="img-fluid"></td>
+                                    <td>#character_name#</td>
+                                    <td>#actor_name#</td>                                   
+                                    <td><a href="../components/movie.cfc?method=deleteCast&id=#id#&movie_id=#movId#" class="btn btn-outline-primary">Delete</a></td>
                                 </tr>
-                            </cfoutput>                    
-                            </tbody>---->
+                            </cfoutput>                   
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -101,12 +100,12 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <cfoutput>
-                        <button type="button" class="btn btn-primary theatre_btn crew mb-3 " data-bs-toggle="modal" data-id="0" data-tid="#theId#" data-bs-target=".crewModal"  >Add New Crew</button>
+                        <button type="button" class="btn btn-primary theatre_btn crew mb-3 " data-bs-toggle="modal" data-id="0" data-tid="#movId#" data-bs-target=".crewModal"  >Add New Crew</button>
                     </cfoutput>
                 </div>
                 <div class="card-body">                    
                     <div class="table-responsive" id="tableList">
-                        <table class="table table-bordered table-striped" id="show_table" width="100%" cellspacing="0" >
+                        <table class="table table-bordered table-striped" id="crew_table" width="100%" cellspacing="0" >
                             <thead>
                                 <tr>
                                     <th >Photo</th>
@@ -147,5 +146,5 @@
     </div>
 </div>
 <cfinclude  template="../modals/create_cast.cfm">
-<cfinclude  template="../modals/create_crew.cfm">
+<!---<cfinclude  template="../modals/create_crew.cfm">---->
 <cfinclude  template="dash_footer.cfm">
