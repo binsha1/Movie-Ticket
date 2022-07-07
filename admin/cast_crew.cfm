@@ -63,7 +63,7 @@
                 </div>
                 <div class="card-body">                    
                     <div class="table-responsive" id="tableList">
-                        <table class="table table-bordered table-striped" id="screen_table" width="100%" cellspacing="0" >
+                        <table class="table table-bordered table-striped" id="cast_table" width="100%" cellspacing="0" >
                             <thead>
                                 <tr>
                                     <th >Photo</th>
@@ -101,12 +101,12 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <cfoutput>
-                        <button type="button" class="btn btn-primary theatre_btn crew mb-3 " data-bs-toggle="modal" data-id="0" data-tid="#theId#" data-bs-target=".crewModal"  >Add New Crew</button>
+                        <button type="button" class="btn btn-primary theatre_btn crew mb-3 " data-bs-toggle="modal" data-id="0" data-tid="#movId#" data-bs-target=".crewModal"  >Add New Crew</button>
                     </cfoutput>
                 </div>
                 <div class="card-body">                    
                     <div class="table-responsive" id="tableList">
-                        <table class="table table-bordered table-striped" id="show_table" width="100%" cellspacing="0" >
+                        <table class="table table-bordered table-striped" id="crew_table" width="100%" cellspacing="0" >
                             <thead>
                                 <tr>
                                     <th >Photo</th>
@@ -147,5 +147,5 @@
     </div>
 </div>
 <cfinclude  template="../modals/create_cast.cfm">
-<cfinclude  template="../modals/create_crew.cfm">
+<!---<cfinclude  template="../modals/create_crew.cfm">---->
 <cfinclude  template="dash_footer.cfm">

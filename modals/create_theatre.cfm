@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h2 class="modal-title" id="modal_title"> </h2>
+                    <h2 class="modal-title" id="theatre_title"> </h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <!-- Modal body -->
@@ -42,9 +42,10 @@
                                     <label class="form-label required control-label pt-3">Upload Photo:</label>
                                 </div>
                                 <div class="col-lg-12">
-                                    <div>                                                           
-                                        <input class="form-control" id="imgInp" type="file" accept=".png,.jpg,.jpeg" name="theatre_img" required onchange="loadFile(event)">
-                                    </div>                                                      
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input thea_img" id="th_img" required accept=".png,.jpg,.jpeg" name="theatre_img" onchange="loadFile(event)">
+                                        <label class="custom-file-label" for="th_img">Choose file...</label>
+                                    </div>                                                                                       
                                 </div>                                                    
                             </div>
                             <div class="form-group row">
@@ -71,7 +72,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="img-show">
-                                <img id="output" class="img-fluid"  />
+                                <img id="th_out" class="img-fluid"  />
                             </div>
                         </div>
                     </div>

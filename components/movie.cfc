@@ -1,5 +1,5 @@
 <cfcomponent>
-        <!----- Movie Functions -----> 
+    <!------------------------Movie Functions ----------------------------> 
     <!-----------------------Create Movie --------------------------->
         <cffunction  name="createMovie" access="remote" output="true">
         <cfargument  name="movie_name" type="string">
@@ -83,6 +83,7 @@
         <cflocation  url="../admin/movie_list.cfm?status=#local.status#" AddToken="no">
 
     </cffunction>
+    
      <!-----------------------Edit Movie --------------------------->
 
     <cffunction name="editMovie" access="remote" output="true">
@@ -98,14 +99,15 @@
         <cfargument  name="description" type="string">
         <cfargument  name="id" type="integer">
         <cfset local.thisDir = expandPath("../uploads")>
-
+       
         <cfquery name="fetchPoster"  result="poster_res">
             SELECT poster FROM movie_ticket.movie WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery> 
+        
         <cfquery name="fetchWall"  result="wall_res">
             SELECT wallpaper FROM movie_ticket.movie WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfif len(trim(arguments.poster) ) >      
+        <cfif  len(trim(arguments.poster) ) >      
             <cffile action="upload" fileField="form.poster"  destination="#thisDir#" result="fileUpload" nameconflict="overwrite">
             <cfif fileupload.filesize lt 1000000>            
                 <cfset local.poster=fileupload.serverfile >
@@ -114,7 +116,7 @@
             </cfif>
         <cfelseif poster_res.RecordCount EQ 1>
             <cfoutput query="fetchPoster">
-                <cfset local.poster=poster >
+                <cfset local.poster=fetchPoster.poster >
             </cfoutput> 
         </cfif>
         <cfif len(trim(arguments.wallpaper))>
@@ -126,7 +128,7 @@
             </cfif>
         <cfelseif wall_res.RecordCount EQ 1>
             <cfoutput query="fetchWall">
-                <cfset local.wallpaper=wallpaper >
+                <cfset local.wallpaper=fetchWall.wallpaper >
             </cfoutput>                               
         </cfif>
         <cfquery name="movie_exists" result="movie_res">
@@ -182,12 +184,12 @@
         <cfargument name="movId" type="integer" required="false" >
         <cfquery name="movie" result="movie_data" returntype="array" >
             SELECT * FROM movie_ticket.movie
-            WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+            WHERE id=<cfqueryparam value="#arguments.movId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>  
         <cfreturn movie> 
     </cffunction>
 
-    <!--------------------------Get Movie Name ---------------->
+    <!--------------------------Get Movie Name --------------------------->
     <cffunction name="getMovieName" access="remote" returnFormat = "json">
         <cfargument name="movie_name" type="string"  >
         <cfquery name="movie" result="movie_data" returntype="array">
@@ -225,5 +227,5 @@
         </cfquery>
         <cfreturn movie_details>
     </cffunction>
-    <!----- Movie Functions ----->
+    <!------------------------- Movie Functions -------------------------->
 </cfcomponent>

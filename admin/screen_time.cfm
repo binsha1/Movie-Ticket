@@ -1,5 +1,4 @@
 <cfparam  name="status" default="v">
-
 <cfparam  name="theatre_id" default="v">
 <cfparam  name="key" default="v">
 <cfset theId=toString(toBinary(theatre_id))>

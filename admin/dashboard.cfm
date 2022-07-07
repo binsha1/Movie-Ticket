@@ -33,14 +33,16 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-white  mb-1">
                                 Movies</div>
-                            <div class="h5 mb-0 font-weight-bold text-white">13</div>
+                                <cfset movie=application.movie.movieDetails()>
+                            <div class="h5 mb-0 font-weight-bold text-white"><cfoutput>#movie.RecordCount#
+                            </cfoutput></div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-solid fa-film fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
-                <a href="#" class="btn btn-dboard">More Info <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="movie_list.cfm" class="btn btn-dboard">More Info <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>        
         <div class="col-xl-3 col-md-6 mb-4">
