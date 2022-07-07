@@ -241,6 +241,16 @@ $('.movie').on('click',function(){
         $('#movieId').attr('action', '../components/movie.cfc?method=createMovie'); 
     }
 });
+document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+    var name = document.getElementById("posterInput").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });
+  document.querySelector('.wall-input').addEventListener('change', function (e) {
+    var name = document.getElementById("wallInput").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });
 
   
 
@@ -578,6 +588,11 @@ function selectElementContents(el) {
         ]
     } );
 } );*/
+document.querySelector('.thea_img').addEventListener('change', function (e) {
+    var name = document.getElementById("th_img").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });
 
 document.querySelector('.thea_img').addEventListener('change', function (e) {
     var name = document.getElementById("th_img").files[0].name;
