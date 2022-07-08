@@ -98,19 +98,19 @@
 
     
 
-    <cffunction name="screenDetails" access="public" output="true">
+    <cffunction name="screenDetails" access="remote" output="true" returnFormat = "json">
         <cfargument  name="theatre_id" type="integer">
-        <cfquery name="screen_details"  result="res">
+        <cfquery name="screen_details"  result="res" returntype="array" >
             SELECT * FROM movie_ticket.screen 
             WHERE theatre_id=<cfqueryparam value="#arguments.theatre_id#" cfsqltype="CF_SQL_INTEGER">;
         </cfquery>
         <cfreturn screen_details>
     </cffunction>
 
-    <cffunction name="timeDetails" access="public" output="true">
+    <cffunction name="timeDetails" access="remote" output="true" returnFormat = "json">
         <cfargument  name="theatre_id" type="integer">
-        <cfquery name="time_details"  result="res">
-            SELECT *
+        <cfquery name="time_details"  result="res" returntype="array">
+            SELECT st.id, st.screen_id,s.screen_name, st.theatre_id,st.start_time
             FROM movie_ticket.screen_show_time st
             INNER JOIN movie_ticket.screen s ON s.id = st.screen_id
         WHERE 

@@ -57,7 +57,7 @@
                 </a>                
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" >
+                <a class="nav-link collapsed" href="show_list.cfm" >
                     <i class="fa-solid fa-video"></i>
                     <span>Manage Shows</span>
                 </a>                

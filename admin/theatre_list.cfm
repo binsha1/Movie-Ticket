@@ -1,5 +1,6 @@
 <cfparam  name="status" default="v">
 <cfinclude  template="dash_header.cfm">
+<cfset res=application.obj.theatreDetails()> 
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Manage Theatre</h1>
@@ -94,14 +95,13 @@
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>
-                    </tfoot>
-                    <cfset res=application.obj.theatreDetails()>                    
+                    </tfoot>                                       
                     <tbody>
                     <cfoutput query='res'>
                         <cfset addr=address & ", " & street_name & ", " & pincode &" .">                        
                         <cfset local.theatre_id=toBase64(id)>
                         <tr>
-                            <td><img src="../uploads/#photo#" class="img-fluid"></td>
+                            <td><img src="../uploads/#photo#" class="img-fluid img-poster"></td>
                             <td>#theatre_name#</td>
                             <td>#email_id#</td>
                             <td>#phone#</td>

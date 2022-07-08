@@ -2,12 +2,15 @@
 <cfparam  name="movie_id" default="v">
 <cfparam  name="key" default="v">
 <cfset movId=toString(toBinary(movie_id))>
+<cfset movie_data=application.movie.getMovie(movId)>
+<cfset cast_res=application.movie.castDetails(movId)> 
+<cfset crew_res=application.movie.crewDetails(movId)>    
 <!---<cfset movie_data=application.movie.movieDetails(theId)>--->
 <cfinclude  template="dash_header.cfm">
 <div class="container-fluid">    
     <!-- Page Heading -->
     <a href="movie_list.cfm" class="btn btn-outline-primary"><i class="fa-solid fa-arrow-left"></i> Back</a>
-    <cfset movie_data=application.movie.getMovie(movId)>
+    
     <h4 class="h3 mb-2 text-gray-800 text-center">Manage Cast & Crew for <b><cfloop array="#movie_data#" index="i">
         <cfoutput>#i.movie_name#
         </cfoutput>
@@ -20,7 +23,7 @@
     <cfelseif status EQ hash('2','sha')>
         <div class="alert alert-success alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Updated Successfully !!
+                Crew Added Successfully !!
         </div>
     <cfelseif status EQ hash('3','sha')>
         <div class="alert alert-success alert-dismissible">
@@ -41,16 +44,11 @@
         <div class="alert alert-danger alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 Please upload a file of size less than 1 MB!!
-        </div>
-    <cfelseif status EQ hash('7','sha')>
-        <div class="alert alert-danger alert-dismissible">
-            <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-               Actor Name Already Exists for the Movie!!
-        </div> 
+        </div>    
     <cfelseif status EQ hash('9','sha')>
-        <div class="alert alert-danger alert-dismissible">
+        <div class="alert alert-success alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Screen Time Exists for the show !!
+                Crew Deleted Successfully
         </div>       
     </cfif>
     <div class="row">
@@ -79,12 +77,11 @@
                                     <th >Actor</th>                                
                                     <th >Delete</th>
                                 </tr>
-                            </tfoot>
-                            <cfset res=application.movie.castDetails(movId)>                
+                            </tfoot>                                           
                             <tbody>
-                            <cfoutput query='res'>                            
+                            <cfoutput query='cast_res'>                            
                                 <tr>                                    
-                                    <td><img src="../uploads/#actor_photo#"class="img-fluid"></td>
+                                    <td><img src="../uploads/#actor_photo#"class="img-fluid img-poster"></td>
                                     <td>#character_name#</td>
                                     <td>#actor_name#</td>                                   
                                     <td><a href="../components/movie.cfc?method=deleteCast&id=#id#&movie_id=#movId#" class="btn btn-outline-primary">Delete</a></td>
@@ -100,7 +97,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <cfoutput>
-                        <button type="button" class="btn btn-primary theatre_btn crew mb-3 " data-bs-toggle="modal" data-id="0" data-tid="#movId#" data-bs-target=".crewModal"  >Add New Crew</button>
+                        <button type="button" class="btn btn-primary theatre_btn crew mb-3 " data-bs-toggle="modal" data-id="0" data-mid="#movId#" data-bs-target=".crewModal"  >Add New Crew</button>
                     </cfoutput>
                 </div>
                 <div class="card-body">                    
@@ -121,22 +118,20 @@
                                     <th >Person Name</th>                                
                                     <th >Delete</th>
                                 </tr>
-                            </tfoot>
-                            <!---<cfset time_data=application.obj.timeDetails(theId)>          
+                            </tfoot>                                  
                             <tbody>
-                            <cfif time_data.RecordCount NEQ 0>
-                                <cfoutput query='time_data'>
+                            <cfif crew_res.RecordCount NEQ 0>
+                                <cfoutput query='crew_res'>
                                     
-                                    <tr>                                    
-                                        <td>#show_name#</td>
-                                        <td>#screen_name#</td>
-                                        <td>#start_time#</td>                                   
-                                        <td><button class="btn btn-outline-primary edit s_time" id="s_edit" data-bs-toggle="modal" data-bs-target=".timeModal" data-id="#id#" data-tid="#theId#" >Edit</button></td>
-                                        <td><a href="../components/controller.cfc?method=deleteScreenTime&id=#id#&theatre_id=#theId#" class="btn btn-outline-primary">Delete</a></td>
+                                    <tr>
+                                        <td><img src="../uploads/#crew_photo#"class="img-fluid img-poster"></td>                                    
+                                        <td>#role_name#</td>
+                                        <td>#person_name#</td>                                        
+                                        <td><a href="../components/movie.cfc?method=deleteCrew&id=#id#&movie_id=#movId#" class="btn btn-outline-primary">Delete</a></td>
                                     </tr>
                                 </cfoutput>                    
                             </cfif>
-                            </tbody>---->
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -146,5 +141,5 @@
     </div>
 </div>
 <cfinclude  template="../modals/create_cast.cfm">
-<!---<cfinclude  template="../modals/create_crew.cfm">---->
+<cfinclude  template="../modals/create_crew.cfm">
 <cfinclude  template="dash_footer.cfm">

@@ -33,6 +33,15 @@ var loadFile = function(event) {
     reader.readAsDataURL(event.target.files[0]);
   };
 
+  var loadCrew = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('crew_output');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+
   
 $('.title').on('click',function(){    
     var th_id=$(this).data('id');  
@@ -241,16 +250,7 @@ $('.movie').on('click',function(){
         $('#movieId').attr('action', '../components/movie.cfc?method=createMovie'); 
     }
 });
-document.querySelector('.custom-file-input').addEventListener('change', function (e) {
-    var name = document.getElementById("posterInput").files[0].name;
-    var nextSibling = e.target.nextElementSibling
-    nextSibling.innerText = name
-  });
-  document.querySelector('.wall-input').addEventListener('change', function (e) {
-    var name = document.getElementById("wallInput").files[0].name;
-    var nextSibling = e.target.nextElementSibling
-    nextSibling.innerText = name
-  });
+
 
   
 
@@ -262,7 +262,109 @@ $('.cast').on('click',function(){
     
 });
 
+$('.crew').on('click',function(){
+    
+    var crew_id=$(this).data('id');
+    var movie_id=$(this).data('mid');  
+    $('#mov_id').val(movie_id);      
+    
+});
 
+$('.show').on('click',function(){
+    
+    var show_id=$(this).data('id');
+    if(show_id>0){
+        $("#show_title").text("EDIT MOVIE SHOW TIME");
+        $('#showId').attr('action', '../components/show.cfc?method=editShow&id='+data[0].id);
+    }
+    else{
+        $("#show_title").text("ADD MOVIE SHOW TIME");
+        $('#movie').val("");
+        $('#theatre').val("");
+        $('#screen').val("");
+        $('#screen_time').val("");
+        $('#end_date').val("");
+        $('#total_seats').val("");
+        $('#showId').attr('action', '../components/show.cfc?method=createShow');
+    }   
+    
+});
+
+
+function screenList(){
+    var theat_id=$('#theatre').val();
+    if(theat_id!="")
+    {
+        alert('fdgdf');
+        $.ajax({   
+            url: "../components/controller.cfc",
+            type: 'get',
+            dataType:"json",
+            data:{
+            method:"screenDetails",
+              theatre_id:theat_id           
+            },
+            success: function(response)
+            {
+               
+                console.log(response);
+                console.log(response.length);  
+                if(response.length>0)
+                {
+                    $('#screeen').html('');  
+                    var options = '';  
+                    //options += '<option value="Select">Select</option>';  
+                    for (var i = 0; i < response.length; i++) {  
+                        options += '<option value="' + response[i].id + '">' + response[i].screen_name + '</option>';  
+                    }  
+                    $('#screen').append(options);  
+                }
+                else{
+                    alert('error');
+                }  
+                              
+            }         
+        });       
+    }
+}
+
+function timeList(){
+    var sc_id=$('#screen').val();
+    var th_sc_id=$('#theatre').val();    
+    if(sc_id!="")
+    {
+        
+        $.ajax({   
+            url: "../components/controller.cfc",
+            type: 'get',
+            dataType:"json",
+            data:{
+            method:"timeDetails",
+              theatre_id:th_sc_id           
+            },
+            success: function(response)
+            {
+               
+                console.log(response);
+                
+                if(response.length>0)
+                {
+                    $('#screen_time').html('');  
+                    var options = '';  
+                    options += '<option value="">Select Show Time</option>';  
+                    for (var i = 0; i < response.length; i++) {  
+                        options += '<option value="' + response[i].id + '">' + response[i].start_time + '</option>';  
+                    }  
+                    $('#screen_time').append(options);  
+                }
+                else{
+                    alert('error');
+                }  
+                              
+            }         
+        });       
+    }
+}
 function validateCreate(){
     
     var pincode=document.querySelector('input[name=pincode]');
@@ -466,12 +568,7 @@ function selectElementContents(el) {
 }
 */
     $(document).ready(function() {
-        /*$('#example').DataTable( {
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print','colvis'
-            ]
-        } );*/
+        
         $('#example').DataTable( {            
             
             dom: 'Bfrtip',
@@ -503,17 +600,20 @@ function selectElementContents(el) {
             
            
     } );
-
-    
-    
     $('#screen_table').DataTable( { 
         
     });
-    $('#show_table').DataTable( { 
+    $('#show_time_table').DataTable( { 
     });
     $('#cast_table').DataTable( { 
     });
-
+    $('#crew_table').DataTable( { 
+    });
+    $('#show_table').DataTable( { 
+    });
+    
+    
+   
     $('#movie_table').DataTable( { 
         dom: 'Bfrtip',
         buttons: [
@@ -544,8 +644,23 @@ function selectElementContents(el) {
     });
 });
 
- 
 
+
+/*document.querySelector('.thea_img').addEventListener('change', function (e) {
+    var name = document.getElementById("th_img").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });
+  document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+    var name = document.getElementById("posterInput").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });
+  document.querySelector('.wall-input').addEventListener('change', function (e) {
+    var name = document.getElementById("wallInput").files[0].name;
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = name
+  });*/
 /*document.querySelector('.custom-file-input').addEventListener('change', function (e) {
     var name = document.getElementById("posterInput").files[0].name;
     var nextSibling = e.target.nextElementSibling
@@ -588,17 +703,9 @@ function selectElementContents(el) {
         ]
     } );
 } );*/
-document.querySelector('.thea_img').addEventListener('change', function (e) {
-    var name = document.getElementById("th_img").files[0].name;
-    var nextSibling = e.target.nextElementSibling
-    nextSibling.innerText = name
-  });
 
-document.querySelector('.thea_img').addEventListener('change', function (e) {
-    var name = document.getElementById("th_img").files[0].name;
-    var nextSibling = e.target.nextElementSibling
-    nextSibling.innerText = name
-  });
+
+
 
 
 

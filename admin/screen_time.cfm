@@ -2,12 +2,14 @@
 <cfparam  name="theatre_id" default="v">
 <cfparam  name="key" default="v">
 <cfset theId=toString(toBinary(theatre_id))>
+<cfset theatre_data=application.obj.getTheatreName(theId)>
 <cfset screen_data=application.obj.screenDetails(theId)>
+<cfset time_data=application.obj.timeDetails(theId)> 
 <cfinclude  template="dash_header.cfm">
 <div class="container-fluid">    
     <!-- Page Heading -->
     <a href="theatre_list.cfm" class="btn btn-outline-primary"><i class="fa-solid fa-arrow-left"></i> Back</a>
-    <cfset theatre_data=application.obj.getTheatreName(theId)>
+    
     <h4 class="h3 mb-2 text-gray-800 text-center">Manage Screen and Show Time for <b><cfoutput>#theatre_data.theatre_name#
     </cfoutput></b></h4>
     <cfif status EQ hash('1','sha')>
@@ -79,10 +81,9 @@
                                     <th >Update</th>
                                     <th >Delete</th>
                                 </tr>
-                            </tfoot>
-                            <cfset res=application.obj.screenDetails(theId)>                  
+                            </tfoot>                                             
                             <tbody>
-                            <cfoutput query='res'>                            
+                            <cfoutput query='screen_data'>                            
                                 <tr>                                    
                                     <td>#screen_name#</td>
                                     <td>#gold_rate#</td>
@@ -106,7 +107,7 @@
                 </div>
                 <div class="card-body">                    
                     <div class="table-responsive" id="tableList">
-                        <table class="table table-bordered table-striped" id="show_table" width="100%" cellspacing="0" >
+                        <table class="table table-bordered table-striped" id="show_time_table" width="100%" cellspacing="0" >
                             <thead>
                                 <tr>
                                     <th >Show  Name</th>
@@ -125,7 +126,7 @@
                                     <th >Delete</th>
                                 </tr>
                             </tfoot>
-                            <cfset time_data=application.obj.timeDetails(theId)>          
+                                     
                             <tbody>
                             <cfif time_data.RecordCount NEQ 0>
                                 <cfoutput query='time_data'>

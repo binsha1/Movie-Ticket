@@ -251,21 +251,13 @@
             SELECT character_name FROM movie_ticket.cast 
             WHERE character_name=<cfqueryparam value="#arguments.character_name#" cfsqltype="CF_SQL_VARCHAR">
             AND movie_id=<cfqueryparam value="#arguments.movie_id#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>        
-        <cfquery name="actorName" result="actor_name_res">
-            SELECT actor_name FROM movie_ticket.cast 
-            WHERE actor_name=<cfqueryparam value="#arguments.actor_name#" cfsqltype="CF_SQL_VARCHAR">
-            AND movie_id=<cfqueryparam value="#arguments.movie_id#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
+        </cfquery>       
         <cfif char_name_res.RecordCount NEQ 0>
             <cfset local.status=hash('5','sha')>
-        </cfif>
-        <cfif actor_name_res.RecordCount NEQ 0>
-            <cfset local.status=hash('7','sha')>
-        </cfif>
+        </cfif>       
 
         <cfif arguments.character_name !="" && arguments.actor_name!="" >
-            <cfif charName.RecordCount EQ 0 AND actorName.RecordCount EQ 0 AND fileupload.filesize lt 1000000>
+            <cfif charName.RecordCount EQ 0 AND fileupload.filesize lt 1000000>
                 <cfquery name="add_cast" result="cast_res">
                     INSERT INTO movie_ticket.cast(                        
                         character_name,
@@ -315,4 +307,75 @@
     </cffunction>
 
     <!--------------------------Cast Functions----------------------------->
+
+
+    <!--------------------------Crew Functions----------------------------->
+    <!--------------------------Create Crew Function----------------------------->
+        <cffunction name="createCrew" access="remote" output="true">       
+        <cfargument  name="role_name" type="string">
+        <cfargument  name="person_name" type="string">
+        <cfargument  name="crew_photo" type="string">
+        <cfargument  name="movie_id" type="integer">
+        <cfset local.movie_id=toBase64(arguments.movie_id)>
+        <cfset local.thisDir = expandPath("../uploads")> 
+        <cfif len(trim(arguments.crew_photo) ) >      
+            <cffile action="upload" fileField="form.crew_photo"  destination="#thisDir#" result="fileUpload" nameconflict="overwrite">
+            <cfif fileupload.filesize lt 1000000>            
+                <cfset local.filename=fileupload.serverfile >
+            <cfelse>
+                <cfset local.status=hash('6','sha')>  
+            </cfif>
+        </cfif>
+        <cfif arguments.role_name !="" && arguments.person_name!="" >
+            <cfif fileupload.filesize lt 1000000>
+                <cfquery name="add_crew" result="crew_res">
+                    INSERT INTO movie_ticket.crew(                        
+                        role_name,
+                        person_name,
+                        crew_photo,
+                        movie_id
+                        ) 
+                    VALUES(                            
+                            <cfqueryparam value="#arguments.role_name#" cfsqltype="CF_SQL_VARCHAR">,
+                            <cfqueryparam value="#arguments.person_name#" cfsqltype="CF_SQL_VARCHAR">,
+                            <cfqueryparam value="#local.filename#" cfsqltype="CF_SQL_VARCHAR">,
+                            <cfqueryparam value="#arguments.movie_id#" cfsqltype="CF_SQL_INTEGER">                                                                                       
+                            )
+                </cfquery>                
+                <cfif crew_res.RecordCount EQ 1>
+                        <cfset local.status=hash('2','sha')>
+                </cfif>
+            <cfelse>
+                <cflocation  url="../admin/cast_crew.cfm?movie_id=#local.movie_id#&status=#local.status#" AddToken="no">
+            </cfif>
+        <cfelse>
+            <cfset local.status=hash('4','sha')>
+        </cfif>
+        <cflocation  url="../admin/cast_crew.cfm?movie_id=#local.movie_id#&status=#local.status#" AddToken="no">
+
+      
+        </cffunction>
+
+    <!--------------------------Details of crew of a movie----------------------------->
+    <cffunction  name="crewDetails"  access="public">
+        <cfargument  name="movId" type="integer">
+        <cfquery name="crew" result="cast_res">
+            SELECT * FROM movie_ticket.crew WHERE movie_id=<cfqueryparam value="#arguments.movId#" cfsqltype="CF_SQL_INTEGER" >
+        </cfquery>
+        <cfreturn crew>
+    </cffunction>
+
+     <!--------------------------Delete a Crew of a Movie----------------------------->
+    <cffunction  name="deleteCrew"  access="remote">
+        <cfargument  name="id" type="integer">
+        <cfargument  name="movie_id" type="integer">
+        <cfset local.enc_movie=toBase64(arguments.movie_id)>              
+        <cfset local.status=hash("9","sha")>        
+        <cfquery name="delete_crew"  result="crew_del">
+            DELETE FROM movie_ticket.crew
+            WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>        
+        <cflocation  url="../admin/cast_crew.cfm?movie_id=#local.enc_movie#&status=#local.status#" addtoken="no">  
+    </cffunction>
+    <!--------------------------Crew Functions----------------------------->
 </cfcomponent>

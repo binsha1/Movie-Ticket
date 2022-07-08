@@ -75,22 +75,11 @@
     
     <script src="../assets/admin_template/vendor/tabledata/datatables.min.js"></script>
    <script src="../assets/admin_template/vendor/datatables/datatables.min.js"></script>--->
-    <!-- Page level custom scripts -->
+    <!-- Page level custom scripts 
     <script src="../assets/admin_template/js/demo/chart-area-demo.js"></script>
     <script src="../assets/admin_template/js/demo/chart-pie-demo.js"></script>
-    <script src="../assets/admin_template/js/demo/datatables-demo.js"></script>
-    <script>
-     document.querySelector('.custom-file-input').addEventListener('change', function (e) {
-    var name = document.getElementById("posterInput").files[0].name;
-    var nextSibling = e.target.nextElementSibling
-    nextSibling.innerText = name
-  });
-  document.querySelector('.wall-input').addEventListener('change', function (e) {
-    var name = document.getElementById("wallInput").files[0].name;
-    var nextSibling = e.target.nextElementSibling
-    nextSibling.innerText = name
-  });
-</script>
+    <script src="../assets/admin_template/js/demo/datatables-demo.js"></script>-->
+    
 </body>    
 
 </html>

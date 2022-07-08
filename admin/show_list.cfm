@@ -1,13 +1,14 @@
 <cfparam  name="status" default="v">
 <cfinclude  template="dash_header.cfm">
-<cfset res=application.movie.movieDetails()> 
+<cfset theatre_res=application.obj.theatreDetails()>
+<cfset movie_res=application.movie.movieDetails()>
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Manage Movie</h1>
+    <h1 class="h3 mb-2 text-gray-800">Manage Show</h1>
     <cfif status EQ hash('1','sha')>
         <div class="alert alert-success alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Movie Added Successfully !!
+                Show Added Successfully !!
         </div>
     <cfelseif status EQ hash('2','sha')>
         <div class="alert alert-danger alert-dismissible">
@@ -43,24 +44,25 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">            
-            <button type="button" class="btn btn-primary theatre_btn movie" data-bs-toggle="modal" data-id="0" data-bs-target=".movieModal"  >Add New Movie</button>
+            <button type="button" class="btn btn-primary theatre_btn show" data-bs-toggle="modal" data-id="0" data-bs-target=".showModal"  >Add New Show Time</button>
         </div>
         <div class="card-body">
             <div class="table-responsive" id="tableList">
-                <table class="table table-bordered table-striped" id="movie_table" width="100%" cellspacing="0" >
+                <table class="table table-bordered table-striped" id="show_table" width="100%" cellspacing="0" >
                     <thead>
                         <tr>
                             <th >Poster</th>
-                            <th >Wallpaper</th>
-                            <th >Name</th>
-                            <th >Release Date</th>
-                            <th >Format</th>
-                            <th >Genre</th>
-                            <th >Language</th>
+                            <th >Movie Name</th>
+                            <th >Theatre</th>
+                            <th >Screen</th>
+                            <th >Show Time</th>
+                            <th >Start Date</th>
+                            <th >Starting Time</th>
                             <th >Duration</th>
-                            <th >Description</th>
-                            <th >Trailor</th>
-                            <th >Add Cast & Crew</th>
+                            <th >Ending Time</th>
+                            <th >Show End Date</th>
+                            <th >Show Status</th>
+                            <th >Show Priority</th>
                             <th >Update</th>
                             <th >Delete</th>
                         </tr>
@@ -68,22 +70,23 @@
                     <tfoot>
                         <tr>
                             <th >Poster</th>
-                            <th >Wallpaper</th>
-                            <th >Name</th>
-                            <th >Release Date</th>
-                            <th >Format</th>
-                            <th >Genre</th>
-                            <th >Language</th>
+                            <th >Movie Name</th>
+                            <th >Theatre</th>
+                            <th >Screen</th>
+                            <th >Show Time</th>
+                            <th >Start Date</th>
+                            <th >Starting Time</th>
                             <th >Duration</th>
-                            <th >Description</th>
-                            <th >Trailor</th>
-                            <th >Add Cast & Crew</th>
+                            <th >Ending Time</th>
+                            <th >Show End Date</th>
+                            <th >Show Status</th>
+                            <th >Show Priority</th>
                             <th >Update</th>
                             <th >Delete</th>
                         </tr>
                     </tfoot>                                       
                     <tbody>
-                    <cfoutput query='res'>                                             
+                    <!---<cfoutput query='res'>                                             
                         <cfset local.movie_id=toBase64(id)> 
                         <tr>
                             <td><img src="../uploads/#poster#" class="img-fluid img-poster"></td>
@@ -100,7 +103,7 @@
                             <td><button class="btn btn-outline-primary edit movie" id="edit" data-bs-toggle="modal" data-bs-target=".movieModal" data-id="#id#" >Edit</button></td>
                             <td><a href="../components/movie.cfc?method=deleteMovie&id=#id#" class="btn btn-outline-primary">Delete</a></td>
                         </tr>
-                    </cfoutput>                    
+                    </cfoutput>    ----->                
                     </tbody>
                 </table>
             </div>
@@ -109,7 +112,7 @@
 
 </div>
 
-<cfinclude  template="../modals/create_movie.cfm">
+<cfinclude  template="../modals/create_show.cfm">
 
 <cfinclude  template="dash_footer.cfm">
 
