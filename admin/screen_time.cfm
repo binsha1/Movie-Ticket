@@ -5,6 +5,7 @@
 <cfset theatre_data=application.obj.getTheatreName(theId)>
 <cfset screen_data=application.obj.screenDetails(theId)>
 <cfset time_data=application.obj.timeDetails(theId)> 
+
 <cfinclude  template="dash_header.cfm">
 <div class="container-fluid">    
     <!-- Page Heading -->
@@ -83,15 +84,18 @@
                                 </tr>
                             </tfoot>                                             
                             <tbody>
-                            <cfoutput query='screen_data'>                            
+                            <cfoutput >
+                           
+                            <cfloop array='#screen_data#' index="i">                        
                                 <tr>                                    
-                                    <td>#screen_name#</td>
-                                    <td>#gold_rate#</td>
-                                    <td>#silver_rate#</td>                                   
-                                    <td><button class="btn btn-outline-primary edit screen" id="edit" data-bs-toggle="modal" data-bs-target=".screenModal" data-id="#id#" data-tid="#theId#" >Edit</button></td>
-                                    <td><a href="../components/controller.cfc?method=deleteScreen&id=#id#&theatre_id=#theId#" class="btn btn-outline-primary">Delete</a></td>
+                                    <td>#i.screen_name#</td>
+                                    <td>#i.gold_rate#</td>
+                                    <td>#i.silver_rate#</td>                                   
+                                    <td><button class="btn btn-outline-primary edit screen" id="edit" data-bs-toggle="modal" data-bs-target=".screenModal" data-id="#i.id#" data-tid="#theId#" >Edit</button></td>
+                                    <td><a href="../components/controller.cfc?method=deleteScreen&id=#i.id#&theatre_id=#theId#" class="btn btn-outline-primary">Delete</a></td>
                                 </tr>
-                            </cfoutput>                    
+                            </cfloop>
+                             </cfoutput>                    
                             </tbody>
                         </table>
                     </div>
@@ -128,16 +132,17 @@
                             </tfoot>
                                      
                             <tbody>
-                            <cfif time_data.RecordCount NEQ 0>
-                                <cfoutput query='time_data'>
-                                    
+                            <cfif ArrayLen(time_data) NEQ 0>
+                                <cfoutput >
+                                 <cfloop array="#time_data#" index="i">   
                                     <tr>                                    
-                                        <td>#show_name#</td>
-                                        <td>#screen_name#</td>
-                                        <td>#start_time#</td>                                   
-                                        <td><button class="btn btn-outline-primary edit s_time" id="s_edit" data-bs-toggle="modal" data-bs-target=".timeModal" data-id="#id#" data-tid="#theId#" >Edit</button></td>
-                                        <td><a href="../components/controller.cfc?method=deleteScreenTime&id=#id#&theatre_id=#theId#" class="btn btn-outline-primary">Delete</a></td>
+                                        <td>#i.show_name#</td>
+                                        <td>#i.screen_name#</td>
+                                        <td>#i.start_time#</td>                                   
+                                        <td><button class="btn btn-outline-primary edit s_time" id="s_edit" data-bs-toggle="modal" data-bs-target=".timeModal" data-id="#i.id#" data-tid="#theId#" >Edit</button></td>
+                                        <td><a href="../components/controller.cfc?method=deleteScreenTime&id=#i.id#&theatre_id=#theId#" class="btn btn-outline-primary">Delete</a></td>
                                     </tr>
+                                </cfloop>
                                 </cfoutput>                    
                             </cfif>
                             </tbody>

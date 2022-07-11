@@ -32,7 +32,7 @@ CREATE TABLE `theatre` (
   `pincode` varchar(45) DEFAULT NULL,
   `photo` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `theatre` (
 
 LOCK TABLES `theatre` WRITE;
 /*!40000 ALTER TABLE `theatre` DISABLE KEYS */;
-INSERT INTO `theatre` VALUES (2,'Carnival Artech','carnival@gmail.com','9876543216','Carnival Artech Centre','Vanchiyoor, Trivandrum','123452','theatre2.png'),(3,'Cineplus','cineplux@gmail.com','9876543214','cineplus centre','cine centre','123450','theatre1.jpg'),(4,'Kavitha Theatre','kavitha@gmail.com','9876543219','Kavitha Cinemas','kavitha centre','123456','theatre4.jpg');
+INSERT INTO `theatre` VALUES (3,'Cineplus','cineplux@gmail.com','9876543214','cineplus centre','cine centre','123450','spider_man-poster.jpg'),(4,'Kavitha Theatre','kavitha@gmail.com','9876543219','Kavitha Cinemas','kavitha centre','123456','theatre4.jpg'),(6,'fdgd','fhdfhd@vjgfh.rt','9876543212','sdgsd','sdgsd','123454','sun.jpg'),(8,'Paris','paris@gmail.com','9876543211','vhgh','paris street','124231','road.jpg');
 /*!40000 ALTER TABLE `theatre` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-05 15:35:57
+-- Dump completed on 2022-07-11 18:47:40

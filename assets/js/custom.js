@@ -89,41 +89,7 @@ $('.title').on('click',function(){
     }
 });
 
-$('.screen').on('click',function(){    
-    var s_id=$(this).data('id');
-    
-    var thea_id=$(this).data('tid');        
-    if(s_id>0)    {
-        $("#screen_title").text("EDIT SCREEN");
-        $.ajax({   
-                    url: "../components/controller.cfc",
-                    type: 'get',
-                    dataType:"json",
-                    data:{
-                    method:"getScreen",
-                    screen_id:s_id              
-                    },
-                    success: function(data)
-                    {
-                        console.log(data);                       
-                        $('#screen_name').val(data[0].screen_name);
-                        $('#theatre_id').val(thea_id);
-                        $('#gold_rate').val(data[0].gold_rate);                                                
-                        $('#silver_rate').val(data[0].silver_rate);                                         
-                        $('#screenForm').attr('action', '../components/controller.cfc?method=editScreen&id='+data[0].id+'&theatre_id='+thea_id);             
-                    }         
-                });  
-    }
-    else
-    {        
-        $("#screen_title").text("ADD SCREEN");
-        $('#theatre_id').val(thea_id);
-        $('#screen_name').val("");
-        $('#gold_rate').val("");        
-        $('#silver_rate').val("");        
-        $('#screenForm').attr('action', '../components/controller.cfc?method=createScreen'); 
-    }
-});
+
 
 function checkScreen()
 {
@@ -252,7 +218,42 @@ $('.movie').on('click',function(){
 });
 
 
-  
+$('.screen').on('click',function(){ 
+      
+    var s_id=$(this).data('id');
+    
+    var thea_id=$(this).data('tid');        
+    if(s_id>0)    {
+        $("#screen_title").text("EDIT SCREEN");
+        $.ajax({   
+                    url: "../components/controller.cfc",
+                    type: 'get',
+                    dataType:"json",
+                    data:{
+                    method:"getScreen",
+                    screen_id:s_id              
+                    },
+                    success: function(data)
+                    {
+                        console.log(data);                       
+                        $('#screen_name').val(data[0].screen_name);
+                        $('#theatre_id').val(thea_id);
+                        $('#gold_rate').val(data[0].gold_rate);                                                
+                        $('#silver_rate').val(data[0].silver_rate);                                         
+                        $('#screenForm').attr('action', '../components/controller.cfc?method=editScreen&id='+data[0].id+'&theatre_id='+thea_id);             
+                    }         
+                });  
+    }
+    else
+    {        
+        $("#screen_title").text("ADD SCREEN");
+        $('#theatre_id').val(thea_id);
+        $('#screen_name').val("");
+        $('#gold_rate').val("");        
+        $('#silver_rate').val("");        
+        $('#screenForm').attr('action', '../components/controller.cfc?method=createScreen'); 
+    }
+});
 
 $('.cast').on('click',function(){
     
@@ -275,7 +276,29 @@ $('.show').on('click',function(){
     var show_id=$(this).data('id');
     if(show_id>0){
         $("#show_title").text("EDIT MOVIE SHOW TIME");
-        $('#showId').attr('action', '../components/show.cfc?method=editShow&id='+data[0].id);
+        $.ajax({   
+            url: "../components/show.cfc",
+            type: 'get',
+            dataType:"json",
+            data:{
+            method:"getShowDetails",
+            showId:show_id              
+            },
+            success: function(data)
+            {
+                //console.log(data);                       
+                $("#movie option[value='"+data[0].m_id+"']").attr("selected", "selected");
+                $("#theatre option[value='"+data[0].t_id+"']").attr("selected", "selected");                
+                editScreenList(data[0].s_id);                
+                editTimeList(data[0].st_id,data[0].s_id);                                                              
+                $('#end_date').val(data[0].end_date);   
+                $('#total_seats').val(data[0].total_seats);    
+                $('#priority').val(data[0].priority);                                  
+                $('#showId').attr('action', '../components/show.cfc?method=editShow&id='+data[0].id);
+            }         
+        }); 
+
+        
     }
     else{
         $("#show_title").text("ADD MOVIE SHOW TIME");
@@ -285,17 +308,19 @@ $('.show').on('click',function(){
         $('#screen_time').val("");
         $('#end_date').val("");
         $('#total_seats').val("");
+        $('#priorityddd').val("");
         $('#showId').attr('action', '../components/show.cfc?method=createShow');
     }   
     
 });
 
-
-function screenList(){
+function editScreenList(screen_id)
+{
     var theat_id=$('#theatre').val();
+    
     if(theat_id!="")
     {
-        alert('fdgdf');
+        
         $.ajax({   
             url: "../components/controller.cfc",
             type: 'get',
@@ -304,30 +329,80 @@ function screenList(){
             method:"screenDetails",
               theatre_id:theat_id           
             },
-            success: function(response)
-            {
-               
-                console.log(response);
-                console.log(response.length);  
-                if(response.length>0)
-                {
-                    $('#screeen').html('');  
-                    var options = '';  
-                    //options += '<option value="Select">Select</option>';  
-                    for (var i = 0; i < response.length; i++) {  
-                        options += '<option value="' + response[i].id + '">' + response[i].screen_name + '</option>';  
-                    }  
-                    $('#screen').append(options);  
-                }
-                else{
-                    alert('error');
-                }  
-                              
-            }         
+            success:function(data) {  
+                $('select[name="screen"]').empty();
+                
+                //$('select#screen').append($('<option>').text("--Select Screen--"));
+                $.each(data, function(key, value) {  
+                   
+                    $('#screen').append($('<option>').text(value.screen_name).attr('value', value.id));
+                });
+                $("#screen option[value='"+screen_id+"']").attr("selected", "selected");
+            }  
         });       
+    }
+    else{
+        $('#screen').html('<option value="">Select Screen</option>'); 
     }
 }
 
+function screenList(){
+    var theat_id=$('#theatre').val();
+    if(theat_id!="")
+    {
+        
+        $.ajax({   
+            url: "../components/controller.cfc",
+            type: 'get',
+            dataType:"json",
+            data:{
+            method:"screenDetails",
+              theatre_id:theat_id           
+            },
+            success:function(data) {  
+                $('select[name="screen"]').empty();
+                //$("#screen option[value='"+data[0].s_id+"']").attr("selected", "selected");
+                $('select#screen').append($('<option>').text("--Select Screen--"));
+                $.each(data, function(key, value) {  
+                    $('#screen').append($('<option>').text(value.screen_name).attr('value', value.id));
+                });
+            }  
+        });       
+    }
+    else{
+        $('#screen').html('<option value="">Select Screen</option>'); 
+    }
+}
+function editTimeList(screen_time_id,sc_id){
+    //var sc_id=$('#screen').val();
+    
+    var th_sc_id=$('#theatre').val(); 
+    
+    if(sc_id!="")
+    {
+        
+        $.ajax({   
+            url: "../components/controller.cfc",
+            type: 'get',
+            dataType:"json",
+            data:{
+            method:"screenTimeDetails",
+              theatre_id:th_sc_id,
+              screen_id:sc_id           
+            },
+            success:function(data) {  
+                $('select[name="screen_time"]').empty();
+                //$("#screen_time option[value='"+data[0].st_id+"']").attr("selected", "selected");
+                //$('select#screen_time').append($('<option>').text("--Select Show Time--"));
+                $.each(data, function(key, value) {  
+                    $('#screen_time').append($('<option>').text(value.start_time).attr('value', value.id));
+                });
+                $("#screen_time option[value='"+screen_time_id+"']").attr("selected", "selected");
+            }  
+        });       
+    }
+    $('#screen_time').html('<option value="">Select Show</option>'); 
+}
 function timeList(){
     var sc_id=$('#screen').val();
     var th_sc_id=$('#theatre').val();    
@@ -339,31 +414,20 @@ function timeList(){
             type: 'get',
             dataType:"json",
             data:{
-            method:"timeDetails",
-              theatre_id:th_sc_id           
+            method:"screenTimeDetails",
+              theatre_id:th_sc_id,
+              screen_id:sc_id           
             },
-            success: function(response)
-            {
-               
-                console.log(response);
-                
-                if(response.length>0)
-                {
-                    $('#screen_time').html('');  
-                    var options = '';  
-                    options += '<option value="">Select Show Time</option>';  
-                    for (var i = 0; i < response.length; i++) {  
-                        options += '<option value="' + response[i].id + '">' + response[i].start_time + '</option>';  
-                    }  
-                    $('#screen_time').append(options);  
-                }
-                else{
-                    alert('error');
-                }  
-                              
-            }         
+            success:function(data) {  
+                $('select[name="screen_time"]').empty();
+                $('select#screen_time').append($('<option>').text("--Select Show Time--"));
+                $.each(data, function(key, value) {  
+                    $('#screen_time').append($('<option>').text(value.start_time).attr('value', value.id));
+                });
+            }  
         });       
     }
+    $('#screen_time').html('<option value="">Select Show</option>'); 
 }
 function validateCreate(){
     

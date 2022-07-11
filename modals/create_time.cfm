@@ -34,9 +34,11 @@
                         </div>
                         <div class="col-lg-4 ">                            
                             <select name="screen_name" id="screen_name" class="form-control" required>
-                                <option value="">Select Show</option>
-                                <cfoutput query='screen_data'>                                    
-                                    <option value="#id#">#screen_name#</option>                                    
+                                <option value="">Select Screen</option>
+                                <cfoutput> 
+                                <cfloop array="#screen_data#" index="i">                                   
+                                    <option value="#i.id#">#i.screen_name#</option>  
+                                </cfloop>                                  
                                 </cfoutput>                                
                             </select>
                         </div>

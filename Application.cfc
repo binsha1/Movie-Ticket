@@ -9,7 +9,7 @@
     <cfset this.ormenabled="true">
     <cfset this.loginStorage = "session"> 
     <cfset this.datasource="movie_ticket">    
-
+    <cfset this.serverSideFormValidation = false>
     <!---OnApplicationStart Method--->
     <cffunction name="OnApplicationStart" returntype="boolean" access="public">
         <cfset application.obj=createObject('component','components.controller')>

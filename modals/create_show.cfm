@@ -91,7 +91,7 @@
                 </div>                 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" name="submit" value="Save" id="sub_btn" onclick="validateCreate();">
+                    <input type="submit" class="btn btn-primary" name="submit" value="Save" >
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>            
             </div>

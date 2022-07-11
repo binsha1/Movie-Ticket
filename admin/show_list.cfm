@@ -2,6 +2,8 @@
 <cfinclude  template="dash_header.cfm">
 <cfset theatre_res=application.obj.theatreDetails()>
 <cfset movie_res=application.movie.movieDetails()>
+<cfset show_res=application.show.showDetails()>
+
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Manage Show</h1>
@@ -28,7 +30,7 @@
     <cfelseif status EQ hash('5','sha')>
         <div class="alert alert-success alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Movie Deleted Successfully!!
+                Show Deleted Successfully!!
         </div>
     <cfelseif status EQ hash('6','sha')>
         <div class="alert alert-danger alert-dismissible">
@@ -86,24 +88,24 @@
                         </tr>
                     </tfoot>                                       
                     <tbody>
-                    <!---<cfoutput query='res'>                                             
-                        <cfset local.movie_id=toBase64(id)> 
+                    <cfoutput query='show_res'>                                            
                         <tr>
-                            <td><img src="../uploads/#poster#" class="img-fluid img-poster"></td>
-                            <td><img src="../uploads/#wallpaper#" class="img-fluid img-wall"></td>
+                            <td><img src="../uploads/#poster#" class="img-fluid img-poster"></td>                           
                             <td>#movie_name#</td>
+                            <td>#theatre_name#</td>
+                            <td>#screen_name#</td>
+                            <td>#show_name#</td>
                             <td>#release_date#</td>
-                            <td>#movie_format#</td>
-                            <td>#genre#</td>
-                            <td>#language#</td>
+                            <td>#start_time#</td>
                             <td>#duration#</td>
-                            <td>#description#</td>
-                            <td><a href="#trailer_url#">#trailer_url#</a></td>
-                            <td><a href="cast_crew.cfm?movie_id=#local.movie_id#" class="btn btn-outline-primary">Manage Cast & Crew</a></td>
-                            <td><button class="btn btn-outline-primary edit movie" id="edit" data-bs-toggle="modal" data-bs-target=".movieModal" data-id="#id#" >Edit</button></td>
-                            <td><a href="../components/movie.cfc?method=deleteMovie&id=#id#" class="btn btn-outline-primary">Delete</a></td>
+                            <td>#start_time#</td>
+                            <td>#end_date#</td>
+                            <td>Pending</td>
+                            <td>#priority#</td>
+                            <td><button class="btn btn-outline-primary edit show" id="edit" data-bs-toggle="modal" data-bs-target=".showModal" data-id="#id#" >Edit</button></td>
+                            <td><a href="../components/show.cfc?method=deleteShow&id=#id#" class="btn btn-outline-primary">Delete</a></td>
                         </tr>
-                    </cfoutput>    ----->                
+                    </cfoutput>                
                     </tbody>
                 </table>
             </div>
