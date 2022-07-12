@@ -664,8 +664,7 @@ function selectElementContents(el) {
             
            
     } );
-    $('#screen_table').DataTable( { 
-        
+    $('#screen_table').DataTable( {         
     });
     $('#show_time_table').DataTable( { 
     });
@@ -674,6 +673,12 @@ function selectElementContents(el) {
     $('#crew_table').DataTable( { 
     });
     $('#show_table').DataTable( { 
+    });
+    $('#user_table').DataTable( { 
+    });
+    $('#contact_table').DataTable( { 
+    });
+    $('#book_table').DataTable( { 
     });
     
     

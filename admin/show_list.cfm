@@ -13,9 +13,9 @@
                 Show Added Successfully !!
         </div>
     <cfelseif status EQ hash('2','sha')>
-        <div class="alert alert-danger alert-dismissible">
+        <div class="alert alert-success alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Movie Name Already Exists !!
+                Show Updated Successfully !!
         </div>
     <cfelseif status EQ hash('3','sha')>
         <div class="alert alert-danger alert-dismissible">
@@ -96,9 +96,16 @@
                             <td>#screen_name#</td>
                             <td>#show_name#</td>
                             <td>#release_date#</td>
-                            <td>#start_time#</td>
+                            <cfset st_time=timeFormat(start_time,'hh:mm:ss tt')>
+                            <td>#st_time#</td>
                             <td>#duration#</td>
-                            <td>#start_time#</td>
+                            <cfset s_d=listToArray(duration,":")>
+                            <cfset hours=s_d[1]*60*60>
+                            <cfset min=s_d[2]*60>
+                            <cfset sec=s_d[3]>
+                            <cfset dtn=hours+min+sec>                            
+                            <cfset new_time = timeFormat(DateAdd("s",dtn,start_time),'hh:mm:ss tt')>
+                            <td>#new_time#</td>
                             <td>#end_date#</td>
                             <td>Pending</td>
                             <td>#priority#</td>
@@ -111,9 +118,7 @@
             </div>
         </div>
     </div>
-
 </div>
-
 <cfinclude  template="../modals/create_show.cfm">
 
 <cfinclude  template="dash_footer.cfm">

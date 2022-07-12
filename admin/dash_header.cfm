@@ -63,31 +63,34 @@
                 </a>                
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#"  >
+                <a class="nav-link collapsed" href="user_list.cfm"  >
                     <i class="fa-solid fa-users"></i>
                     <span>Manage Users</span>
                 </a>                
             </li> 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#"  >
+                <a class="nav-link collapsed" href="booking_list.cfm"  >
                     <i class="fa-solid fa-ticket"></i>
                     <span>Manage Bookings</span>
                 </a>                
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" >
+                <a class="nav-link collapsed" href="contact_list.cfm" >
                    <i class="fa-solid fa-address-card"></i>
                     <span>View Contact Info</span>
                 </a>                
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="update_password.cfm">
                     <i class="fa-solid fa-key"></i>
                     <span>Update Password</span>
                 </a>                
             </li>           
             <!-- Divider -->
             <hr class="sidebar-divider">
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
         </ul>
         <!-- End of Sidebar -->
 
