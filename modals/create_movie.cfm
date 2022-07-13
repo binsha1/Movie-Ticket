@@ -103,6 +103,7 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="posterInput" required accept=".png,.jpg,.jpeg" name="poster" onchange="loadPoster(event)">
                                         <label class="custom-file-label" for="posterInput">Choose file...</label>
+                                        <span class="text-danger poster_alert"></span>
                                     </div>
                                    <!---- <input class="form-control" id="poster" type="file" accept=".png,.jpg,.jpeg" name="poster" required onchange="loadPoster(event)">
                                 --->
@@ -113,6 +114,7 @@
                                     <div class="custom-file">
                                             <input type="file" class="custom-file-input wall-input" id="wallInput" required accept=".png,.jpg,.jpeg" name="wallpaper"  onchange="loadWallPaper(event)">
                                             <label class="custom-file-label" for="wallInput" > </label>
+                                            <span class="text-danger wall_alert"></span>
                                     </div>
                                 </div>                                                     
                             </div>

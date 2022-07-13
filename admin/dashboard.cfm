@@ -13,15 +13,14 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-white  mb-1">
                                 Theatres</div>
-                            <cfset data=application.obj.theatreDetails()>
+                            <cfset data=application.theatre.theatreDetails()>
                             <div class="h5 mb-0 font-weight-bold text-white"><cfoutput>#data.RecordCount#
                             </cfoutput></div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-solid fa-building fa-2x text-gray-300"></i>
                         </div>
-                    </div>
-                    
+                    </div>                    
                 </div>
                 <a href="theatre_list.cfm" class="btn btn-dboard">More Info <i class="fa-solid fa-arrow-right"></i></a>
             </div>
@@ -54,7 +53,7 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-white">41</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-white">0</div>
                                 </div>                                
                             </div>
                         </div>
@@ -75,7 +74,7 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-white">32</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-white">0</div>
                                 </div>                                                
                             </div>
                         </div>

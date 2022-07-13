@@ -1,20 +1,17 @@
 <cfparam  name="status" default="v">
 <cfparam  name="movie_id" default="v">
-<cfparam  name="key" default="v">
 <cfset movId=toString(toBinary(movie_id))>
 <cfset movie_data=application.movie.getMovie(movId)>
 <cfset cast_res=application.movie.castDetails(movId)> 
-<cfset crew_res=application.movie.crewDetails(movId)>    
-<!---<cfset movie_data=application.movie.movieDetails(theId)>--->
+<cfset crew_res=application.movie.crewDetails(movId)>   
 <cfinclude  template="dash_header.cfm">
 <div class="container-fluid">    
     <!-- Page Heading -->
-    <a href="movie_list.cfm" class="btn btn-outline-primary"><i class="fa-solid fa-arrow-left"></i> Back</a>
-    
-    <h4 class="h3 mb-2 text-gray-800 text-center">Manage Cast & Crew for <b><cfloop array="#movie_data#" index="i">
+    <a href="movie_list.cfm" class="btn btn-outline-primary"><i class="fa-solid fa-arrow-left"></i> Back</a>    
+    <h5 class=" mb-2 text-gray-800 text-center pb-3">Manage Cast & Crew for <b><cfloop array="#movie_data#" index="i">
         <cfoutput>#i.movie_name#
         </cfoutput>
-    </cfloop>   </b></h4>
+    </cfloop>   </b></h5>
     <cfif status EQ hash('1','sha')>
         <div class="alert alert-success alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>

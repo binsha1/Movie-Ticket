@@ -1,7 +1,6 @@
 <cfparam  name="status" default="v">
 <cfinclude  template="dash_header.cfm">
-<div class="container-fluid">
-    <!-- Page Heading -->
+<div class="container-fluid">    
     <h1 class="h3 mb-2 text-gray-800">Manage Password</h1>    
     <div class="card shadow mb-4 col-lg-6 offset-lg-3 text-center">
         <div class="card-header py-3">            
@@ -42,9 +41,7 @@
             </form>
         </div>
     </div>
-
 </div>
-
 <cfinclude  template="dash_footer.cfm">
 
 		

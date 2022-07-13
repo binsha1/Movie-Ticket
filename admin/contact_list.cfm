@@ -1,6 +1,5 @@
 <cfparam  name="status" default="v">
 <cfinclude  template="dash_header.cfm">
-<cfset res=application.obj.theatreDetails()> 
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Manage Contact Info</h1>    

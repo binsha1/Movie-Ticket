@@ -37,7 +37,7 @@
                                 
                                 <div class="col-lg-12 ">
                                     <input type="file" name="actor_photo" class="form-control"  id="actor_photo" required onchange="loadActor(event)" >                            
-                                    <span class="silver_alert text-danger pt-3"></span>
+                                    <span class="actor_alert text-danger pt-3"></span>
                                 </div>                          
                             </div>
                         </div>                    
@@ -50,7 +50,7 @@
                 </div>                                 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" name="submit" value="Save" id="screen_btn" onclick="validateCreate();">
+                    <input type="submit" class="btn btn-primary" name="submit" value="Save" id="cast_btn" onclick="validateCreate();">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>            
             </div>

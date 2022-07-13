@@ -37,8 +37,7 @@
                                 </cfoutput>                                
                             </select>
                         </div>
-                        <div class="col-lg-4 ">
-                            
+                        <div class="col-lg-4 ">                            
                             <select name="screen" id="screen" class="form-control" required onchange="timeList()">
                                 <option value="">Select Screen</option>
                             </select>
@@ -65,12 +64,10 @@
                         </div>
                         <div class="col-lg-4 ">
                             <select name="show_priority" id="priority" class="form-control" required>
-                                <option value="">Select Show Priority</option>
-                                                                    
+                                <option value="">Select Show Priority</option>                                                                    
                                     <option value="Top">Top</option> 
                                     <option value="Medium">Medium</option>  
-                                    <option value="Bottom">Bottom</option>                                     
-                                                                
+                                    <option value="Bottom">Bottom</option>                                    
                             </select>
                         </div>                          
                     </div>
@@ -79,19 +76,16 @@
                             <label class="form-label required control-label pt-3">Total Seats</label>
                         </div>
                         <div class="col-lg-4"></div><div class="col-lg-4"></div>
-                        <div class="col-lg-4">
-                            
-                                <input type="text" name="total_seats" class="form-control" placeholder="Total Seats" id="total_seats" required onchange="checkTheatrePhone();">
-                                                                                                                  
+                        <div class="col-lg-4">                            
+                            <input type="text" name="total_seats" class="form-control" placeholder="Total Seats" id="total_seats" required >
+                            <span class="text-danger error_alert"></span>
                         </div>
                         <div class="col-lg-4"></div><div class="col-lg-4"></div>                                                    
-                    </div>
-                    
-                        
+                    </div>                  
                 </div>                 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" name="submit" value="Save" >
+                    <input type="submit" class="btn btn-primary" name="submit" value="Save" id="show_btn" onclick="validateShow();">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>            
             </div>

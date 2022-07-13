@@ -36,13 +36,13 @@
                                 
                                 <div class="col-lg-12 ">
                                     <input type="file" name="crew_photo" class="form-control"  id="crew_photo" required onchange="loadCrew(event)" >                            
-                                    
+                                    <span class="crew_alert text-danger pt-3"></span> 
                                 </div>                          
                             </div>
                         </div>                    
                         <div class="col-lg-4">
                             <div class="img-show">
-                                <img id="crew_output" class="img-fluid"/>
+                                <img id="crew_output" class="img-fluid "/>
                             </div>
                         </div>
                     </div>

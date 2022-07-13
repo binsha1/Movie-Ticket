@@ -1,54 +1,119 @@
 var loadFile = function(event) {
+    var file_name= document.getElementById('th_img');
+    const fileSize = file_name.files[0].size / 1024/1024; // in MiB    
+    if (fileSize < 1) {
     var reader = new FileReader();
     reader.onload = function(){
-      var output = document.getElementById('th_out');
-      output.src = reader.result;
+    var output = document.getElementById('th_out');
+    output.src = reader.result;
+    $('.th_file_alert').text('');
+    $('#sub_btn').prop('disabled',false);    
     };
     reader.readAsDataURL(event.target.files[0]);
-  };
+  }
+  else{   
+    
+    $('.th_file_alert').text('Please Upload a file of size less than 1MB');
+    $("label[for = th_img]").text('Choose File...');
+    $("#th_out").removeAttr("src");    
+    $('#sub_btn').prop('disabled',true);
+  }
+};
 
   var loadPoster = function(event) {
-    var reader = new FileReader();
-    reader.onload = function(){
-      var output = document.getElementById('output');
-      output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
+    var poster_file= document.getElementById('posterInput');
+    const poster_size = poster_file.files[0].size / 1024/1024; // in MiB 
+    if(poster_size <1){
+        var reader = new FileReader();
+        reader.onload = function(){
+        var output = document.getElementById('output');
+        output.src = reader.result;
+        $('.poster_alert').text('');
+        $('#mov_btn').prop('disabled',false); 
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+    else{
+        $('.poster_alert').text('File size should be less than 1 MB');
+        $("label[for = posterInput]").text('Choose File...');
+        $("#output").removeAttr("src");    
+        $('#mov_btn').prop('disabled',true);
+    }
   };
   var loadWallPaper = function(event) {
-    var reader = new FileReader();
-    reader.onload = function(){
-      var output = document.getElementById('output2');
-      output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
+    var wall_file= document.getElementById('wallInput');
+    const wall_size = wall_file.files[0].size / 1024/1024; 
+    if(wall_size < 1)
+    {
+        var reader = new FileReader();
+        reader.onload = function(){
+        var output = document.getElementById('output2');
+        output.src = reader.result;
+        $('.wall_alert').text('');
+        $('#mov_btn').prop('disabled',false);    
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+    else{
+        $('.wall_alert').text('File size should be less than 1 MB');
+        $("label[for = wallInput]").text('Choose File...');
+        $("#output2").removeAttr("src");    
+        $('#mov_btn').prop('disabled',true);
+    }
   };
 
   var loadActor = function(event) {
-    var reader = new FileReader();
-    reader.onload = function(){
-      var output = document.getElementById('actor_output');
-      output.src = reader.result;
+    var actor_file= document.getElementById('actor_photo');
+    const actor_size = actor_file.files[0].size / 1024/1024;
+    if(actor_size <1 )
+    {
+        var reader = new FileReader();
+        reader.onload = function(){
+        var output = document.getElementById('actor_output');
+        output.src = reader.result;
+        $('.actor_alert').text('');
+        $('#cast_btn').prop('disabled',false);  
+        };        
+        reader.readAsDataURL(event.target.files[0]);
+        
+    }
+    else{
+        $('.actor_alert').text('File size should be less than 1 MB');
+        $("label[for = actor_photo]").text('Choose File...');
+        $("#actor_output").removeAttr("src");    
+        $('#cast_btn').prop('disabled',true);
+    }
     };
-    reader.readAsDataURL(event.target.files[0]);
-  };
 
   var loadCrew = function(event) {
-    var reader = new FileReader();
-    reader.onload = function(){
-      var output = document.getElementById('crew_output');
-      output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  };
+    var crew_file= document.getElementById('crew_photo');
+    const crew_size = crew_file.files[0].size / 1024/1024;
+    if(crew_size<1)
+    {
+        var reader = new FileReader();
+        reader.onload = function(){
+        var output = document.getElementById('crew_output');
+        output.src = reader.result;
+        $('.crew_alert').text('');
+        $('#crew_btn').prop('disabled',false);  
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+    else{
+        $('.crew_alert').text('File size should be less than 1 MB');
+        $("label[for = crew_photo]").text('Choose File...');
+        $("#crew_output").removeAttr("src");    
+        $('#crew_btn').prop('disabled',true);
+    }   
 
+  };
   
 $('.title').on('click',function(){    
     var th_id=$(this).data('id');  
     if(th_id>0)    {
         $("#theatre_title").text("EDIT THEATRE");
         $.ajax({   
-                    url: "../components/controller.cfc",
+                    url: "../components/theatre.cfc",
                     type: 'get',
                     dataType:"json",
                     data:{
@@ -67,7 +132,7 @@ $('.title').on('click',function(){
                         $("label[for = th_img]").text(data[0].photo);                                                           
                         $("#th_out").attr("src", "../uploads/"+data[0].photo);
                         $('#th_img').prop('required',false);
-                        $('#formId').attr('action', '../components/controller.cfc?method=editTheatre&id='+data[0].id);             
+                        $('#formId').attr('action', '../components/theatre.cfc?method=editTheatre&id='+data[0].id);             
                     }         
                 });  
     }
@@ -82,72 +147,68 @@ $('.title').on('click',function(){
         $('.email_alert').text(" ");
         $('.phone_alert').text(" ");
         $('[name="phone"]').val("");
+        $('.th_file_alert').text('');
         $("label[for = th_img]").text('Choose File...');
         $('#th_img').prop('required',true);
         $("#th_out").removeAttr("src");
-        $('#formId').attr('action', '../components/controller.cfc?method=createTheatre'); 
+        $('#formId').attr('action', '../components/theatre.cfc?method=createTheatre'); 
     }
 });
-
-
-
 function checkScreen()
-{
-    
+{    
     var screen=$('#screen_name').val();
-    var sc_t=$('#theatre_id').val();
-               
+    var sc_t=$('#theatre_id').val();               
     $.ajax({   
-     url: "../components/controller.cfc",
-     type: 'get',
-     dataType:"json",
-     data:{
-     method:"getScreenName",
-       screen_name:screen ,
-       theatre_id:sc_t 
-     },
-     success: function(data)
-     {
-         console.log(data);            
-         if(data.RECORDCOUNT==1)
-         {                
-             $('.screen_alert').text("Screen Name Already Exists!!");
-             $('#screen_btn').prop('disabled', true);                
-         }
-         else{
+            url: "../components/theatre.cfc",
+            type: 'get',
+            dataType:"json",
+            data:{
+            method:"getScreenName",
+            screen_name:screen ,
+            theatre_id:sc_t 
+            },
+            success: function(data)
+            {
+                console.log(data);            
+                if(data.RECORDCOUNT==1)
+                {                
+                    $('.screen_alert').text("Screen Name Already Exists!!");
+                    $('#screen_btn').prop('disabled', true);                
+                }
+                else{
 
-             $('.screen_alert').text(" ");
-             $('#screen_btn').prop('disabled', false);
-         }                         
-     }         
- });
-    
+                    $('.screen_alert').text(" ");
+                    $('#screen_btn').prop('disabled', false);
+                }                         
+            }         
+        });
 }
 
 $('.s_time').on('click',function(){    
     var t_id=$(this).data('id');
     var theatre_id=$(this).data('tid');        
-    if(t_id>0)    {
+    if(t_id>0)    
+    {
         $("#time_title").text("EDIT SCREEN SHOW TIME");        
         $.ajax({   
-                    url: "../components/controller.cfc",
-                    type: 'get',
-                    dataType:"json",
-                    data:{
-                    method:"getScreenTime",
-                    time_id:t_id              
-                    },
-                    success: function(data)
-                    {
-                        console.log(data);                       
-                        $('#show_name').val(data[0].show_name);
-                        $('#t_id').val(data[0].theatre_id);
-                        $("#screen_name option[value='"+data[0].screen_id+"']").attr("selected", "selected");                                      
-                        $('#start_time').val(data[0].start_time);                                         
-                        $('#timeForm').attr('action', '../components/controller.cfc?method=editScreenTime&id='+data[0].id);             
-                    }         
-                });  
-    }
+                url: "../components/theatre.cfc",
+                type: 'get',
+                dataType:"json",
+                data:{
+                method:"getScreenTime",
+                time_id:t_id              
+                },
+                success: function(data)
+                {
+                    console.log(data);                       
+                    $('#show_name').val(data[0].show_name);
+                    $('#t_id').val(data[0].theatre_id);
+                    $("#screen_name option[value='"+data[0].screen_id+"']").attr("selected", "selected");                                      
+                    $('#start_time').val(data[0].start_time);                                         
+                    $('#timeForm').attr('action', '../components/theatre.cfc?method=editScreenTime&id='+data[0].id);             
+                }         
+            });  
+        }
     else
     {        
         $("#time_title").text("ADD SCREEN SHOW TIME");
@@ -155,10 +216,9 @@ $('.s_time').on('click',function(){
         $('#show_name').val("");
         $("#screen_name option[value='']").attr("selected", "selected");        
         $('#start_time').val("");        
-        $('#timeForm').attr('action', '../components/controller.cfc?method=createScreenTime'); 
+        $('#timeForm').attr('action', '../components/theatre.cfc?method=createScreenTime'); 
     }
 });
-
 
 $('.movie').on('click',function(){
     var movie_id=$(this).data('id');      
@@ -208,6 +268,8 @@ $('.movie').on('click',function(){
         $('#description').val("");
         $('.movie_alert').text(" ");
         $('.trailer_alert').text(" "); 
+        $('.poster_alert').text('');
+        $('.wall_alert').text('');
         $("label[for = posterInput]").text("Choose File ..."); 
         $("label[for = wallInput]").text("Choose File ..."); 
         $('#posterInput').prop('required',true);
@@ -226,7 +288,7 @@ $('.screen').on('click',function(){
     if(s_id>0)    {
         $("#screen_title").text("EDIT SCREEN");
         $.ajax({   
-                    url: "../components/controller.cfc",
+                    url: "../components/theatre.cfc",
                     type: 'get',
                     dataType:"json",
                     data:{
@@ -240,7 +302,7 @@ $('.screen').on('click',function(){
                         $('#theatre_id').val(thea_id);
                         $('#gold_rate').val(data[0].gold_rate);                                                
                         $('#silver_rate').val(data[0].silver_rate);                                         
-                        $('#screenForm').attr('action', '../components/controller.cfc?method=editScreen&id='+data[0].id+'&theatre_id='+thea_id);             
+                        $('#screenForm').attr('action', '../components/theatre.cfc?method=editScreen&id='+data[0].id+'&theatre_id='+thea_id);             
                     }         
                 });  
     }
@@ -251,7 +313,7 @@ $('.screen').on('click',function(){
         $('#screen_name').val("");
         $('#gold_rate').val("");        
         $('#silver_rate').val("");        
-        $('#screenForm').attr('action', '../components/controller.cfc?method=createScreen'); 
+        $('#screenForm').attr('action', '../components/theatre.cfc?method=createScreen'); 
     }
 });
 
@@ -322,7 +384,7 @@ function editScreenList(screen_id)
     {
         
         $.ajax({   
-            url: "../components/controller.cfc",
+            url: "../components/theatre.cfc",
             type: 'get',
             dataType:"json",
             data:{
@@ -352,7 +414,7 @@ function screenList(){
     {
         
         $.ajax({   
-            url: "../components/controller.cfc",
+            url: "../components/theatre.cfc",
             type: 'get',
             dataType:"json",
             data:{
@@ -375,14 +437,13 @@ function screenList(){
 }
 function editTimeList(screen_time_id,sc_id){
     //var sc_id=$('#screen').val();
-    
     var th_sc_id=$('#theatre').val(); 
     
     if(sc_id!="")
     {
         
         $.ajax({   
-            url: "../components/controller.cfc",
+            url: "../components/theatre.cfc",
             type: 'get',
             dataType:"json",
             data:{
@@ -410,7 +471,7 @@ function timeList(){
     {
         
         $.ajax({   
-            url: "../components/controller.cfc",
+            url: "../components/theatre.cfc",
             type: 'get',
             dataType:"json",
             data:{
@@ -456,11 +517,25 @@ function validateCreate(){
     }   
 
 }
+function validateShow(){
+    var total_seats=document.getElementById('total_seats');
+    if(isNaN(total_seats.value))
+    
+     {
+        $('.error_alert').text('Only Numbers Allowed');
+        event.preventDefault();
+    }
+    else{
+        $('.error_alert').text('');
+        
+    }
+
+}
 function checkTheatreEmail()
    {
        var email_id=$('#email').val(); 
         $.ajax({   
-        url: "../components/controller.cfc",
+        url: "../components/theatre.cfc",
         type: 'get',
         dataType:"json",
         data:{
@@ -486,7 +561,7 @@ function checkTheatreEmail()
    {
        var ph_num=$('[name="phone').val();      
        $.ajax({   
-        url: "../components/controller.cfc",
+        url: "../components/theatre.cfc",
         type: 'get',
         dataType:"json",
         data:{
@@ -632,6 +707,7 @@ function selectElementContents(el) {
 }
 */
     $(document).ready(function() {
+        bsCustomFileInput.init()
         
         $('#example').DataTable( {            
             
@@ -712,24 +788,25 @@ function selectElementContents(el) {
         ]
     });
 });
-
-
-
 /*document.querySelector('.thea_img').addEventListener('change', function (e) {
     var name = document.getElementById("th_img").files[0].name;
     var nextSibling = e.target.nextElementSibling
     nextSibling.innerText = name
   });
-  document.querySelector('.custom-file-input').addEventListener('change', function (e) {
-    var name = document.getElementById("posterInput").files[0].name;
+document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+    var post_name = document.getElementById("posterInput").files[0].name;
     var nextSibling = e.target.nextElementSibling
-    nextSibling.innerText = name
+    nextSibling.innerText = post_name
   });
   document.querySelector('.wall-input').addEventListener('change', function (e) {
-    var name = document.getElementById("wallInput").files[0].name;
+    var wall_name = document.getElementById("wallInput").files[0].name;
     var nextSibling = e.target.nextElementSibling
-    nextSibling.innerText = name
+    nextSibling.innerText = wall_name
   });*/
+
+
+
+ 
 /*document.querySelector('.custom-file-input').addEventListener('change', function (e) {
     var name = document.getElementById("posterInput").files[0].name;
     var nextSibling = e.target.nextElementSibling

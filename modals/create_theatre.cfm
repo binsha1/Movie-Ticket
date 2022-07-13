@@ -34,8 +34,7 @@
                                 <div class="col-lg-4 ">
                                     <input type="text" name="phone" class="form-control" placeholder="Phone" id="phone" required onchange="checkTheatrePhone();">
                                     <span class="phone_alert text-danger pt-3"></span>
-                                </div>                          
-                                                                                                                                
+                                </div>                         
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-12">
@@ -45,6 +44,7 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input thea_img" id="th_img" required accept=".png,.jpg,.jpeg" name="theatre_img" onchange="loadFile(event)">
                                         <label class="custom-file-label" for="th_img">Choose file...</label>
+                                        <span class="text-danger th_file_alert"></span>
                                     </div>                                                                                       
                                 </div>                                                    
                             </div>

@@ -38,19 +38,16 @@
             </div>
         </div>
     </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/custom.js"></script>
-
+    <script src="../assets/js/bs-custom-file-input.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="../assets/admin_template/vendor/jquery-easing/jquery.easing.min.js"></script>
-
     <!-- Custom scripts for all pages-->
     <script src="../assets/admin_template/js/sb-admin-2.min.js"></script>
-
     <!-- Page level plugins -->
     <script src="../assets/admin_template/vendor/chart.js/Chart.min.js"></script>
     <!---<script src="../assets/admin_template/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -66,15 +63,9 @@
     <script src="../assets/admin_template/vendor/tabledata/buttons/js/buttons.colVis.min.js"></script>
     <!----
      <script src="../assets/admin_template/vendor/tabledata/DataTables-1.12/js/dataTables.boostrap.min.js"></script>
-     
-    
-       
-   
-    
     <script src="../assets/admin_template/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    
     <script src="../assets/admin_template/vendor/tabledata/datatables.min.js"></script>
-   <script src="../assets/admin_template/vendor/datatables/datatables.min.js"></script>--->
+    <script src="../assets/admin_template/vendor/datatables/datatables.min.js"></script>--->
     <!-- Page level custom scripts 
     <script src="../assets/admin_template/js/demo/chart-area-demo.js"></script>
     <script src="../assets/admin_template/js/demo/chart-pie-demo.js"></script>

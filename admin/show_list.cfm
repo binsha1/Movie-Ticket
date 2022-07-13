@@ -1,9 +1,8 @@
 <cfparam  name="status" default="v">
 <cfinclude  template="dash_header.cfm">
-<cfset theatre_res=application.obj.theatreDetails()>
+<cfset theatre_res=application.theatre.theatreDetails()>
 <cfset movie_res=application.movie.movieDetails()>
 <cfset show_res=application.show.showDetails()>
-
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Manage Show</h1>
@@ -88,31 +87,31 @@
                         </tr>
                     </tfoot>                                       
                     <tbody>
-                    <cfoutput query='show_res'>                                            
-                        <tr>
-                            <td><img src="../uploads/#poster#" class="img-fluid img-poster"></td>                           
-                            <td>#movie_name#</td>
-                            <td>#theatre_name#</td>
-                            <td>#screen_name#</td>
-                            <td>#show_name#</td>
-                            <td>#release_date#</td>
-                            <cfset st_time=timeFormat(start_time,'hh:mm:ss tt')>
-                            <td>#st_time#</td>
-                            <td>#duration#</td>
-                            <cfset s_d=listToArray(duration,":")>
-                            <cfset hours=s_d[1]*60*60>
-                            <cfset min=s_d[2]*60>
-                            <cfset sec=s_d[3]>
-                            <cfset dtn=hours+min+sec>                            
-                            <cfset new_time = timeFormat(DateAdd("s",dtn,start_time),'hh:mm:ss tt')>
-                            <td>#new_time#</td>
-                            <td>#end_date#</td>
-                            <td>Pending</td>
-                            <td>#priority#</td>
-                            <td><button class="btn btn-outline-primary edit show" id="edit" data-bs-toggle="modal" data-bs-target=".showModal" data-id="#id#" >Edit</button></td>
-                            <td><a href="../components/show.cfc?method=deleteShow&id=#id#" class="btn btn-outline-primary">Delete</a></td>
-                        </tr>
-                    </cfoutput>                
+                        <cfoutput query='show_res'>                                            
+                            <tr>
+                                <td><img src="../uploads/#poster#" class="img-fluid img-poster"></td>                           
+                                <td>#movie_name#</td>
+                                <td>#theatre_name#</td>
+                                <td>#screen_name#</td>
+                                <td>#show_name#</td>
+                                <td>#dateFormat('#release_date#','dd-mm-yyyy')#</td>
+                                <cfset st_time=timeFormat(start_time,'hh:mm:ss tt')>
+                                <td>#st_time#</td>
+                                <td>#duration#</td>
+                                <cfset s_d=listToArray(duration,":")>
+                                <cfset hours=s_d[1]*60*60>
+                                <cfset min=s_d[2]*60>
+                                <cfset sec=s_d[3]>
+                                <cfset dtn=hours+min+sec>                            
+                                <cfset new_time = timeFormat(DateAdd("s",dtn,start_time),'hh:mm:ss tt')>
+                                <td>#new_time#</td>
+                                <td>#dateFormat('#end_date#','dd-mm-yyyy')#</td>
+                                <td>Pending</td>
+                                <td>#priority#</td>
+                                <td><button class="btn btn-outline-primary edit show" id="edit" data-bs-toggle="modal" data-bs-target=".showModal" data-id="#id#" >Edit</button></td>
+                                <td><a href="../components/show.cfc?method=deleteShow&id=#id#" class="btn btn-outline-primary">Delete</a></td>
+                            </tr>
+                        </cfoutput>                
                     </tbody>
                 </table>
             </div>
@@ -120,7 +119,6 @@
     </div>
 </div>
 <cfinclude  template="../modals/create_show.cfm">
-
 <cfinclude  template="dash_footer.cfm">
 
 		
