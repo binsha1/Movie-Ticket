@@ -27,7 +27,17 @@
     <cffunction name="OnRequestStart"  access="public">
         <!---<cfargument  name="requestname" type="string">--->
         <cfif NOT structKeyExists(session, 'sessionUser') >   
-            <cfif findNoCase("/admin/dashboard.cfm",cgi.SCRIPT_NAME) GT 0>
+            <cfif findNoCase("/admin/dashboard.cfm",cgi.SCRIPT_NAME) GT 0||
+                  findNoCase("/admin/booking_list.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                  findNoCase("/admin/movie_list.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                  findNoCase("/admin/cast_crew.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                  findNoCase("/admin/show_list.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                   findNoCase("/admin/theatre_list.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                   findNoCase("/admin/user_list.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                   findNoCase("/admin/contact_list.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                   findNoCase("/admin/screen_time.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                   findNoCase("/admin/update_password.cfm",cgi.SCRIPT_NAME) GT 0>
+                
                 <cfoutput>                                        
                     <center><h1>Login Required</h1>
                     <p>Please Login to your account</p><br>
@@ -60,10 +70,10 @@
     </cffunction>---->
     
     <cffunction name="onMissingTemplate" access="public" returntype="void">
-        <cfargument  name="targetPage" type="string">
-        <cfoutput>
+        <cflocation url="404.cfm" addtoken="no">
+        <!---<cfoutput>
             <center><h3>This Page is Not Available</h3></center>
-        </cfoutput>
+        </cfoutput>--->
     </cffunction>  
 
 </cfcomponent>

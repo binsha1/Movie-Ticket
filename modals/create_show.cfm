@@ -52,8 +52,7 @@
                         </div>
                         <div class="col-lg-4">
                             <label class="form-label required control-label pt-3" >Show Priority</label>
-                        </div>                             
-                        
+                        </div>                            
                         <div class="col-lg-4 ">
                             <select name="screen_time" id="screen_time" class="form-control" required >
                                 <option value="">Select Show Time</option>

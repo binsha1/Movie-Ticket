@@ -68,3 +68,7 @@ img.img-fluid.img-poster, img.img-fluid.img-wall{
     width: 300;
     height: 100;
 }
+.error-div{
+padding-top:10rem;
+padding-bottom: 5rem;
+}
