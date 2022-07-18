@@ -70,10 +70,7 @@
     </cffunction>---->
     
     <cffunction name="onMissingTemplate" access="public" returntype="void">
-        <cflocation url="404.cfm" addtoken="no">
-        <!---<cfoutput>
-            <center><h3>This Page is Not Available</h3></center>
-        </cfoutput>--->
+        <cflocation url="404.cfm" addtoken="no">        
     </cffunction>  
 
 </cfcomponent>

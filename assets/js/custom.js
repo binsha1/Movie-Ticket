@@ -112,6 +112,9 @@ $('.title').on('click',function(){
     var th_id=$(this).data('id');  
     if(th_id>0)    {
         $("#theatre_title").text("EDIT THEATRE");
+        $('.email_alert').text(" ");
+        $('.phone_alert').text(" ");
+        $('.th_file_alert').text('');
         $.ajax({   
                     url: "../components/theatre.cfc",
                     type: 'get',
@@ -224,6 +227,10 @@ $('.movie').on('click',function(){
     var movie_id=$(this).data('id');      
     if(movie_id>0)    {
         $("#movie_title").text("EDIT MOVIE");
+        $('.movie_alert').text(" ");
+        $('.trailer_alert').text(" "); 
+        $('.poster_alert').text('');
+        $('.wall_alert').text('');
         $.ajax({   
                     url: "../components/movie.cfc",
                     type: 'get',
@@ -286,7 +293,11 @@ $('.screen').on('click',function(){
     
     var thea_id=$(this).data('tid');        
     if(s_id>0)    {
+        
         $("#screen_title").text("EDIT SCREEN");
+        $('.silver_alert').text("");     
+        $('.gold_alert').text("");   
+        $('.screen_alert').text(""); 
         $.ajax({   
                     url: "../components/theatre.cfc",
                     type: 'get',
@@ -312,7 +323,10 @@ $('.screen').on('click',function(){
         $('#theatre_id').val(thea_id);
         $('#screen_name').val("");
         $('#gold_rate').val("");        
-        $('#silver_rate').val("");        
+        $('#silver_rate').val("");   
+        $('.silver_alert').text("");     
+        $('.gold_alert').text("");   
+        $('.screen_alert').text("");  
         $('#screenForm').attr('action', '../components/theatre.cfc?method=createScreen'); 
     }
 });

@@ -72,3 +72,35 @@ img.img-fluid.img-poster, img.img-fluid.img-wall{
 padding-top:10rem;
 padding-bottom: 5rem;
 }
+
+nav.navbar.navbar-inverse.user-nav{
+    background:#050b35;
+}
+.navbar-inverse .navbar-nav>li>a{
+    color:white;
+}
+a.active-nav,a.signup_btn, a.signin_btn {
+    background-image: linear-gradient(to right,#a31e49 10%,#342076 100%);
+}
+a.signin_btn{
+margin-left: 1rem;
+}
+button.btn.btn-showing {
+    background-image: linear-gradient(to right,#a31e49 10%,#342076 100%);
+    color: white;
+    float:right;
+}
+.showing-title{
+    padding:0 2rem;
+    color: white;
+}
+i.fa-solid.fa-film.icon_theatre{
+text-align: center;
+    font-size: 3rem;
+    color: white;
+    float: left;
+    padding: 1rem;}
+    .slide-text{
+        color: white;
+        
+    }
