@@ -19,7 +19,7 @@
     <cfelseif status EQ hash('3','sha')>
         <div class="alert alert-danger alert-dismissible">
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Trailer Url Already Exists !!
+                Show Time Already exists for the movie and theatre!!
         </div>
     <cfelseif status EQ hash('4','sha')>
         <div class="alert alert-danger alert-dismissible">
@@ -31,16 +31,7 @@
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 Show Deleted Successfully!!
         </div>
-    <cfelseif status EQ hash('6','sha')>
-        <div class="alert alert-danger alert-dismissible">
-            <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Please upload a file of size less than 1 MB!!
-        </div>
-    <cfelseif status EQ hash('7','sha')>
-        <div class="alert alert-success alert-dismissible">
-            <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Theatre Updated Successfully !!
-        </div>      
+        
     </cfif>                    
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -106,7 +97,7 @@
                                 <cfset new_time = timeFormat(DateAdd("s",dtn,start_time),'hh:mm:ss tt')>
                                 <td>#new_time#</td>
                                 <td>#dateFormat('#end_date#','dd-mm-yyyy')#</td>
-                                <td>Pending</td>
+                                <td>#show_status#</td>
                                 <td>#priority#</td>
                                 <td><button class="btn btn-outline-primary edit show" id="edit" data-bs-toggle="modal" data-bs-target=".showModal" data-id="#id#" >Edit</button></td>
                                 <td><a href="../components/show.cfc?method=deleteShow&id=#id#" class="btn btn-outline-primary">Delete</a></td>

@@ -362,14 +362,15 @@ $('.show').on('click',function(){
             },
             success: function(data)
             {
-                //console.log(data);                       
+                console.log(data);                       
                 $("#movie option[value='"+data[0].m_id+"']").attr("selected", "selected");
                 $("#theatre option[value='"+data[0].t_id+"']").attr("selected", "selected");                
                 editScreenList(data[0].s_id);                
                 editTimeList(data[0].st_id,data[0].s_id);                                                              
                 $('#end_date').val(data[0].end_date);   
                 $('#total_seats').val(data[0].total_seats);    
-                $('#priority').val(data[0].priority);                                  
+                $('#priority').val(data[0].priority);  
+                $('#show_status').val(data[0].show_status);                                  
                 $('#showId').attr('action', '../components/show.cfc?method=editShow&id='+data[0].id);
             }         
         }); 
@@ -384,7 +385,8 @@ $('.show').on('click',function(){
         $('#screen_time').val("");
         $('#end_date').val("");
         $('#total_seats').val("");
-        $('#priorityddd').val("");
+        $('#priority').val("");
+        $('#show_status').val("");
         $('#showId').attr('action', '../components/show.cfc?method=createShow');
     }   
     
@@ -470,7 +472,7 @@ function editTimeList(screen_time_id,sc_id){
                 //$("#screen_time option[value='"+data[0].st_id+"']").attr("selected", "selected");
                 //$('select#screen_time').append($('<option>').text("--Select Show Time--"));
                 $.each(data, function(key, value) {  
-                    $('#screen_time').append($('<option>').text(value.start_time).attr('value', value.id));
+                    $('#screen_time').append($('<option>').text(value.show_name+"("+value.start_time+")").attr('value', value.id));
                 });
                 $("#screen_time option[value='"+screen_time_id+"']").attr("selected", "selected");
             }  
@@ -497,7 +499,7 @@ function timeList(){
                 $('select[name="screen_time"]').empty();
                 $('select#screen_time').append($('<option>').text("--Select Show Time--"));
                 $.each(data, function(key, value) {  
-                    $('#screen_time').append($('<option>').text(value.start_time).attr('value', value.id));
+                    $('#screen_time').append($('<option>').text(value.show_name+"("+value.start_time+")").attr('value', value.id));
                 });
             }  
         });       

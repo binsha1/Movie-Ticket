@@ -74,12 +74,22 @@
                         <div class="col-lg-4">
                             <label class="form-label required control-label pt-3">Total Seats</label>
                         </div>
-                        <div class="col-lg-4"></div><div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                            <label class="form-label required control-label pt-3">Show Status</label>
+                        </div>
+                        <div class="col-lg-4"></div>
                         <div class="col-lg-4">                            
                             <input type="text" name="total_seats" class="form-control" placeholder="Total Seats" id="total_seats" required >
                             <span class="text-danger error_alert"></span>
                         </div>
-                        <div class="col-lg-4"></div><div class="col-lg-4"></div>                                                    
+                        <div class="col-lg-4">
+                            <select name="show_status" id="show_status" class="form-control" required>
+                                <option value="">Select Show Status</option>                                                                    
+                                <option value="Active">Active</option> 
+                                <option value="Pending">Pending</option>  
+                                <option value="Inactive">Inactive</option>                                    
+                            </select>
+                        </div><div class="col-lg-4"></div>                                                    
                     </div>                  
                 </div>                 
                 <!-- Modal footer -->

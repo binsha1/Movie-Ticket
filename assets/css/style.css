@@ -85,13 +85,16 @@ a.active-nav,a.signup_btn, a.signin_btn {
 a.signin_btn{
 margin-left: 1rem;
 }
-button.btn.btn-showing {
+.btn-showing {
     background-image: linear-gradient(to right,#a31e49 10%,#342076 100%);
     color: white;
-    float:right;
+    /*float:right;*/
+}
+.featured_btn{
+    float: right;
 }
 .showing-title{
-    padding:0 2rem;
+    padding:0 4rem;
     color: white;
 }
 i.fa-solid.fa-film.icon_theatre{
@@ -103,4 +106,17 @@ text-align: center;
     .slide-text{
         color: white;
         
+    }
+    .subscribe-form{
+        background-image:url("../user_template/images/movie-slide10.png");
+        padding:3rem;
+    }
+    .sub_text{
+        color: aquamarine;
+    }
+    .b-text{
+        color: white;
+    }
+    .subscribe_div{
+        background: #443574;
     }

@@ -435,3 +435,11 @@
     </cffunction>
 
 </cfcomponent>
+
+Status Update	            :  19-07-2022
+Working on 	            :  Movie ticket
+Task                             : User Side Home Page Template Design | 
+                                   Server Side Validation on Movie Show Time Functionality                
+Task Completion        :  46%
+ETA                             : 05-08-2022
+Link                            : https://github.com/binsha1/Movie-Ticket.git

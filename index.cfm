@@ -6,6 +6,7 @@
 
 <link href="assets/css/jquery-ui.css" rel="stylesheet" >
 
+
 <link rel="stylesheet" href="assets/css/bootstrap_1.min.css"> 
 <!--Custom Theme files -->
 <link rel="stylesheet" href="assets/user_template/css/menu.css" />
@@ -62,23 +63,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="main-content">
             <div class="bootstrap_container" id="home">
                 <nav class="navbar navbar-inverse user-nav">
-  <div class="container-fluid">
-    <div class="navbar-header">
-	 <i class="fa-solid fa-film icon_theatre"></i>
-      <a class="navbar-brand" href="index.cfm">BookMyTicket</a>
-    </div>
-    <ul class="nav navbar-nav ">
-      <li class="active user-nav"><a href="index.cfm" class="active-nav">Home</a></li>
-      <li class="user-nav"><a href="#">Shows</a></li>
-      <li class="user-nav"><a href="#">About Us</a></li>
-      <li class="user-nav"><a href="#">Contact Us</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#" class="signup_btn"> Sign Up</a></li>
-      <li><a href="#" class="signin_btn"> Login</a></li>
-    </ul>
-  </div>
-</nav>
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<i class="fa-solid fa-film icon_theatre"></i>
+							<a class="navbar-brand" href="index.cfm">BookMyTicket</a>
+						</div>
+						<ul class="nav navbar-nav ">
+							<li class="active user-nav"><a href="index.cfm" class="active-nav">Home</a></li>
+							<li class="user-nav"><a href="#">Shows</a></li>
+							<li class="user-nav"><a href="#">About Us</a></li>
+							<li class="user-nav"><a href="#">Contact Us</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="#" class="signup_btn"> Sign Up</a></li>
+							<li><a href="#" class="signin_btn"> Login</a></li>
+						</ul>
+					</div>
+				</nav>
 		    </div><!-- end container -->
 			<div class="header">
 				<div class="logo">
@@ -88,8 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="search">
 					<h4>ARE YOU LOOKING FOR A MOVIE</h4>
-					<div class="search2">
-						
+					<div class="search2">						
 					    <form>
 						    <i class="fa fa-search"></i>
 						    <input type="text" value="Search for a movie" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search for a movie';}"/>
@@ -119,90 +119,69 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                         </div>
                     </section>
-                        <!-- FlexSlider -->
-                        <script defer src="assets/user_template/js/jquery.flexslider.js"></script>
-                            <link rel="stylesheet" href="assets/user_template/css/flexslider.css" type="text/css" media="screen" />
-                            <script type="text/javascript">
-                                $(function(){
-                                SyntaxHighlighter.all();
-                                });
-                                $(window).load(function(){
-                                $('.flexslider').flexslider({
-                                    animation: "slide",
-                                    start: function(slider){
-                                    $('body').removeClass('loading');
-                                    }
-                                });
-                                });
-                            </script>
                 </div>
                 
             </div>
             <div class="clearfix"></div>
-        
-		
-		<div class="footer-top-grid">
-		    <div class="list-of-movies col-md-12">
-                <div class="featured">
-					<div class="showing-title">
-						<button class="btn btn-showing">Now Showing</button>
-						<h4>MOVIES</h4>
-						<p class="text-white">Be sure not to miss these movies today</p>
+        	<div class="footer-top-grid">
+		    	<div class="list-of-movies col-md-12">
+                	<div class="featured">
+						<div class="showing-title">
+							<button class="btn btn-showing featured_btn">Now Showing</button>
+							<h4>MOVIES</h4>
+							<p class="text-white">Be sure not to miss these movies today</p>
+						</div>
+						<ul>
+							<li>
+								<div class="f-movie">
+									<div class="f-movie-img">
+										<a href="movies.html"><img src="uploads/cat2.jpg" alt="" /></a>
+									</div>
+										<div class="f-movie-name">
+											<a href="movies.html">Lorem Ipsum used since</a>
+											<p>Multi city</p>
+										</div>
+									<div class="f-buy-tickets">
+										<a href="movie-select-show.html">BUY TICKETS</a>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="f-movie">
+									<div class="f-movie-img">
+										<a href="movies.html"><img src="uploads/cat2.jpg" alt="" /></a>
+									</div>
+										<div class="f-movie-name">
+											<a href="movies.html">looked up one of more</a>
+											<p>Multi city</p>
+										</div>
+									<div class="f-buy-tickets">
+										<a href="movie-select-show.html">BUY TICKETS</a>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="f-movie">
+									<div class="f-movie-img">
+										<a href="movies.html"><img src="uploads/cat2.jpg" alt="" /></a>
+									</div>
+										<div class="f-movie-name">
+											<a href="movies.html">The Live Lorem Ipsum </a>
+											<p>Mumbai</p>
+										</div>
+									<div class="f-buy-tickets">
+										<a href="movie-select-show.html">BUY TICKETS</a>
+									</div>
+								</div>
+							</li>							
+							<div class="clearfix"></div>
+						</ul>
 					</div>
-					<ul>
-						<li>
-							<div class="f-movie">
-								<div class="f-movie-img">
-									<a href="movies.html"><img src="uploads/cat2.jpg" alt="" /></a>
-								</div>
-									<div class="f-movie-name">
-										<a href="movies.html">Lorem Ipsum used since</a>
-										<p>Multi city</p>
-									</div>
-								<div class="f-buy-tickets">
-									<a href="movie-select-show.html">BUY TICKETS</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="f-movie">
-								<div class="f-movie-img">
-									<a href="movies.html"><img src="uploads/cat2.jpg" alt="" /></a>
-								</div>
-									<div class="f-movie-name">
-										<a href="movies.html">looked up one of more</a>
-										<p>Multi city</p>
-									</div>
-								<div class="f-buy-tickets">
-									<a href="movie-select-show.html">BUY TICKETS</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="f-movie">
-								<div class="f-movie-img">
-									<a href="movies.html"><img src="uploads/cat2.jpg" alt="" /></a>
-								</div>
-									<div class="f-movie-name">
-										<a href="movies.html">The Live Lorem Ipsum </a>
-										<p>Mumbai</p>
-									</div>
-								<div class="f-buy-tickets">
-									<a href="movie-select-show.html">BUY TICKETS</a>
-								</div>
-							</div>
-						</li>
-						
-						<div class="clearfix"></div>
-					</ul>
-				</div>
-                
-                  
-			</div>
+                </div>
             <div class="col-md-12">
                 <div class="featured">
 					<div class="showing-title">
-						<button class="btn btn-showing">Coming Soon</button>
+						<button class="btn btn-showing featured_btn">Coming Soon</button>
 						<h4>MOVIES</h4>
 						<p class="text-white">Be sure not to miss these Upcoming Movies</p>
 					</div>
@@ -257,7 +236,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-12">
                 <div class="featured">
 					<div class="showing-title">
-						<button class="btn btn-showing">All</button>
+						<button class="btn btn-showing featured_btn">All</button>
 						<h4>MOVIES</h4>
 						<p class="text-white">Be sure not to miss these Movies in Theatres Now</p>
 					</div>
@@ -303,11 +282,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<a href="movie-select-show.html">BUY TICKETS</a>
 								</div>
 							</div>
-						</li>
-						
+						</li>						
 						<div class="clearfix"></div>
 					</ul>
-            </div>
+            	</div>
             <!---
 			<div class="review-slider">
                 <h4>ALL MOVIES</h4>
@@ -407,60 +385,65 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             });
                     </script>
                     <script type="text/javascript" src="assets/user_template/js/jquery.flexisel.js"></script>	
-		    </div>--->
+		    		</div>--->
 			<div class="clearfix"></div>			
-		</div>
+		
             <div class="footer-top-strip">
                 <p><span>Next Change <i>(Friday, 19 Jun) </i>: </span><a href="movie-single.html">Disney's ABCD 2 (3D) (U)</a>, <a href="movie-single.html"> 2 Premi Premache</a> , <a href="movie-single.html">Dekh Ke (Bhojpuri)</a> , <a href="movie-single.html">Disney's ABCD 2 (2D) (U)</a>, <a href="movie-single.html">Dekh Ke (Bhojpuri)</a></p>
                 <p><span>Coming Soon :</span><a href="movie-single.html"> 2 Premi Premache</a>, <a href="movie-single.html">Acharam, Dekh Ke (Bhojpuri)</a>, <a href="movie-single.html">Entourage</a>, <a href="movie-single.html">Kuttram Kadithal</a></p>
             </div>
 		</div>
-		<div class="footer">
-			<div class="col-md-3 footer-left">
-				
-			</div>
-			<div class="col-md-3 footer-left">
-				
-			</div>
-			<div class="col-md-3 footer-left">
-                	
-			</div>
-            <div class="col-md-3 footer-left">
-                
-            </div>
+		<div class="footer">			
 			<div class="clearfix"></div>
-            <div class="col-md-12">
-                <div class="footer-right">
-                    
+            <div class="col-md-12 subscribe_div ">
+				<div class="subscribe-form">
+					<div class="text-center">
+						<h5 class="sub_text">SUBSCRIBE TO BOOKMYTICKET</h5>
+						<h1 class="b-text">TO GET EXCLUSIVE BENEFITS</h1>
+					</div>
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<input type="text" class="text form-control" value="Enter Email ID" onfocus="this.value = '';" onblur="if (this.value == 'Enter email...') {this.value = 'Enter Email ID';}">
+						</div>
+						<div class="col-md-4">
+							<input type="submit" value="Subscribe" class="btn btn-showing" name="subscribe">
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+                    <div class="clearfix"></div>
+				</div>
+                <!---<div class="footer-right">                    
                     <div class="subscribe">
                         <h5 class="f-head">SUBSCRIBE TO BOOKMYTICKET</h5>
                         <input type="text" class="text" value="Enter Email ID" onfocus="this.value = '';" onblur="if (this.value == 'Enter email...') {this.value = 'Enter Email ID';}">
                         <input type="submit" value="Subscribe">
                         <div class="clearfix"></div>
-                    </div>
-                    
+                    </div>                    
                     <div class="clearfix"></div>
-                </div>
-            </div>
-			
+                </div>---->
+            </div>			
 			<div class="clearfix"></div>
 		</div>
 		<div class="clearfix"></div>
 		<div class="follow-us">
-                        <h5 class="f-head">Follow us</h5>
-                        <ul class="social-icons">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
+			
+			<ul class="social-icons">
+				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+				<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+				<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+				<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+			</ul>
+			<div class="clearfix"></div>
+        </div>
+		
 	</div>
 			<div class="copy-rights text-center">
 				<p><span>Copyright &copy; Book My Ticket 2022</span></p>
+				
+			</div>
 			</div>
 	</div>
  <script type="text/javascript">
@@ -482,6 +465,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
    
-    <script src="assets/js/custom.js"></script>			
+    <script src="assets/js/custom.js"></script>	
+	<!-- FlexSlider -->
+                        <script defer src="assets/user_template/js/jquery.flexslider.js"></script>
+                            <link rel="stylesheet" href="assets/user_template/css/flexslider.css" type="text/css" media="screen" />
+                            <script type="text/javascript">
+                                $(function(){
+                                SyntaxHighlighter.all();
+                                });
+                                $(window).load(function(){
+                                $('.flexslider').flexslider({
+                                    animation: "slide",
+                                    start: function(slider){
+                                    $('body').removeClass('loading');
+                                    }
+                                });
+                                });
+                            </script>		
 </body>
 </html>
