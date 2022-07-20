@@ -1,6 +1,6 @@
 <cfparam  name="status" default="v">
 <cfinclude  template="dash_header.cfm">
-<cfset theatre_res=application.theatre.theatreDetails()>
+<cfset theatre_res=application.theatre.getTheatreScreenTime()>
 <cfset movie_res=application.movie.movieDetails()>
 <cfset show_res=application.show.showDetails()>
 <div class="container-fluid">
@@ -31,7 +31,11 @@
             <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 Show Deleted Successfully!!
         </div>
-        
+    <cfelseif status EQ hash('6','sha')>
+        <div class="alert alert-danger alert-dismissible">
+            <a href="##" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                End Date should not be earlier than release date!!
+        </div>    
     </cfif>                    
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -97,7 +101,15 @@
                                 <cfset new_time = timeFormat(DateAdd("s",dtn,start_time),'hh:mm:ss tt')>
                                 <td>#new_time#</td>
                                 <td>#dateFormat('#end_date#','dd-mm-yyyy')#</td>
-                                <td>#show_status#</td>
+                                <cfif dateCompare(end_date, now()) EQ -1>
+                                    <td class="bg-danger text-white">Inactive</td>
+                                <cfelseif dateCompare(release_date, now()) EQ 1>
+                                    <td class="bg-warning"> Pending</td>
+                                <cfelseif dateCompare(end_date, now()) EQ 1>
+                                    <td class="bg-success text-white ">Active</td>
+
+                                </cfif>
+                                <!---<td>#show_status#</td>---->
                                 <td>#priority#</td>
                                 <td><button class="btn btn-outline-primary edit show" id="edit" data-bs-toggle="modal" data-bs-target=".showModal" data-id="#id#" >Edit</button></td>
                                 <td><a href="../components/show.cfc?method=deleteShow&id=#id#" class="btn btn-outline-primary">Delete</a></td>

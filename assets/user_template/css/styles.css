@@ -69,7 +69,7 @@ label{
 	 padding:1em;*/
 	 
 	 background-image: url(../images/movie-slide10.png);
-	 padding: 8rem;
+	 padding: 4rem;
 	 background-position: center;
 	 background-repeat: no-repeat;
 	 background-size: cover;
@@ -348,13 +348,13 @@ a.btn { text-align: center; text-decoration: none;}
     
     margin-top: 3rem;    
     
-    padding: 3rem 3rem 7rem 3rem;
+    padding: 2rem 3rem 5rem 3rem;
 }
 
 .search h4 {
     color: white;
     float: left;
-    padding-left: 28rem;
+    padding-left: 5rem;
     padding-top: 1rem;}
 /*--start-search--*/
 .search2 {
@@ -379,7 +379,7 @@ a.btn { text-align: center; text-decoration: none;}
 }
 .search2 .fa-search {
 	color: #000;
-	margin: 0 6px 0px;
+	/*margin: 0 6px 0px;*/
 	font-size: 15px;
 }
 .menu {

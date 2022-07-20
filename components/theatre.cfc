@@ -434,12 +434,15 @@
         <cfreturn time_details> 
     </cffunction>
 
+    <cffunction name="getTheatreScreenTime" access="public">
+        
+        <cfquery name="tt_details" result="tt_res">
+            SELECT DISTINCT theatre_name, t.id FROM movie_ticket.theatre t  
+            INNER JOIN movie_ticket.screen s ON t.id=s.theatre_id
+            INNER JOIN screen_show_time st ON st.theatre_id= t.id;
+        </cfquery>  
+        <cfreturn tt_details> 
+    </cffunction>
+
 </cfcomponent>
 
-Status Update	            :  19-07-2022
-Working on 	            :  Movie ticket
-Task                             : User Side Home Page Template Design | 
-                                   Server Side Validation on Movie Show Time Functionality                
-Task Completion        :  46%
-ETA                             : 05-08-2022
-Link                            : https://github.com/binsha1/Movie-Ticket.git

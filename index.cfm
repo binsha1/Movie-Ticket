@@ -7,7 +7,7 @@
 <link href="assets/css/jquery-ui.css" rel="stylesheet" >
 
 
-<link rel="stylesheet" href="assets/css/bootstrap_1.min.css"> 
+<link rel="stylesheet" href="assets/css/bootstrap.min.css"> 
 <!--Custom Theme files -->
 <link rel="stylesheet" href="assets/user_template/css/menu.css" />
 <link href="assets/user_template/css/styles.css" rel="stylesheet" type="text/css" media="all" />
@@ -56,12 +56,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			});
 		</script><!---- start-smoth-scrolling---->
+<style>
 
+</style>
 </head>
 <body>
-	<div class="container">
+	<div class="">
 		<div class="main-content">
             <div class="bootstrap_container" id="home">
+				<nav class="navbar navbar-expand-lg user_nav">
+					<div class="container-fluid">
+						<i class="fa-solid fa-film icon_theatre"></i>
+						<a class="navbar-brand text-white" href="index.cfm">BookMyTicket</a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+								<li class="nav-item">
+									<a class="nav-link active text-white" aria-current="page" href="index.cfm">Home</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#">Shows</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link"  href="#">About Us</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link"  href="#">Contact Us</a>
+								</li>
+							</ul>
+							<ul class="navbar-nav ms-auto">
+								<li><a href="#" class="nav-link signup_btn"> Sign Up</a></li>
+								<li><a href="#" class="nav-link signin_btn"> Login</a></li>
+							</ul>						
+						</div>
+					</div>
+				</nav>
+				<!---
                 <nav class="navbar navbar-inverse user-nav">
 					<div class="container-fluid">
 						<div class="navbar-header">
@@ -79,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li><a href="#" class="signin_btn"> Login</a></li>
 						</ul>
 					</div>
-				</nav>
+				</nav>---->
 		    </div><!-- end container -->
 			<div class="header">
 				<div class="logo">
@@ -98,7 +130,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="clearfix"></div>
 			</div>
-	        
+	        <!---
             <div class="main-banner">
                 <div class="banner col-md-12">
                     <section class="slider">
@@ -121,7 +153,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </section>
                 </div>
                 
-            </div>
+            </div>---->
             <div class="clearfix"></div>
         	<div class="footer-top-grid">
 		    	<div class="list-of-movies col-md-12">
@@ -131,7 +163,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h4>MOVIES</h4>
 							<p class="text-white">Be sure not to miss these movies today</p>
 						</div>
-						<ul>
+						<cfset now_res=application.show.nowDetails()>
+						<div>					
+						<div id="carouselExampleControls" class="carousel " data-bs-ride="carousel">
+							<div class="carousel-inner">
+								
+								<cfoutput>
+								<cfloop query='now_res'>
+								<div class="carousel-item active">									
+									<div class="card" >
+										<div class="image-warpper">
+											<img src="uploads/#poster#" class="d-block w-100" alt="...">
+										</div>
+										<div class="card-body">
+											<h5 class="card-title">#movie_name#</h5>
+											<p>#duration#</p>
+											<p>#genre#</p>
+										</div>
+									</div>										
+								</div>	
+								</cfloop>					
+								
+								
+								</cfoutput>
+							</div>
+							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+						</div>
+						
+						<!---<ul>
+
 							<li>
 								<div class="f-movie">
 									<div class="f-movie-img">
@@ -175,7 +243,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</div>
 							</li>							
 							<div class="clearfix"></div>
-						</ul>
+						</ul>--->
 					</div>
                 </div>
             <div class="col-md-12">
@@ -185,6 +253,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h4>MOVIES</h4>
 						<p class="text-white">Be sure not to miss these Upcoming Movies</p>
 					</div>
+					<cfset coming_res=application.show.comingDetails()>
+					<div id="carouselExampleControls" class="carousel " data-bs-ride="carousel">
+							<div class="carousel-inner">
+								
+								<cfoutput>
+								<cfloop query='coming_res'>
+								<div class="carousel-item active">									
+									<div class="card" >
+										<div class="image-warpper">
+											<img src="uploads/#poster#" class="d-block w-100" alt="...">
+										</div>
+										<div class="card-body">
+											<h5 class="card-title">#movie_name#</h5>
+											<p>#duration#</p>
+											<p>#genre#</p>
+										</div>
+									</div>										
+								</div>	
+								</cfloop>					
+								
+								
+								</cfoutput>
+							</div>
+							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+						</div>
+					<!---
 					<ul>
 						<li>
 							<div class="f-movie">
@@ -230,7 +332,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 						
 						<div class="clearfix"></div>
-					</ul>
+					</ul>--->
                 </div>
             </div>
             <div class="col-md-12">
@@ -240,6 +342,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h4>MOVIES</h4>
 						<p class="text-white">Be sure not to miss these Movies in Theatres Now</p>
 					</div>
+					<cfset all_res=application.show.allDetails()>
+					<div id="carouselExampleControls" class="carousel " data-bs-ride="carousel">
+							<div class="carousel-inner">
+								
+								<cfoutput>
+								<cfloop query='all_res'>
+								<div class="carousel-item active">									
+									<div class="card" >
+										<div class="image-warpper">
+											<img src="uploads/#poster#" class="d-block w-100" alt="...">
+										</div>
+										<div class="card-body">
+											<h5 class="card-title">#movie_name#</h5>
+											<p>#duration#</p>
+											<p>#genre#</p>
+										</div>
+									</div>										
+								</div>	
+								</cfloop>					
+								
+								
+								</cfoutput>
+							</div>
+							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+					<!---
 					<ul>
 						<li>
 							<div class="f-movie">
@@ -284,7 +419,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</li>						
 						<div class="clearfix"></div>
-					</ul>
+					</ul>---->
             	</div>
             <!---
 			<div class="review-slider">
@@ -397,14 +532,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"></div>
             <div class="col-md-12 subscribe_div ">
 				<div class="subscribe-form">
-					<div class="text-center">
+					<div class="subscribe_head text-center">
 						<h5 class="sub_text">SUBSCRIBE TO BOOKMYTICKET</h5>
-						<h1 class="b-text">TO GET EXCLUSIVE BENEFITS</h1>
+						<h2 class="text-white p-3">TO GET EXCLUSIVE BENEFITS</h2>
 					</div>
-					<div class="row">
+					<div class="row p-3">
 						<div class="col-md-4"></div>
 						<div class="col-md-4">
-							<input type="text" class="text form-control" value="Enter Email ID" onfocus="this.value = '';" onblur="if (this.value == 'Enter email...') {this.value = 'Enter Email ID';}">
+							<input type="text" class="text form-control" name="email_id" placeholder="Enter Email Id">
 						</div>
 						<div class="col-md-4">
 							<input type="submit" value="Subscribe" class="btn btn-showing" name="subscribe">
@@ -463,9 +598,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
  <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-   
-    <script src="assets/js/custom.js"></script>	
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+   <script src="assets/js/custom.js"></script>	
 	<!-- FlexSlider -->
                         <script defer src="assets/user_template/js/jquery.flexslider.js"></script>
                             <link rel="stylesheet" href="assets/user_template/css/flexslider.css" type="text/css" media="screen" />
@@ -481,6 +616,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     }
                                 });
                                 });
-                            </script>		
+                            </script>	
+							<script>
+							var multipleCardCarousel = document.querySelector(
+  "#carouselExampleControls"
+);
+if (window.matchMedia("(min-width: 768px)").matches) {
+  var carousel = new bootstrap.Carousel(multipleCardCarousel, {
+    interval: false,
+  });
+  var carouselWidth = $(".carousel-inner")[0].scrollWidth;
+  var cardWidth = $(".carousel-item").width();
+  var scrollPosition = 0;
+  $("#carouselExampleControls .carousel-control-next").on("click", function () {
+    if (scrollPosition < carouselWidth - cardWidth * 4) {
+      scrollPosition += cardWidth;
+      $("#carouselExampleControls .carousel-inner").animate(
+        { scrollLeft: scrollPosition },
+        600
+      );
+    }
+  });
+  $("#carouselExampleControls .carousel-control-prev").on("click", function () {
+    if (scrollPosition > 0) {
+      scrollPosition -= cardWidth;
+      $("#carouselExampleControls .carousel-inner").animate(
+        { scrollLeft: scrollPosition },
+        600
+      );
+    }
+  });
+} else {
+  $(multipleCardCarousel).addClass("slide");
+}
+							</script>
+								
 </body>
 </html>

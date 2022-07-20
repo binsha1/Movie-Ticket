@@ -222,7 +222,9 @@ $('.s_time').on('click',function(){
         $('#timeForm').attr('action', '../components/theatre.cfc?method=createScreenTime'); 
     }
 });
-
+function pad2(n) {
+    return (n < 10 ? '0' : '') + n;
+  }
 $('.movie').on('click',function(){
     var movie_id=$(this).data('id');      
     if(movie_id>0)    {
@@ -241,9 +243,15 @@ $('.movie').on('click',function(){
                     },
                     success: function(data)
                     {
-                        console.log(data);                       
+                        console.log(data);  
+                        
+                        var date = new Date(data[0].release_date),
+                        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+                        day = ("0" + date.getDate()).slice(-2);
+                        var st_date=[date.getFullYear(), mnth, day].join("-");                       
+                        
                         $('#movie_name').val(data[0].movie_name);
-                        $('#release_date').val(data[0].release_date);
+                        $('#release_date').val(st_date);
                         $("label[for = posterInput]").text(data[0].poster);                       
                         $("label[for = wallInput]").text(data[0].wallpaper);                        
                         $('#movie_format').val(data[0].movie_format);                         
@@ -362,12 +370,17 @@ $('.show').on('click',function(){
             },
             success: function(data)
             {
-                console.log(data);                       
+                console.log(data); 
+                var date = new Date(data[0].end_date),
+                mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+                day = ("0" + date.getDate()).slice(-2);
+                var end_date=[date.getFullYear(), mnth, day].join("-");
+
                 $("#movie option[value='"+data[0].m_id+"']").attr("selected", "selected");
                 $("#theatre option[value='"+data[0].t_id+"']").attr("selected", "selected");                
                 editScreenList(data[0].s_id);                
                 editTimeList(data[0].st_id,data[0].s_id);                                                              
-                $('#end_date').val(data[0].end_date);   
+                $('#end_date').val(end_date);   
                 $('#total_seats').val(data[0].total_seats);    
                 $('#priority').val(data[0].priority);  
                 $('#show_status').val(data[0].show_status);                                  
