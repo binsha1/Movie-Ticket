@@ -101,7 +101,7 @@ margin-left: 1rem;
     float: right;
 }
 .showing-title{
-    padding:0 4rem;
+    padding:0 6rem;
     color: white;
 }
 i.fa-solid.fa-film.icon_theatre{
@@ -111,6 +111,7 @@ text-align: center;
     float: left;
     
 }
+
     .slide-text{
         color: white;
         
@@ -144,6 +145,8 @@ text-align: center;
         margin: 0 0.5em;
         box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
         border: none;
+        background: #003b64;
+        color: white;
       }
       .carousel-control-prev,
       .carousel-control-next {
@@ -179,4 +182,25 @@ text-align: center;
         .card .img-wrapper {
           height: 17em;
         }
+      }
+      a.movie_link{
+        text-decoration: none;
+      }
+      i.fa-solid.fa-hourglass, i.fa-solid.fa-masks-theater {
+        color: rgba(240, 210, 13, 0.922);
+      }
+
+      img.img-fluid.mov_image{
+        height: 200;
+        width:200;
+      }
+      .mov_title{
+        font-weight: 700;
+      }
+      span.mfor{
+        background: beige;
+        padding:0.5rem;
+      }
+      .desc_text{
+       color: #c2d6ed;
       }

@@ -378,4 +378,19 @@
         <cflocation  url="../admin/cast_crew.cfm?movie_id=#local.enc_movie#&status=#local.status#" addtoken="no">  
     </cffunction>
     <!--------------------------Crew Functions----------------------------->
+
+    <!-------------------------------Movie,cast,crew details-------------------------->
+    <cffunction name="movieCastCrew" access="public">
+        <cfargument  name="movId" type="integer">
+        <cfquery name="movie_cast_crew" result="m_res">
+            SELECT m.movie_name,m.id,cr.role_name,cr.person_name,ca.actor_name,m.language,m.trailer_url,
+            m.language,m.genre,m.poster,m.movie_format,m.release_date, m.duration ,m.description,m.wallpaper
+            FROM
+            movie_ticket.movie m INNER JOIN movie_ticket.cast ca ON m.id=ca.movie_id
+            INNER JOIN movie_ticket.crew cr ON cr.movie_id=m.id 
+            WHERE m.id=<cfqueryparam value="#arguments.movId#" cfsqltype="CF_SQL_INTEGER">
+            group by m.movie_name 
+        </cfquery>
+        <cfreturn movie_cast_crew>
+    </cffunction>
 </cfcomponent>

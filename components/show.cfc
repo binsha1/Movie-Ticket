@@ -161,7 +161,7 @@
    <cfset local.Today = dateFormat(Now(),"yyyy-mm-dd")>     
         <cfquery name="show_details" result="show_data" >
             SELECT DISTINCT m.movie_name ,m.genre,sh.id,m.poster,m.language,m.release_date,m.duration,sh.total_seats,
-           sh.end_date,sh.priority
+           sh.end_date,sh.priority,m.id as m_id
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id            
             WHERE sh.end_date > <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date"> 
@@ -177,7 +177,7 @@
    <cfset local.Today = dateFormat(Now(),"yyyy-mm-dd")>     
         <cfquery name="show_details" result="show_data" >
             SELECT DISTINCT m.movie_name ,m.genre,sh.id,m.poster,m.language,m.release_date,m.duration,sh.total_seats,
-            sh.end_date,sh.priority
+            sh.end_date,sh.priority,m.id as m_id
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id            
             WHERE m.release_date > <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date">             
@@ -192,11 +192,12 @@
    <cfset local.Today = dateFormat(Now(),"yyyy-mm-dd")>     
         <cfquery name="show_details" result="show_data" >
             SELECT DISTINCT m.movie_name ,m.genre,sh.id,m.poster,m.language,m.release_date,m.duration,sh.total_seats,
-            sh.end_date,sh.priority
+            sh.end_date,sh.priority,m.id as m_id
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id            
             WHERE m.release_date > <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date"> 
-            OR  sh.end_date > <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date">            
+            OR  sh.end_date > <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date">  
+            OR  sh.end_date = <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date">          
             GROUP BY m.movie_name
         </cfquery>
         <cfreturn show_details> 
