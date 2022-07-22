@@ -20,6 +20,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--webfont-->
 <link href='//fonts.googleapis.com/css?family=Oxygen:400,700,300' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+<!---Carousel Styles---->
+
+<link rel="stylesheet" href="assets/carousel/fonts/icomoon/style.css">
+<link rel="stylesheet" href="assets/carousel/css/owl.carousel.min.css">
+<!-- Bootstrap CSS
+<link rel="stylesheet" href="assets/carousel/css/bootstrap.min.css"> -->
+<!-- Style -->
+<link rel="stylesheet" href="assets/carousel/css/style.css">
 	<!-- start menu -->
 <link href="assets/user_template/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="assets/user_template/js/megamenu.js"></script>
@@ -46,8 +55,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			});
 		</script><!---- start-smoth-scrolling---->
+<style>
+
+
+
+</style>
 </head>
-<body>
+<body class="user_body">
 <div class="main-content">
 	<div class="bootstrap_container" id="home">
 		<nav class="navbar navbar-expand-lg user_nav">

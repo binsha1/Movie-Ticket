@@ -74,7 +74,7 @@
 						<cfoutput>
 							<cfloop query='coming_res'>
 								<div class="carousel-item active">
-									<a href="movie-details.cfm" class="movie_link">											
+									<a href="movie-details.cfm?id=#toBase64(m_id)#" class="movie_link">											
 									<div class="card" >
 										<div class="image-warpper">
 											<img src="uploads/#poster#" class="d-block w-100" alt="...">
@@ -116,7 +116,7 @@
 						<cfoutput>
 							<cfloop query='all_res'>
 								<div class="carousel-item active">
-									<a href="movie-details.cfm" class="movie_link">										
+									<a href="movie-details.cfm?id=#toBase64(m_id)#" class="movie_link">										
 										<div class="card" >
 											<div class="image-warpper">
 												<img src="uploads/#poster#" class="d-block w-100" alt="...">

@@ -817,6 +817,12 @@ function selectElementContents(el) {
         ]
     });
 });
+
+$(".nav li").on("click",function()
+{
+    $(".nav li").removeClass("active");
+    $(this).addClass("active");
+})
 /*document.querySelector('.thea_img').addEventListener('change', function (e) {
     var name = document.getElementById("th_img").files[0].name;
     var nextSibling = e.target.nextElementSibling

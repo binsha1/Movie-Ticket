@@ -23,6 +23,12 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/custom.js"></script>	
+
+<!----
+    <script src="assets/js/popper.min.js"></script>---->
+    
+    <script src="assets/carousel/js/owl.carousel.min.js"></script>
+    <script src="assets/carousel/js/main.js"></script>
 <!-- FlexSlider -->
 <script defer src="assets/user_template/js/jquery.flexslider.js"></script>
     <link rel="stylesheet" href="assets/user_template/css/flexslider.css" type="text/css" media="screen" />
@@ -38,7 +44,29 @@
             }
         });
         });
-</script>	
+</script>
+
+<script src="assets/user_template/js/responsive-tabs.js"></script>
+    <script type="text/javascript">
+      $( '#myTab a' ).click( function ( e ) {
+        e.preventDefault();
+        $( this ).tab( 'show' );
+      } );
+
+      $( '#moreTabs a' ).click( function ( e ) {
+        e.preventDefault();
+        $( this ).tab( 'show' );
+      } );
+
+      ( function( $ ) {
+          // Test for making sure event are maintained
+          $( '.js-alert-test' ).click( function () {
+            alert( 'Button Clicked: Event was maintained' );
+          } );
+          fakewaffle.responsiveTabs( [ 'xs', 'sm' ] );
+      } )( jQuery );
+
+    </script>
 <script>
     var multipleCardCarousel = document.querySelector(
     "#carouselExampleControls"
@@ -135,6 +163,20 @@
     } else {
     $(comingCardCarousel).addClass("slide");
     }
-</script>								
+</script>
+<script>
+/*$("a.nav-link").on("click",function()
+{
+    var id=$(this).attr('href');
+    $(id).addClass("active");
+    
+    //$('.tab-pane:eq('+$(this).index()+')').removeClass('active'); 
+     /*$(".nav-item , .tab-pane").addClass('active');
+  $(this).removeClass('active');
+  $('.tab-pane:eq('+$(this).index()+')').removeClass('active');
+    
+});*/
+</script>
+
 </body>
 </html>
