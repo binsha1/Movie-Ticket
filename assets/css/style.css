@@ -293,5 +293,41 @@ img.img-fluid.scroll_image{
   }
   a.nav-link.date-nav{
   color: white;
-    padding: 1rem 3rem;}
-  
+    padding: 1rem 3rem;
+    
+  }
+  a.nav-link.date-nav.active{
+    background: aquamarine;
+    color: black;
+
+  }
+  .text-day:active{
+    color:black;
+    font-weight: 500;
+  }
+  ul.nav.nav-pills.justify-content-center{
+    background: #050b35;
+  }
+  table.table.now_table th {
+    color: aquamarine;
+    
+  }
+    img.img-fluid.img-now{
+      height: 200;
+      width: 150;
+    }
+    table.table.table-borderless td{
+      color: white;
+    }
+    .autocomplete {
+      position: relative;
+      display: inline-block;
+    }
+    .autocomplete-items {
+      position: absolute;
+      z-index: 99;
+      top: 100%;
+      left: 0;
+      right: 0;
+    }
+    

@@ -1,3 +1,4 @@
+<cfset movieDetails=application.movie.movieDetails()>
 <cfinclude  template="user_header.cfm">
 <div class="header">
 		<div class="logo">
@@ -6,12 +7,44 @@
 			<p class="slide-text">Safe, Secure,reliable ticketing.Your ticket to live entertainment!</p>
 		</div>
 		<div class="search">
-			<h4>ARE YOU LOOKING FOR A MOVIE</h4>
-			<div class="search2">						
-				<form>
+			<h4 class="text-center">ARE YOU LOOKING FOR A MOVIE</h4>
+			<div class="p-3">	
+				<form action='components/movie.cfc?method=searchMovie' method="post" class="col-lg-6 offset-lg-3">
+					
+
+
+
+					
+					<div class='input-group mb-3'>
+					
+					<select class="js-example-basic-single form-control required" name='movie_id' required>
+					<option value="default">Search For a Movie</option>
+						<cfoutput query='movieDetails'>
+                            <option value="#id#">
+                                       #movie_name#
+                                    </option>
+                             </cfoutput>             
+                            </select>
+						
+					<!---
+					<div class='input-group mb-3'>
+					<input aria-describedby='button-addon2' aria-label='Country' class='form-control autocomplete' id='mov_input'
+					name='movie' placeholder='Search for a movie' type='text' >--->
+					<div class='input-group-append'>
+						<input class='btn btn-outline-primary' id='button-addon2' name="submit" value="Ok" type='submit'>
+					</div>
+					</div>
+          		</form>
+				<div class="col-md-5" style="position: relative;margin-top: -38px;margin-left: 215px;">
+        <div class="list-group" id="show-list">
+          <!-- Here autocomplete list will be display -->
+        </div>
+      </div>
+		  		<!---<form autocomplete="off" action="components/movie.cfc?method=searchMovie">
 					<i class="fa fa-search"></i>
-					<input type="text" value="Search for a movie" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search for a movie';}"/>
-				</form>
+					<input type="text" value="" placeholder="Search for a movie" name="movie" class="form-control" id="mov_input"/>
+					<input type="submit" value="submit" name="submit" class="btn btn-primary">
+				</form>--->
 			</div>
 		</div>
 		<div class="clearfix"></div>

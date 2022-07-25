@@ -354,13 +354,13 @@ a.btn { text-align: center; text-decoration: none;}
     
     margin-top: 3rem;    
     
-    padding: 2rem 3rem 5rem 3rem;
+    padding: 2rem 3rem 2rem 3rem;
 }
 
 .search h4 {
     color: white;
-    float: left;
-    padding-left: 5rem;
+    /*float: left;
+    padding-left: 5rem;*/
     padding-top: 1rem;}
 /*--start-search--*/
 .search2 {
@@ -375,7 +375,7 @@ a.btn { text-align: center; text-decoration: none;}
 }
 .search2 input[type="text"] {
 	outline: none;
-	color: #D8D8D8;
+	/*color: #D8D8D8;*/
 	background: none;
 	font-size: 0.9em;
 	border: none;

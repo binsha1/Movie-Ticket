@@ -161,7 +161,7 @@
    <cfset local.Today = dateFormat(Now(),"yyyy-mm-dd")>     
         <cfquery name="show_details" result="show_data" >
             SELECT DISTINCT m.movie_name ,m.genre,sh.id,m.poster,m.language,m.release_date,m.duration,sh.total_seats,
-           sh.end_date,sh.priority,m.id as m_id
+            sh.end_date,sh.priority,m.id as m_id
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id            
             WHERE sh.end_date > <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date"> 
@@ -202,6 +202,55 @@
         </cfquery>
         <cfreturn show_details> 
     </cffunction>
+<cffunction  name="getMovieDate" access="remote">
+    <cfargument  name="date" type="date">
+    <cflocation url="../show.cfm?cdate=#arguments.date#" addtoken="no">       
+</cffunction>
+<cffunction name="showDate" access="remote" output="true" >  
+    <cfargument  name="cdate" type="date">
+    <cfquery name="date_details" result="date_res" >
+        SELECT DISTINCT
+                    m.movie_name,sh.id,m.poster,m.genre,
+                    m.language,m.release_date,m.trailer_url,
+                    m.duration,sh.total_seats,            
+                    sh.end_date,sh.priority,
+                    sh.id,
+                    th.theatre_name,                   
+                    s.screen_name,st.start_time,
+                    st.show_name,m.id as m_id,th.id as t_id,s.id as s_id,st.id as st_id
+                FROM movie_ticket.manage_shows sh
+                INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id               
+                INNER JOIN movie_ticket.theatre th ON sh.theatre_id=th.id 
+                INNER JOIN movie_ticket.screen s ON sh.screen_id=s.id
+                INNER JOIN movie_ticket.screen_show_time st ON sh.screen_time_id =st.id
+                WHERE sh.end_date > <cfqueryparam value="#arguments.cdate#" cfsqltype="cf_sql_date"> 
+            AND m.release_date < <cfqueryparam value="#arguments.cdate#" cfsqltype="cf_sql_date"> 
+            OR sh.end_date=<cfqueryparam value="#arguments.cdate#" cfsqltype="cf_sql_date"> 
+            
+                 
+        </cfquery>
+        <cfreturn date_details>  
+    
+   
+</cffunction>
+<cffunction name="todayDetails" access="public" >   
+   <cfset local.Today = dateFormat(Now(),"yyyy-mm-dd")>   
+
+        <cfquery name="show_details" result="show_data" >
+            SELECT DISTINCT m.movie_name ,s.screen_name, th.theatre_name,m.genre,sh.id,m.poster,m.language,m.release_date,m.duration,sh.total_seats,
+            sh.end_date,sh.priority,m.id as m_id
+            FROM movie_ticket.manage_shows sh
+            INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id  
+            INNER JOIN movie_ticket.theatre th ON sh.theatre_id=th.id
+            INNER JOIN movie_ticket.screen s ON sh.screen_id=s.id           
+            WHERE sh.end_date > <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date"> 
+            AND m.release_date < <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date"> 
+            OR sh.end_date=<cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date"> 
+            
+        </cfquery>
+        <cfreturn show_details> 
+    </cffunction>
+ 
 <!-----------------Show Time Functions ------------------------>
 
 

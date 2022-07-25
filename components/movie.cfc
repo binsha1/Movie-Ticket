@@ -227,6 +227,16 @@
         </cfquery>
         <cfreturn movie_details>
     </cffunction>
+
+    <cffunction name="allMovieNames" access="remote" output="true" returnFormat="json">
+        <cfargument  name="search_text" type="string">
+        
+        
+        <cfquery name="movie_details"  result="res" returntype="array">
+            SELECT * FROM movie_ticket.movie WHERE movie_name LIKE <cfqueryparam value="#arguments.search_text#%" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        <cfreturn movie_details>
+    </cffunction>
     <!------------------------- Movie Functions -------------------------->
 
     <!--------------------------Cast Functions----------------------------->
@@ -392,5 +402,13 @@
             group by m.movie_name 
         </cfquery>
         <cfreturn movie_cast_crew>
+    </cffunction>
+
+    <cffunction  name="searchMovie" access="remote">
+        <cfargument name="movie_id" type="string">
+        <cfset local.id=toBase64(movie_id)>
+
+        <cflocation  url="../movie-details.cfm?id=#local.id#" addtoken="no">
+
     </cffunction>
 </cfcomponent>

@@ -101,11 +101,13 @@
                                 <cfset new_time = timeFormat(DateAdd("s",dtn,start_time),'hh:mm:ss tt')>
                                 <td>#new_time#</td>
                                 <td>#dateFormat('#end_date#','dd-mm-yyyy')#</td>
-                                <cfif dateCompare(end_date, now()) EQ -1>
+                                <cfif dateCompare(end_date, now()) EQ 0>
+                                    <td class="bg-danger text-white">Active</td>
+                                <cfelseif dateCompare(end_date, now()) EQ -1>
                                     <td class="bg-danger text-white">Inactive</td>
                                 <cfelseif dateCompare(release_date, now()) EQ 1>
                                     <td class="bg-warning"> Pending</td>
-                                <cfelseif dateCompare(end_date, now()) EQ 1>
+                                <cfelseif dateCompare(end_date, now()) EQ 1  >
                                     <td class="bg-success text-white ">Active</td>
 
                                 </cfif>

@@ -1488,3 +1488,12 @@
 
 
 </html>
+Status Update	            :  25-07-2022
+Working on 	            :  Movie ticket
+Task                             : Listing Show Details using 5 days Functionality|
+									Search Functionality|
+									Fixing Style Issues in show page 
+
+Task Completion        :  55%
+ETA                             : 05-08-2022
+Link                            : https://github.com/binsha1/Movie-Ticket.git

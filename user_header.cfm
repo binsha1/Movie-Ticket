@@ -11,6 +11,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
 <link rel="stylesheet" href="assets/css/owl.theme.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/select2.min.css">
+
 <!--Custom Theme files -->
 <link rel="stylesheet" href="assets/user_template/css/menu.css" />
 <link href="assets/user_template/css/styles.css" rel="stylesheet" type="text/css" media="all" />
