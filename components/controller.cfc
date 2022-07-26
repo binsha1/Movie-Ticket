@@ -48,6 +48,15 @@
         </cfif>
         <cflocation  url="../admin/update_password.cfm?status=#local.status#" addtoken="no">
     </cffunction>
+    <cffunction  name="checkLogin" access="remote">
+        <cfoutput>
+        #IsUserLoggedIn()#
+        </cfoutput>
+        <cfif IsUserLoggedIn() EQ "NO">
+            <cflocation  url="../modals/create_theatre.cfm" addtoken="no">
+
+        </cfif>
+    </cffunction>
 
 </cfcomponent>
 

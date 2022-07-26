@@ -3756,29 +3756,30 @@ label {
 }
 .movie-date-selection ul {
 	padding: 2em;
-	background-color: #FCFCFC;
+    background:#050b35;
+	
 	margin-left: 1.5%;
 	border: 1px solid #eee;
 }
 .movie-date-selection ul li a{
-	color: #007DD3;
+	color: aquamarine;
 }
 i.fa.fa-map-marker {
 	font-size: 18px;
 	margin-right: 0.5em;
-	color: #007DD3;
+	color:aquamarine;
 }
 .movie-date-selection ul li.location a{
 	font-size: 1.2em;
 	font-weight: 600;
-	color: #000;
+	color: white;
 	text-decoration:none;
 }
 .movie-date-selection {
 	margin-bottom:1em;
 }
 .movie-date-selection ul:hover {
-	background-color: #fff;
+	/*background-color: #fff;*/
 }
 .pic-a-movie{
 	padding:1em;

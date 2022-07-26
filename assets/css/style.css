@@ -330,4 +330,7 @@ img.img-fluid.scroll_image{
       left: 0;
       right: 0;
     }
-    
+    .th_list{
+      display: flex;
+      justify-content: center;
+    }

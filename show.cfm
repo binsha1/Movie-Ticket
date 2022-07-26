@@ -1,7 +1,9 @@
 <cfinclude  template="user_header.cfm">
-<cfset today_date=DateFormat(Now(),"yyyy-mm-dd")>
-<cfparam name="cdate" default="#today_date#">
+<cfset t_date=toBase64(DateFormat(Now(),"yyyy-mm-dd"))>
+<cfset today_date=parseDateTime(toString(toBinary(t_date)))>
 
+<cfparam name="cdate" default="#DateFormat(Now(),"yyyy-mm-dd")#">
+<!---<cfset pdate=toString(toBinary(cdate))>--->
 <cfset fromDate = Now()> 
 <cfset toDate = Now() + 5> 
 <cfset today_movies=application.show.todayDetails()>
@@ -12,6 +14,7 @@
 			<li class="nav-item">
 			
 			<cfoutput>
+		
 			<a class=" nav-link date-nav "  href="components/show.cfc?method=getMovieDate&date=#DateFormat(i,"yyyy-mm-dd")#">
  				#dateformat(i, "dd")#<br>
 				#dateformat(i, "ddd")#
@@ -34,8 +37,9 @@
       <table class="table table-striped now_table ">
 	  				<tbody>
 					<cfoutput query='today_movies'>
+					<cfset movId=toBase64(m_id)> 
 					<tr>
-							<td><img src="uploads/#poster#" class="img-fluid img-now"></td>
+							<td><a href="movie-details.cfm?id=#movId#"><img src="uploads/#poster#" class="img-fluid img-now"></a></td>
 							<td >
 							<table class="table table-borderless">
 								<tr>
@@ -49,9 +53,13 @@
 								<tr>
 									<td>#movie_name#</td>
 									<td>#genre#</td>
-							        <td>#release_date#</td>
-									<td></td>
-									<td></td>
+							        <td>#DateFormat(release_date,"mmmm dd, yyyy")#</td>
+									<td><a href="book-ticket.cfm?id=#toBase64(m_id)#" class="btn btn-showing">
+										<i class="fa-solid fa-ticket"></i> Book Ticket
+										</a></td>
+									<td><a href="#trailer_url#" class="btn btn-primary">
+										<i class="fas fa-play"></i> TRAILER
+										</a></td>
 								</tr>
 								
 								<tr>
@@ -63,7 +71,7 @@
 								<tr>
 									<td colspan="2"> #theatre_name#</td>
 									<td> #screen_name#</td>
-									<td colspan="2">#end_date#</td>
+									<td colspan="2">#DateFormat(release_date,"mmmm dd, yyyy")# - #DateFormat(end_date,"mmmm dd, yyyy")#</td>
 								</tr>
 							</table>
 							</td>
@@ -74,12 +82,17 @@
 					</tbody>
 				</table>
 		<cfelse>
+			<cfset date_string=toString(toBinary(cdate))>
+			<cfset date_convert=parseDateTime(date_string)>
+			<cfset cdate=dateFormat(date_convert,"yyyy-mm-dd")>
 				<cfset other_dates=application.show.showDate(cdate)>
+				
 					<table class="table table-striped now_table ">
 	  				<tbody>
 					<cfoutput query='other_dates'>
+					<cfset movId=toBase64(m_id)> 
 					<tr>
-							<td><img src="uploads/#poster#" class="img-fluid img-now"></td>
+							<td><a href="movie-details.cfm?id=#movId#"><img src="uploads/#poster#" class="img-fluid img-now"></a></td>
 							<td >
 							<table class="table table-borderless">
 								<tr>
@@ -93,11 +106,13 @@
 								<tr>
 									<td>#movie_name#</td>
 									<td>#genre#</td>
-							        <td>#release_date#</td>
-									<td></td>
+							        <td>#DateFormat(release_date,"mmmm dd, yyyy")#</td>
+									<td><a href="book-ticket.cfm?id=#toBase64(m_id)#&date=#toBase64(cdate)#" class="btn btn-showing">
+										<i class="fa-solid fa-ticket"></i> Book Ticket
+										</a></td>
 									<td><a href="#trailer_url#" class="btn btn-primary">
-									<i class="fas fa-play"></i> TRAILER
-									</a></td>
+										<i class="fas fa-play"></i> TRAILER
+										</a></td>
 								</tr>
 								
 								<tr>
@@ -109,7 +124,7 @@
 								<tr>
 									<td colspan="2"> #theatre_name#</td>
 									<td> #screen_name#</td>
-									<td colspan="2">#end_date#</td>
+									<td colspan="2">#DateFormat(release_date,"mmmm dd, yyyy")# - #DateFormat(end_date,"mmmm dd, yyyy")#</td>
 								</tr>
 							</table>
 							</td>

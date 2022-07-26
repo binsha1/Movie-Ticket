@@ -204,7 +204,8 @@
     </cffunction>
 <cffunction  name="getMovieDate" access="remote">
     <cfargument  name="date" type="date">
-    <cflocation url="../show.cfm?cdate=#arguments.date#" addtoken="no">       
+    <cfset local.cdate=toBase64(arguments.date)>
+    <cflocation url="../show.cfm?cdate=#local.cdate#" addtoken="no">       
 </cffunction>
 <cffunction name="showDate" access="remote" output="true" >  
     <cfargument  name="cdate" type="date">
@@ -237,7 +238,8 @@
    <cfset local.Today = dateFormat(Now(),"yyyy-mm-dd")>   
 
         <cfquery name="show_details" result="show_data" >
-            SELECT DISTINCT m.movie_name ,s.screen_name, th.theatre_name,m.genre,sh.id,m.poster,m.language,m.release_date,m.duration,sh.total_seats,
+            SELECT DISTINCT m.movie_name ,s.screen_name, th.theatre_name,m.genre,sh.id,m.poster,m.language,
+            m.release_date,m.duration,sh.total_seats,m.trailer_url,
             sh.end_date,sh.priority,m.id as m_id
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id  
@@ -249,6 +251,30 @@
             
         </cfquery>
         <cfreturn show_details> 
+    </cffunction>
+
+    <cffunction name="getMovieShows" access="public">
+        <cfargument  name="movId" type="integer">
+        <cfargument  name="pdate" type="date">
+        <cfquery name="show_movie" result="show_res">
+         SELECT DISTINCT m.movie_name ,s.screen_name,st.start_time, th.theatre_name,
+            m.genre,sh.id,m.poster,m.language,m.wallpaper,
+            m.release_date,m.duration,sh.total_seats,m.trailer_url,th.address,
+            sh.end_date,sh.priority,m.id as m_id
+            FROM movie_ticket.manage_shows sh
+            INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id  
+            INNER JOIN movie_ticket.theatre th ON sh.theatre_id=th.id
+            INNER JOIN movie_ticket.screen s ON sh.screen_id=s.id 
+            INNER JOIN movie_ticket.screen_show_time st ON sh.screen_time_id=st.id
+            WHERE m.id =<cfqueryparam value="#arguments.movId#" cfsqltype="CF_SQL_INTEGER"> AND sh.end_date > <cfqueryparam value="#arguments.pdate#" cfsqltype="cf_sql_date"> 
+            AND m.release_date < <cfqueryparam value="#arguments.pdate#" cfsqltype="cf_sql_date"> 
+            OR sh.end_date=<cfqueryparam value="#arguments.pdate#" cfsqltype="cf_sql_date">  ORDER BY st.start_time             
+        </cfquery>
+
+
+       
+       
+        <cfreturn show_movie>
     </cffunction>
  
 <!-----------------Show Time Functions ------------------------>

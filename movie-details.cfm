@@ -32,7 +32,7 @@
 						<i class="fas fa-play"></i> TRAILER
 						</a>
 						<!-- GET-->
-						<a href="##" class="btn btn-showing">
+						<a href="book-ticket.cfm?id=#id#" class="btn btn-showing">
 							<i class="fa-solid fa-ticket"></i> Book Ticket
 						</a>
 					</div>  
