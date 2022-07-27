@@ -294,7 +294,7 @@ a.btn.btn-danger {
     padding: 25px;
 }
 .modal-body {
-    padding: 50px 40px 70px 40px;
+    /*padding: 50px 40px 70px 40px;*/
 }
 .btn_red:hover {background: #9F9F9F;}
 

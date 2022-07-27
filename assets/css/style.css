@@ -334,3 +334,20 @@ img.img-fluid.scroll_image{
       display: flex;
       justify-content: center;
     }
+    .reg_bg{
+      background-image: url("../user_template/images/movie-slide13.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .btn-show{
+      color:aquamarine;
+    }
+    .text-show{
+      color: aquamarine;
+    }
+    a.reg.close{
+      float: right;
+    }
+.seat_label{
+  float:right;
+}

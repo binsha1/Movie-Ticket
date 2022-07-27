@@ -275,6 +275,20 @@
        
        
         <cfreturn show_movie>
+        </cffunction>
+
+        <cffunction name="getTotalSeats" access="public">
+            <cfargument  name="shId" type="integer">
+            
+            <cfquery>
+                SELECT total_seats 
+            </cfquery>
+    </cffunction>
+    <cffunction name="seatSelect" access="public">
+        <cfargument name="total_seats" type="integer">
+        <cfargument name="show_id" type="integer">
+        <cfargument name="seats" type="integer">
+        
     </cffunction>
  
 <!-----------------Show Time Functions ------------------------>

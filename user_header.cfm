@@ -89,8 +89,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 					</ul>
 					<ul class="navbar-nav ms-auto">
-						<li><a href="#" class="nav-link signup_btn"> Sign Up</a></li>
-						<li><a href="#" class="nav-link signin_btn"> Login</a></li>
+
+						<cfif structKeyExists(session, "userLog")>
+							<div class="dropdown">
+  <a class="btn btn-showing dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+   <cfoutput>
+   Welcome #session.userLog.user_name#
+   </cfoutput>
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="#">Bookings</a></li>
+    
+    <li><a class="dropdown-item" href="components/controller.cfc?method=userLogout">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
+  </ul>
+</div>
+
+						
+						<cfelse>
+						<li><a href="signup.cfm" class="nav-link signup_btn"> Sign Up</a></li>
+						<li><a href="login.cfm" class="nav-link signin_btn"> Login</a></li>
+						</cfif>
+		
+		
+		
 					</ul>						
 				</div>
 			</div>

@@ -23,6 +23,10 @@
         <cfset structDelete(session, "sessionUser")>
         <cflocation url="../admin/index.cfm" addtoken="no">
     </cffunction>
+    <cffunction name="userLogout" access="remote" output="false">
+        <cfset structDelete(session, "userLog")>
+        <cflocation url="../index.cfm" addtoken="no">
+    </cffunction>
 
     <cffunction name="updatePass" access="remote" output="true">
         <cfargument  name="old_pass" type="string">
@@ -48,7 +52,50 @@
         </cfif>
         <cflocation  url="../admin/update_password.cfm?status=#local.status#" addtoken="no">
     </cffunction>
-    <cffunction  name="checkLogin" access="remote">
+
+    <cffunction name="userSignUp" access="remote">
+
+        <cfargument  name="full_name" type="string">
+        <cfargument  name="email" type="string">        
+        <cfargument  name="pass" type="string">
+        <cfset local.password = hash(arguments.pass,'sha')>   
+        <cfquery name="address_email" result="email_res">
+            SELECT * FROM movie_ticket.login
+            WHERE email_id=<cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+       
+        <cfif email_res.RecordCount NEQ 0>
+            <cfset local.status=hash('2','sha')>
+        </cfif>
+        <cfif arguments.full_name!="" && arguments.email!="" && arguments.pass!="" >
+            <cfif email_res.RecordCount EQ 0  >
+                <cfquery name="signup" result="result">
+                    INSERT INTO movie_ticket.login(
+                        user_name,
+                        password,
+                        role,
+                        email_id) 
+                    VALUES(
+                        <cfqueryparam value="#arguments.full_name#" cfsqltype="CF_SQL_VARCHAR">,
+                        
+                        <cfqueryparam value="#local.password#" cfsqltype="CF_SQL_VARCHAR">,
+                        <cfqueryparam value="user" cfsqltype="CF_SQL_VARCHAR">,
+                        <cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR">                   
+                        )
+                </cfquery>
+                <cfif result.RecordCount EQ 1>
+                    <cfset local.status=hash('2','sha')>
+                    <cflocation  url="../login.cfm?status=#local.status#" addtoken="no">
+                </cfif>
+            <cfelse>
+                <cflocation  url="../signup.cfm?status=#local.status#" addtoken="no">
+            </cfif>
+        <cfelse>
+            <cfset local.status=hash('3','sha')>
+            <cflocation  url="../signup.cfm?status=#local.status#" addtoken="no">
+        </cfif>      
+    </cffunction>
+    <!----<cffunction  name="checkLogin" access="remote">
         <cfoutput>
         #IsUserLoggedIn()#
         </cfoutput>
@@ -56,7 +103,38 @@
             <cflocation  url="../modals/create_theatre.cfm" addtoken="no">
 
         </cfif>
+    </cffunction>---->
+
+     <cffunction name="userLogin" access="remote" output="true" >
+        <cfargument  name="email" type="string" required="true">
+        <cfargument  name="pass" type="string" required="true">
+        <cfargument  name="show_id" type="integer">
+        <cfargument  name="movie_id" type="integer">
+        <cfargument  name="cdate" type="date">
+           
+        <cfset local.password=hash(arguments.pass,'sha') >       
+        <cfquery name="userLogData"  result="user_log">
+            SELECT * FROM movie_ticket.login 
+            WHERE email_id=<cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR">
+             AND password=<cfqueryparam value="#local.password#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>   
+        <cfif user_log.recordCount EQ 1>                      
+            <cfset session.userLog={'user_id'=userLogData.id,'user_name'=userLogData.user_name}>   
+             <cfif userLogData.role=='user'>
+                <cfif arguments.login_value EQ "0">
+                    <cflocation  url="../index.cfm" addtoken="no">
+                <cfelse>    
+                    <cflocation  url="../book-ticket.cfm?id=#toBase64(arguments.show_id)#&mid=#toBase64(arguments.movie_id)#&date=#toBase64(arguments.cdate)#" addtoken="no">
+                </cfif>
+            </cfif>
+        <cfelse>
+            <cfset local.status=hash('1','sha')>
+            <cflocation  url="../login.cfm?status=#local.status#" addtoken="no">            
+        </cfif>   
     </cffunction>
 
 </cfcomponent>
+
+
+
 
