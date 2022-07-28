@@ -54,3 +54,13 @@
 </section>
 
 <cfinclude  template="user_footer.cfm">
+
+Status Update	            :  28-07-2022
+Working on 	            :  Movie ticket
+Task                             : Seat Form Front End Validation| 
+                                    Seat Selection Template Design|
+                                    List Out User List on Admin Dashboard
+                                    Delete User List  Functionality
+Task Completion        :  66%
+ETA                             : 12-08-2022
+Link                            : https://github.com/binsha1/Movie-Ticket.git

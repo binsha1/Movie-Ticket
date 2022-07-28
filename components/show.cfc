@@ -134,7 +134,8 @@
 <cffunction name="getShowDetails" access="remote" returnFormat = "json" >    
         <cfargument  name="showId" type="integer">    
         <cfquery name="show_details" result="show_data" returntype="array" >
-            SELECT sh.id,m.id as m_id,th.id as t_id,s.id as s_id,st.id as st_id,m.poster,m.movie_name,th.theatre_name,m.release_date,m.duration,
+            SELECT sh.id,m.id as m_id,th.id as t_id,s.id as s_id,st.id as st_id,m.poster,m.movie_name,
+            m.release_date,m.duration,m.language,m.movie_format,th.theatre_name,
             s.screen_name,st.start_time,st.show_name,sh.end_date,sh.priority,sh.total_seats
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id
@@ -277,18 +278,21 @@
         <cfreturn show_movie>
         </cffunction>
 
-        <cffunction name="getTotalSeats" access="public">
-            <cfargument  name="shId" type="integer">
-            
-            <cfquery>
-                SELECT total_seats 
-            </cfquery>
-    </cffunction>
-    <cffunction name="seatSelect" access="public">
+        
+    <cffunction name="seatSelect" access="remote">
         <cfargument name="total_seats" type="integer">
         <cfargument name="show_id" type="integer">
         <cfargument name="seats" type="integer">
-        
+        <cfargument name="cdate" type="date">
+        <cfif arguments.total_seats GT arguments.seats>
+            <cfset local.seat_num=toBase64(arguments.seats)>
+            <cfset local.show_id=toBase64(arguments.show_id)>
+            <cfset local.date=toBase64(arguments.cdate)>
+            <cflocation  url="../seat_select.cfm?seat_num=#local.seat_num#&show_id=#local.show_id#&date=#local.date#" addtoken="no">
+        <cfelse>
+            <cfset local.status=hash('1','sha')>
+            
+        </cfif>
     </cffunction>
  
 <!-----------------Show Time Functions ------------------------>

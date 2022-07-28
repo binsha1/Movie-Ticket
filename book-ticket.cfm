@@ -1,9 +1,10 @@
 <cfinclude  template="user_header.cfm">
 <cfparam  name="date" default="#dateFormat(now(),'yyyy-mm-dd')#">
+<cfset pdate=toString(toBinary(date))>
 <cfset showId=toString(toBinary(id))>
 
 <cfset movId=toString(toBinary(mid))>
-<cfset pdate=toString(toBinary(date))>
+
 <!---<cfset date_convert=parseDateTime(date_string)>
 <cfset pdate=dateFormat(date_convert,"yyyy-mm-dd")>--->
 <cfset mov_res=application.show.getMovieShows(movId,pdate)>
@@ -32,7 +33,7 @@
 					<li class="time">
 						<!---<a href="components/controller.cfc?method=checkLogin">#start_time#</a>
                         --->
-                        <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-id="0" data-bs-target=".loginModal"  >#start_time#</button>
+                        <button type="button" class="btn btn-primary seat" data-bs-toggle="modal" data-id="#id#" data-bs-target=".loginModal"  >#start_time#</button>
 					</li>
 					<!---<li class="time">
 						<a href="movie-payment.html">3:00 PM</a>
@@ -52,12 +53,3 @@
 <cfinclude  template="user_footer.cfm">
 
 
-Status Update	            :  27-07-2022
-Working on 	            :  Movie ticket
-Task                             : Login Page Template Design|
-								   Login Functionality| User SignUp Page Template Design|
-								   User Sign Up Funtioanlity| 
-								   Choosing Number of seats after Login Check
-Task Completion        :  63%
-ETA                             : 05-08-2022
-Link                            : https://github.com/binsha1/Movie-Ticket.git

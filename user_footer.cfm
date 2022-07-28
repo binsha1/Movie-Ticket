@@ -25,6 +25,9 @@
 <script src="assets/js/custom.js"></script>	
 <script src="assets/js/autocomplete.js"></script>	
 <script src="assets/js/select2.min.js"></script>
+
+<!-- Modernizr --> 
+        <script src="assets/user_template/seat/js/modernizr.custom.js"></script>
 <!----
     <script src="assets/js/popper.min.js"></script>---->
     
@@ -178,6 +181,34 @@
     
 });*/
 </script>
+
+
+
+        <script>window.jQuery || document.write('<script src="assets/user_template/seat/js/jquery-3.1.1.min.js"><\/script>')</script>
+        <!-- Migrate --> 
+        <script src="assets/user_template/seat/js/jquery-migrate-1.2.1.min.js"></script>
+        <!-- Bootstrap 3--> 
+     
+
+        <!-- Mobile menu -->
+        <script src="assets/user_template/seat/js/jquery.mobile.menu.js"></script>
+         <!-- Select -->
+        <script src="assets/user_template/seat/js/jquery.selectbox-0.2.min.js"></script>
+
+        <!-- Form element -->
+        <script src="assets/user_template/seat/js/form-element.js"></script>
+       <script src="assets/user_template/seat/js/form.js"></script>
+        <!-- Form validation -->
+        
+
+        <!-- Custom -->
+        <script src="assets/user_template/seat/js/custom.js"></script>
+		
+		<script type="text/javascript">
+            $(document).ready(function() {
+                init_BookingTwo();
+            });
+		</script>
 
 </body>
 </html>

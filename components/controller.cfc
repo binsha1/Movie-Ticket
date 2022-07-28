@@ -67,6 +67,7 @@
         <cfif email_res.RecordCount NEQ 0>
             <cfset local.status=hash('2','sha')>
         </cfif>
+        
         <cfif arguments.full_name!="" && arguments.email!="" && arguments.pass!="" >
             <cfif email_res.RecordCount EQ 0  >
                 <cfquery name="signup" result="result">
@@ -74,13 +75,15 @@
                         user_name,
                         password,
                         role,
-                        email_id) 
+                        email_id,
+                        registered_on) 
                     VALUES(
                         <cfqueryparam value="#arguments.full_name#" cfsqltype="CF_SQL_VARCHAR">,
                         
                         <cfqueryparam value="#local.password#" cfsqltype="CF_SQL_VARCHAR">,
                         <cfqueryparam value="user" cfsqltype="CF_SQL_VARCHAR">,
-                        <cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR">                   
+                        <cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR"> ,  
+                        <cfqueryparam value="#datetimeformat(now(),"yyyy-mm-dd HH:n:s")#" cfsqltype="CF_SQL_TIMESTAMP">                 
                         )
                 </cfquery>
                 <cfif result.RecordCount EQ 1>
@@ -131,6 +134,22 @@
             <cfset local.status=hash('1','sha')>
             <cflocation  url="../login.cfm?status=#local.status#" addtoken="no">            
         </cfif>   
+    </cffunction>
+
+    <cffunction  name="allUsers" access="public">
+        <cfquery name="user_list" result="user_res">
+            SELECT * from movie_ticket.login WHERE role="user"
+        </cfquery>
+        <cfreturn user_list>
+    </cffunction>
+
+    <cffunction  name="deleteUser" access="remote">
+        <cfargument  name="id" type="integer">
+        <cfquery name="user_list" result="user_res">
+            DELETE from movie_ticket.login WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        <cfset local.status=hash('1','sha')>
+        <cflocation url="../admin/user_list.cfm?status=#local.status#" addtoken="no">
     </cffunction>
 
 </cfcomponent>

@@ -12,7 +12,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="assets/css/owl.theme.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/select2.min.css">
+<!-- Mobile menu
+        <link href="assets/user_template/seat/css/gozha-nav.css" rel="stylesheet" /> -->
+        <!-- Select -->
+        <link href="assets/user_template/seat/css/jquery.selectbox.css" rel="stylesheet" />
+    
+        <!-- Custom -->
+        <link href="assets/user_template/seat/css/style.css?v=1" rel="stylesheet" />
 
+        
 <!--Custom Theme files -->
 <link rel="stylesheet" href="assets/user_template/css/menu.css" />
 <link href="assets/user_template/css/styles.css" rel="stylesheet" type="text/css" media="all" />

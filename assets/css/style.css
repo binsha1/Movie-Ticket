@@ -349,5 +349,8 @@ img.img-fluid.scroll_image{
       float: right;
     }
 .seat_label{
-  float:right;
-}
+  float:right;}
+
+  .dt_div{
+background: #050b35;
+  }

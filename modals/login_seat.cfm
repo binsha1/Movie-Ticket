@@ -15,29 +15,21 @@
                 <form role="form" method="POST" action="components/show.cfc?method=seatSelect">
                     
                     <div class="form-group">
-                        <label class="control-label">Enter Numer of seats required -- <span class="seat_label text-success">(
-                       
-                        <cfoutput>
-                         <input type="hidden" name="show_id" value="#showId#">
-                        <cfloop array='#show_details#' index="i">
-                            
-                            <input type="hidden" name="total_seats" value="#i.total_seats#">
-                             #i.total_seats#
-                          
-                        </cfloop>) Left</span>
-                        </cfoutput>  
+                        <input type="hidden" name="login_value" value="2" id="login_value">
+                        <label class="control-label">Enter Numer of seats required -- <span class="seat_label text-success"></span>
+                        <input type="hidden" name="show_id" value="" id="show_id">
+                        <cfoutput><input type="hidden" name="cdate" value="#pdate#" id="cdate"></cfoutput>
+                        <input type="hidden" name="total_seats" value="" id="total_seats">
+                             
                         </label>
                         <div>
-                            <input type="text" class="form-control input-lg" name="seats" value="">
+                            <input type="text" class="form-control input-lg" id="seats" name="seats" value="" onchange="seatCheck();">
+                            <span class="text-danger seat_alert"></span>
                         </div>
                     </div>
-                    
-                    
                     <div class="form-group">
                         <div>
-                            
-                            <button type="submit" class="btn btn-showing ">Seats Plan</button>
-                            
+                            <input type="submit" class="btn btn-showing " name="submit" value="Seats Plan" id="seat_btn" disabled>
                         </div>
                     </div>
                 </form>
@@ -60,7 +52,7 @@
                 </div>
                 <div class="container pt-5">
                 <form role="form" method="POST" action="components/controller.cfc?method=userLogin">
-                    <input type="hidden" name="login_value" value="1">
+                    <input type="hidden" name="login_value" value="1" id="login_value">
                     <cfoutput >
                         <input type="hidden" name="movie_id" value="#movId#">
                         <input type="hidden" name="show_id" value="#showId#">
