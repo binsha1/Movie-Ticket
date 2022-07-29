@@ -19,13 +19,18 @@
                         <a href="##" class="reg close" data-dismiss="alert" aria-label="close">&times;</a>
                             Registered SuccessFully !!
                     </div>
+                    <cfelseif status EQ hash('4','sha')>
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="##" class="reg close" data-dismiss="alert" aria-label="close">&times;</a>
+                            Password Changed Successfully !!
+                    </div>
                 </cfif>
               <form action="components/controller.cfc?method=userLogin" method="post">
                 <div class="form-outline mb-4">
                 <input type="hidden" name="login_value" value="0">
-                <input type="hidden" name="movie_id" value="">
-                <input type="hidden" name="show_id" value="">
-                <input type="hidden" name="cdate" value="">
+                <input type="hidden" name="movie_id" value="0">
+                <input type="hidden" name="show_id" value="0">
+                <input type="hidden" name="cdate" value="0">
                 <label class="form-label" for="form3Example3cg">Email</label>
                   <input type="email" name="email" id="form3Example3cg" class="form-control"  placeholder="Email Id" required/>
                   
@@ -37,7 +42,7 @@
                   
                 </div>
                 <div class="d-flex ">
-                  <input type="submit" class="btn btn-showing" name="submit" value="Login"> <a class="btn btn-show" href="">Forgot Your Password?</a>
+                  <input type="submit" class="btn btn-showing" name="submit" value="Login"> <a class="btn btn-show" href="forgot_password.cfm">Forgot Your Password?</a>
                 </div>
                 
                 <p class="text-center text-white pt-3">Don't have an account? <a href="signup.cfm"
@@ -55,12 +60,3 @@
 
 <cfinclude  template="user_footer.cfm">
 
-Status Update	            :  28-07-2022
-Working on 	            :  Movie ticket
-Task                             : Seat Form Front End Validation| 
-                                    Seat Selection Template Design|
-                                    List Out User List on Admin Dashboard
-                                    Delete User List  Functionality
-Task Completion        :  66%
-ETA                             : 12-08-2022
-Link                            : https://github.com/binsha1/Movie-Ticket.git

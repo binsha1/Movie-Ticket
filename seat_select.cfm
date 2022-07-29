@@ -9,41 +9,49 @@
 <!-- Main content -->
         <div class="place-form-area">
         <section class="container">
+        <cfoutput >
+        <cfloop array="#show_res#" index="i">
             <div class="order-container">
                 <div class="order pt-3">
-                <cfoutput >
-                    
-                    
-                    <cfloop array="#show_res#" index="i">
+                
                     <img class="order__images" alt='' src="uploads/#i.poster#">
                     <p class="order__title text-center text-white">#i.movie_name# <br>
                     <span class="order__descript">#i.theatre_name#| #i.language# -#i.movie_format#</span></p>
-                     </cfloop>
-                     </cfoutput>
+                     
                 </div>
             </div>
 
-            <div class="dt_div">
-                <div class="container">
-                    <a href="##" class="btn btn-showing" >Back</a>
+            <div class="dt_div mt-5">
+                <div class="container p-4">
+                    <a href="book-ticket.cfm?id=#show_id#&mid=#toBase64(i.m_id)#&date=#date#" class="btn btn-showing" >Back</a>
+                    <div class="show_right">
+                        <button class="btn btn-showing">#dateformat(pdate,"full")#</button>
+                        <button class="btn btn-showing">#timeFormat(i.start_time)# (#i.show_name#)</button>
+                   
                 </div>
             </div>
-                <div class="order-step-area">
-                    <div class="order-step first--step order-step--disable ">1. What &amp; Where &amp; When</div>
-                    <div class="order-step second--step text-white">Please Choose <cfoutput>#seat_s#
-                    </cfoutput> seat</div>
+            </div>
+                <div class="order-step-area pt-3 text-center">
+                   <!---- <div class="order-step first--step order-step--disable ">1. What &amp; Where &amp; When</div>--->
+                    <div class="order-step second--step text-white text-center">Please Choose <cfoutput>#seat_s#
+                    </cfoutput> seat Now</div>
                 </div>
             
             <div class="choose-sits text-white">
                 <div class="choose-sits__info choose-sits__info--first">
                     <ul>
                         <li class="sits-price marker--none"><strong>Price</strong></li>
-                        <li class="sits-price sits-price--cheap">$10</li>
-                        <li class="sits-price sits-price--middle">$20</li>
-                        <li class="sits-price sits-price--expensive">$30</li>
+                        <li class="sits-price sits-price--cheap">#i.silver_rate#</li>
+                        <li class="sits-price sits-price--middle">#i.gold_rate#</li>
+                        
                     </ul>
                 </div>
 
+                <cfset columns=Int(Sqr(i.total_seats))>
+                <cfset row=Int(ceiling(i.total_seats/(columns)))>
+                
+                </cfloop>
+                </cfoutput>
                 <div class="choose-sits__info">
                     <ul>
                         <li class="sits-state sits-state--not">Not available</li>
@@ -57,21 +65,20 @@
 
                     <div class="sits">
                         <aside class="sits__line text-white">
-                            <span class="sits__indecator">A</span>
-                            <span class="sits__indecator">B</span>
-                            <span class="sits__indecator">C</span>
-                            <span class="sits__indecator">D</span>
-                            <span class="sits__indecator">E</span>
-                            <span class="sits__indecator">F</span>
-                            <span class="sits__indecator">G</span>
-                            <span class="sits__indecator">I</span>
-                            <span class="sits__indecator additional-margin">J</span>
-                            <span class="sits__indecator">K</span>
-                            <span class="sits__indecator">L</span>
+                            <cfset charArray=arrayNew(1)>
+                            <cfset alphabets=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+        'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' ]>
+                            <cfoutput>
+                            <cfloop index="i" from="1" to="#row#" step="1">
+                                <span class="sits__indecator"> #alphabets[i]# </span>
+                            </cfloop></cfoutput>
+                            
+                            
                         </aside>
 
                             <div class="sits__row">
-                                <span class="sits__place sits-price--cheap" data-place='A2' data-price='10'>A2</span>
+                            <span class="sits__place sits-price--cheap" data-place='A1' data-price='300'>A1</span>
+                                <span class="sits__place sits-price--cheap" data-place='A2' data-price='300'>A2</span>
                                 <span class="sits__place sits-price--cheap" data-place='A3' data-price='10'>A3</span>
                                 <span class="sits__place sits-price--cheap" data-place='A4' data-price='10'>A4</span>
                                 <span class="sits__place sits-price--cheap" data-place='A5' data-price='10'>A5</span>
@@ -87,6 +94,7 @@
                                 <span class="sits__place sits-price--cheap" data-place='A15' data-price='10'>A15</span>
                                 <span class="sits__place sits-price--cheap" data-place='A16' data-price='10'>A16</span>
                                 <span class="sits__place sits-price--cheap" data-place='A17' data-price='10'>A17</span>
+                                 <span class="sits__place sits-price--cheap" data-place='A18' data-price='10'>A18</span>
                             </div>
                             
                             <div class="sits__row">
@@ -269,6 +277,15 @@
                                 <span class="sits__place sits-price--expensive" data-place='L13' data-price='30'>L13</span>
                             </div>
 
+                        
+                        <footer class="sits__number">
+                        <cfoutput>
+                            <cfloop from="1" to="#columns#" index="i" step="1">
+                            <span class="sits__indecator">
+                            #i#</span></cfloop>
+                            </cfoutput>
+                            
+                        </footer>
                         <aside class="sits__checked">
                             <div class="checked-place">
                                 
@@ -277,26 +294,6 @@
                                 $0
                             </div>
                         </aside>
-                        <footer class="sits__number">
-                            <span class="sits__indecator">1</span>
-                            <span class="sits__indecator">2</span>
-                            <span class="sits__indecator">3</span>
-                            <span class="sits__indecator">4</span>
-                            <span class="sits__indecator">5</span>
-                            <span class="sits__indecator">6</span>
-                            <span class="sits__indecator">7</span>
-                            <span class="sits__indecator">8</span>
-                            <span class="sits__indecator">9</span>
-                            <span class="sits__indecator">10</span>
-                            <span class="sits__indecator">11</span>
-                            <span class="sits__indecator">12</span>
-                            <span class="sits__indecator">13</span>
-                            <span class="sits__indecator">14</span>
-                            <span class="sits__indecator">15</span>
-                            <span class="sits__indecator">16</span>
-                            <span class="sits__indecator">17</span>
-                            <span class="sits__indecator">18</span>
-                        </footer>
                     </div>
                 </div>
             </div>
@@ -363,6 +360,7 @@
                 
 
             </div>
+            
         </section>
         </div>
         
