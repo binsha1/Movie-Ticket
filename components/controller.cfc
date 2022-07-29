@@ -53,6 +53,40 @@
         <cflocation  url="../admin/update_password.cfm?status=#local.status#" addtoken="no">
     </cffunction>
 
+    <cffunction name="updateUserPassword" access="remote" output="true">
+        <cfargument  name="email_id" type="string">
+        <cfargument  name="pass" type="string">
+        <cfargument  name="cpass" type="string">
+        <cfset local.pwd=hash(arguments.pass,'sha')>
+        <cfquery name="email_exists" result="email_res">
+                SELECT email_id FROM movie_ticket.login 
+                WHERE email_id=<cfqueryparam value="#arguments.email_id#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        <cfif arguments.email_id!="" && arguments.pass!="" && arguments.cpass!="">
+            <cfif arguments.pass EQ arguments.pass>
+                <cfif email_res.RecordCount EQ 1 >
+                    <cfquery name="update_pass" result="pass_res">
+                        UPDATE movie_ticket.login SET 
+                        password=<cfqueryparam value="#local.pwd#" cfsqltype="CF_SQL_VARCHAR">
+                        WHERE email_id=<cfqueryparam value="#arguments.email_id#" cfsqltype="CF_SQL_VARCHAR">
+                    </cfquery>
+                    <cfif pass_res.RecordCount NEQ 0>
+                        <cfset local.status=hash('4','sha')>
+                        <cflocation  url="../login.cfm?status=#local.status#" addtoken="no">
+                    </cfif>
+                <cfelse>
+                    <cfset local.status=hash('1','sha')>  
+                </cfif>                  
+            <cfelse>
+                <cfset local.status=hash('3','sha')>
+            </cfif>
+        <cfelse>
+            <cfset local.status=hash('2','sha')>
+        </cfif>
+        <cflocation  url="../forgot_password.cfm?status=#local.status#" addtoken="no">
+    </cffunction>
+
+
     <cffunction name="userSignUp" access="remote">
 
         <cfargument  name="full_name" type="string">
@@ -122,7 +156,7 @@
              AND password=<cfqueryparam value="#local.password#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>   
         <cfif user_log.recordCount EQ 1>                      
-            <cfset session.userLog={'user_id'=userLogData.id,'user_name'=userLogData.user_name}>   
+            <cfset session.userLog={'user_id'=userLogData.id,'user_name'=userLogData.user_name,'email_id'=userLogData.email_id}>   
              <cfif userLogData.role=='user'>
                 <cfif arguments.login_value EQ "0">
                     <cflocation  url="../index.cfm" addtoken="no">

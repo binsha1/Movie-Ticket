@@ -354,3 +354,6 @@ img.img-fluid.scroll_image{
   .dt_div{
 background: #050b35;
   }
+  .show_right{
+    float: right;
+  }

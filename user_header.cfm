@@ -19,7 +19,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     
         <!-- Custom -->
         <link href="assets/user_template/seat/css/style.css?v=1" rel="stylesheet" />
-
+<link href="assets/user_template/seat/css/style_2.css" rel="stylesheet" />
         
 <!--Custom Theme files -->
 <link rel="stylesheet" href="assets/user_template/css/menu.css" />

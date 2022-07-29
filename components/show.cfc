@@ -134,9 +134,12 @@
 <cffunction name="getShowDetails" access="remote" returnFormat = "json" >    
         <cfargument  name="showId" type="integer">    
         <cfquery name="show_details" result="show_data" returntype="array" >
-            SELECT sh.id,m.id as m_id,th.id as t_id,s.id as s_id,st.id as st_id,m.poster,m.movie_name,
-            m.release_date,m.duration,m.language,m.movie_format,th.theatre_name,
-            s.screen_name,st.start_time,st.show_name,sh.end_date,sh.priority,sh.total_seats
+            SELECT m.poster,m.movie_name,m.release_date,m.duration,m.language,m.movie_format,
+            th.theatre_name,
+            s.screen_name, s.gold_rate,s.silver_rate,
+            st.start_time,st.show_name,
+            sh.end_date,sh.priority,sh.total_seats,
+            sh.id,m.id as m_id,th.id as t_id,s.id as s_id,st.id as st_id        
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id
             INNER JOIN movie_ticket.theatre th ON sh.theatre_id=th.id 
@@ -161,8 +164,8 @@
 <cffunction name="nowDetails" access="public" >   
    <cfset local.Today = dateFormat(Now(),"yyyy-mm-dd")>     
         <cfquery name="show_details" result="show_data" >
-            SELECT DISTINCT m.movie_name ,m.genre,sh.id,m.poster,m.language,m.release_date,m.duration,sh.total_seats,
-            sh.end_date,sh.priority,m.id as m_id
+            SELECT DISTINCT m.movie_name ,m.genre,m.poster,m.language,m.release_date,m.duration,
+            sh.total_seats, sh.end_date,sh.priority,m.id as m_id,sh.id
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id            
             WHERE sh.end_date > <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date"> 
@@ -177,8 +180,8 @@
 <cffunction name="comingDetails" access="public" >   
    <cfset local.Today = dateFormat(Now(),"yyyy-mm-dd")>     
         <cfquery name="show_details" result="show_data" >
-            SELECT DISTINCT m.movie_name ,m.genre,sh.id,m.poster,m.language,m.release_date,m.duration,sh.total_seats,
-            sh.end_date,sh.priority,m.id as m_id
+            SELECT DISTINCT m.movie_name ,m.genre,m.poster,m.language,m.release_date,m.duration,
+            sh.total_seats, sh.end_date,sh.priority,m.id as m_id,sh.id
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id            
             WHERE m.release_date > <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date">             
@@ -192,8 +195,8 @@
 
    <cfset local.Today = dateFormat(Now(),"yyyy-mm-dd")>     
         <cfquery name="show_details" result="show_data" >
-            SELECT DISTINCT m.movie_name ,m.genre,sh.id,m.poster,m.language,m.release_date,m.duration,sh.total_seats,
-            sh.end_date,sh.priority,m.id as m_id
+            SELECT DISTINCT m.movie_name ,m.genre,m.poster,m.language,m.release_date,m.duration,
+            sh.total_seats, sh.end_date,sh.priority,m.id as m_id,sh.id
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id            
             WHERE m.release_date > <cfqueryparam value="#local.Today#" cfsqltype="cf_sql_date"> 
@@ -212,14 +215,12 @@
     <cfargument  name="cdate" type="date">
     <cfquery name="date_details" result="date_res" >
         SELECT DISTINCT
-                    m.movie_name,sh.id,m.poster,m.genre,
-                    m.language,m.release_date,m.trailer_url,
-                    m.duration,sh.total_seats,            
-                    sh.end_date,sh.priority,
-                    sh.id,
-                    th.theatre_name,                   
+                    m.movie_name,m.poster,m.genre, m.language,m.release_date,m.trailer_url,m.duration,
+                    th.theatre_name,
                     s.screen_name,st.start_time,
-                    st.show_name,m.id as m_id,th.id as t_id,s.id as s_id,st.id as st_id
+                    st.show_name,
+                    sh.total_seats,sh.end_date,sh.priority,sh.id,
+                    m.id as m_id,th.id as t_id,s.id as s_id,st.id as st_id
                 FROM movie_ticket.manage_shows sh
                 INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id               
                 INNER JOIN movie_ticket.theatre th ON sh.theatre_id=th.id 
@@ -237,11 +238,11 @@
 </cffunction>
 <cffunction name="todayDetails" access="public" >   
    <cfset local.Today = dateFormat(Now(),"yyyy-mm-dd")>   
-
-        <cfquery name="show_details" result="show_data" >
-            SELECT DISTINCT m.movie_name ,s.screen_name, th.theatre_name,m.genre,sh.id,m.poster,m.language,
-            m.release_date,m.duration,sh.total_seats,m.trailer_url,
-            sh.end_date,sh.priority,m.id as m_id
+    <cfquery name="show_details" result="show_data" >
+            SELECT DISTINCT m.movie_name,m.release_date,m.duration,m.trailer_url, m.genre,m.poster,m.language,
+            th.theatre_name,s.screen_name,
+            sh.total_seats,sh.end_date,sh.priority,
+            m.id as m_id,sh.id
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id  
             INNER JOIN movie_ticket.theatre th ON sh.theatre_id=th.id
@@ -258,41 +259,38 @@
         <cfargument  name="movId" type="integer">
         <cfargument  name="pdate" type="date">
         <cfquery name="show_movie" result="show_res">
-         SELECT DISTINCT m.movie_name ,s.screen_name,st.start_time, th.theatre_name,
-            m.genre,sh.id,m.poster,m.language,m.wallpaper,
-            m.release_date,m.duration,sh.total_seats,m.trailer_url,th.address,
-            sh.end_date,sh.priority,m.id as m_id
+         SELECT DISTINCT m.movie_name,m.trailer_url,m.genre,m.poster,m.language,m.wallpaper,m.release_date,m.duration,
+            th.theatre_name,th.address,
+            s.screen_name,st.start_time, 
+            sh.total_seats,sh.end_date,sh.priority,
+            m.id as m_id,sh.id
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id  
             INNER JOIN movie_ticket.theatre th ON sh.theatre_id=th.id
             INNER JOIN movie_ticket.screen s ON sh.screen_id=s.id 
             INNER JOIN movie_ticket.screen_show_time st ON sh.screen_time_id=st.id
-            WHERE m.id =<cfqueryparam value="#arguments.movId#" cfsqltype="CF_SQL_INTEGER"> AND sh.end_date > <cfqueryparam value="#arguments.pdate#" cfsqltype="cf_sql_date"> 
-            AND m.release_date < <cfqueryparam value="#arguments.pdate#" cfsqltype="cf_sql_date"> 
-            OR sh.end_date=<cfqueryparam value="#arguments.pdate#" cfsqltype="cf_sql_date">  ORDER BY st.start_time             
+            WHERE m.id =<cfqueryparam value="#arguments.movId#" cfsqltype="CF_SQL_INTEGER">
+            AND sh.end_date >= <cfqueryparam value="#arguments.pdate#" cfsqltype="cf_sql_date"> 
+            AND m.release_date <= <cfqueryparam value="#arguments.pdate#" cfsqltype="cf_sql_date"> 
+            ORDER BY st.start_time             
         </cfquery>
-
-
-       
-       
         <cfreturn show_movie>
         </cffunction>
 
-        
-    <cffunction name="seatSelect" access="remote">
-        <cfargument name="total_seats" type="integer">
-        <cfargument name="show_id" type="integer">
-        <cfargument name="seats" type="integer">
-        <cfargument name="cdate" type="date">
-        <cfif arguments.total_seats GT arguments.seats>
-            <cfset local.seat_num=toBase64(arguments.seats)>
-            <cfset local.show_id=toBase64(arguments.show_id)>
-            <cfset local.date=toBase64(arguments.cdate)>
-            <cflocation  url="../seat_select.cfm?seat_num=#local.seat_num#&show_id=#local.show_id#&date=#local.date#" addtoken="no">
-        <cfelse>
-            <cfset local.status=hash('1','sha')>
-            
-        </cfif>
+        <cffunction name="seatSelect" access="remote">
+            <cfargument name="total_seats" type="integer">
+            <cfargument name="show_id" type="integer">
+            <cfargument name="seats" type="integer">
+            <cfargument name="cdate" type="date">
+            <cfif arguments.total_seats GT arguments.seats>
+                <cfset local.seat_num=toBase64(arguments.seats)>
+                <cfset local.show_id=toBase64(arguments.show_id)>
+                <cfset local.date=toBase64(arguments.cdate)>
+                <cflocation  url="../seat_select.cfm?seat_num=#local.seat_num#&show_id=#local.show_id#&date=#local.date#" addtoken="no">
+            <cfelse>
+                <cfset local.status=hash('1','sha')>
+                
+            </cfif>
     </cffunction>
  
 <!-----------------Show Time Functions ------------------------>
