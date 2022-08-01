@@ -176,6 +176,12 @@
         </cfquery>
         <cfreturn user_list>
     </cffunction>
+    <cffunction  name="contactList" access="public">
+        <cfquery name="user_list" result="user_res">
+            SELECT * from movie_ticket.contact_us 
+        </cfquery>
+        <cfreturn user_list>
+    </cffunction>
 
     <cffunction  name="deleteUser" access="remote">
         <cfargument  name="id" type="integer">
@@ -184,6 +190,48 @@
         </cfquery>
         <cfset local.status=hash('1','sha')>
         <cflocation url="../admin/user_list.cfm?status=#local.status#" addtoken="no">
+    </cffunction>
+    
+    <cffunction name="proceedPayment" access="remote">
+        <cfargument  name="seats" type="string">
+        <cfargument  name="tprice" type="string">
+        <cfargument  name="time_sl" type="integer">
+        <cfargument  name="show_id" type="integer">
+        <cfset sh_id=toBase64(arguments.show_id)>
+        <cfset tp=toBase64(arguments.tprice)>
+        <cfset ts=toBase64(arguments.time_sl)>
+        <cflocation  url="../payment.cfm?show_id=#sh_id#&tprice=#tp#&ts=#ts#">ss
+    </cffunction>
+
+    <cffunction name="contactUs" access="remote">
+        <cfargument  name="name" type="string">
+        <cfargument  name="email" type="string">
+        <cfargument  name="subject" type="string">
+        <cfargument  name="message" type="string">
+        <cfif arguments.name!="" && arguments.email!="" && arguments.subject!="" && arguments.message!="">
+            <cfquery name="contact_us" result="result">
+                    INSERT INTO movie_ticket.contact_us(
+                        name,
+                        email_id,
+                        subject,
+                        message,
+                        ondate) 
+                    VALUES(
+                        <cfqueryparam value="#arguments.name#" cfsqltype="CF_SQL_VARCHAR">,
+                        
+                        <cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR">,
+                        <cfqueryparam value="#arguments.subject#" cfsqltype="CF_SQL_VARCHAR">,
+                        <cfqueryparam value="#arguments.message#" cfsqltype="CF_SQL_VARCHAR"> ,  
+                        <cfqueryparam value="#datetimeformat(now(),"yyyy-mm-dd HH:n:s")#" cfsqltype="CF_SQL_TIMESTAMP">                 
+                        )
+                </cfquery>
+                <cfif result.RecordCount EQ 1>
+                    <cfset local.status=hash('1','sha')>
+                </cfif>>
+        <cfelse>
+            <cfset local.status=hash('2','sha')>
+        </cfif>
+        <cflocation  url="../contact-us.cfm?status=#local.status#">
     </cffunction>
 
 </cfcomponent>

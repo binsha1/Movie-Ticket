@@ -580,8 +580,9 @@ function init_BookingTwo () {
                             $(this).addClass('sits-state--your');
 
                             $('.checked-place').prepend('<span class="choosen-place '+place+'">'+ place +'</span>');
-
-                            switch(ticketPrice)
+                            
+                                sum+=Number(ticketPrice);
+                            /*switch(ticketPrice)
                                 {
                                 case '10':
                                   sum += 10;
@@ -595,9 +596,9 @@ function init_BookingTwo () {
                                   sum += 30;
                                   expansive += 1;
                                   break;
-                            }
+                            }*/
 
-                            $('.checked-result').text('$'+sum);
+                            $('.checked-result').text(sum);
                         }
                     }
 
@@ -605,8 +606,8 @@ function init_BookingTwo () {
                         $(this).removeClass('sits-state--your');
                         
                         $('.'+place+'').remove();
-
-                        switch(ticketPrice)
+                            sum-=ticketPrice;
+                       /* switch(ticketPrice)
                                 {
                                 case '10':
                                   sum -= 10;
@@ -620,7 +621,7 @@ function init_BookingTwo () {
                                   sum -= 30;
                                   expansive -= 1;
                                   break;
-                            }
+                            }*/
 
                         $('.checked-result').text('$'+sum)
                     }
@@ -641,11 +642,13 @@ function init_BookingTwo () {
                     $('.choosen-place').each( function () {
                         chooseSits += ', '+ $(this).text();
                     });
-
+                    
                     //data element set 
                     sits.val(chooseSits.substr(2));
+                
                 });
-
+                
+                   
 				//--- Step for data  ---//
 				//Get data from pvevius page
                 var url = decodeURIComponent(document.URL);
@@ -714,7 +717,7 @@ function init_BookingTwo () {
                 var number = $(this).parent().find('.sit-number option[selected="selected"]').text();
                 var ch_sits = row + number;
                 var ticketPrice = 0;
-               
+                
                 if ( $('.checked-place').find(".choosen-place[data-sit='"+ch_sits+"']").length ) {
                     alert('same place');
                     return 0;

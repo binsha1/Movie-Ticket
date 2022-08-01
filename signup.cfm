@@ -57,3 +57,13 @@
 </section>
 
 <cfinclude  template="user_footer.cfm">
+
+Status Update	            :  01-08-2022
+Working on 	            :  Movie ticket
+Task                             : Fixing Seat Arrangement  Design Issues |
+                                      Seat Allocation | Contact Us Page Design
+                                      Contact Us Functionality|
+                                      List Out Queries in Admin Dashboard
+Task Completion        :  70%
+ETA                             : 12-08-2022
+Link                            : https://github.com/binsha1/Movie-Ticket.git

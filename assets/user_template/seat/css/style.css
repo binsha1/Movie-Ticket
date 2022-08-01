@@ -678,7 +678,7 @@
   }
   .sits {
     position: relative;
-    margin-top: 35px;
+    margin-top: 1rem;
   }
   .sits .sits__indecator {
     display: inline-block;
@@ -782,7 +782,8 @@
     cursor: auto;
   }
   .sits .sits__row .sits-state--not:hover:before {
-    background-color: #dbdee1;
+    /*background-color: #dbdee1;*/
+    background-color: #c18787;
   }
   .sits .sits__row .sits-state--your {
     text-indent: -9999px;
@@ -2999,16 +3000,19 @@
     border-right: 1px solid #4c4145;
   }
   .sits-price--cheap:before {
-    background-color: #fff0c7;
+   /* background-color: #fff0c7;*/
+   background:#dee2e6
   }
   .sits-price--middle:before {
-    background-color: #ffc8cb;
+    /*background-color: #ffc8cb;*/
+    background: #fff0c7;
   }
   .sits-price--expensive:before {
     background-color: #cdb4bd;
   }
   .sits-state--not:before {
-    background-color: #dbdee1;
+    /*background-color: #dbdee1;*/
+    background:#c18787;
   }
   .sits-state--your:before {
     background-color: #4c4145;

@@ -1,5 +1,6 @@
 <cfparam  name="status" default="v">
 <cfinclude  template="dash_header.cfm">
+<cfset contact_res=application.obj.contactList()>
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Manage Contact Info</h1>    
@@ -29,20 +30,18 @@
                         </tr>
                     </tfoot>                                       
                     <tbody>
-                    <!---<cfoutput query='res'>
-                        <cfset addr=address & ", " & street_name & ", " & pincode &" .">                        
-                        <cfset local.theatre_id=toBase64(id)>
+                    <cfoutput query='contact_res'>
+                        
                         <tr>
-                            <td><img src="../uploads/#photo#" class="img-fluid img-poster"></td>
-                            <td>#theatre_name#</td>
+                            
+                            <td>#name#</td>
                             <td>#email_id#</td>
-                            <td>#phone#</td>
-                            <td>#addr#</td>
-                            <td><a href="screen_time.cfm?theatre_id=#local.theatre_id#" class="btn btn-outline-primary">Manage Screen & Time</a></td>
-                            <td><button class="btn btn-outline-primary edit title" id="edit" data-bs-toggle="modal" data-bs-target=".myModal" data-id="#id#" >Edit</button></td>
-                            <td><a href="../components/controller.cfc?method=deleteTheatre&id=#id#" class="btn btn-outline-primary">Delete</a></td>
+                            <td>#subject#</td>
+                            <td>#message#</td>
+                            <td>#ondate#</td>
+                            
                         </tr>
-                    </cfoutput>   --->                 
+                    </cfoutput>                   
                     </tbody>
                 </table>
             </div>

@@ -6,7 +6,36 @@
 <cfset showId=toString(toBinary(show_id))>
 <cfset seat_s=toString(toBinary(seat_num))>
 <cfset show_res=application.show.getShowDetails(showId)>
-<!-- Main content -->
+    <div class="wrapper place-wrapper">
+        <!-- Banner -->
+        <div class="banner-top">
+            <img alt='top banner' src="images/banners/bra.jpg">
+        </div>
+
+        <!-- Header section -->
+        <header class="header-wrapper">
+            <div class="container">
+                <!-- Logo link-->
+                <a href='index.html' class="logo">
+                    <img alt='logo' src="images/logo.png">
+                </a>
+                
+                <!-- Main website navigation-->
+           
+                
+                <!-- Additional header buttons / Auth and direct link to booking-->
+                <div class="control-panel">
+                    <a href="#" class="btn btn--sign login-window">Sign in</a>
+                    <a href="#" class="btn btn-md btn--warning btn--book login-window">Book a ticket</a>
+                </div>
+
+            </div>
+        </header>
+        
+        <!-- Search bar -->
+        
+        
+        <!-- Main content -->
         <div class="place-form-area">
         <section class="container">
         <cfoutput >
@@ -46,12 +75,8 @@
                         
                     </ul>
                 </div>
-
-                <cfset columns=Int(Sqr(i.total_seats))>
-                <cfset row=Int(ceiling(i.total_seats/(columns)))>
-                
-                </cfloop>
-                </cfoutput>
+            </cfloop>
+            </cfoutput>
                 <div class="choose-sits__info">
                     <ul>
                         <li class="sits-state sits-state--not">Not available</li>
@@ -64,21 +89,22 @@
                     <div class="sits-anchor">screen</div>
 
                     <div class="sits">
-                        <aside class="sits__line text-white">
-                            <cfset charArray=arrayNew(1)>
-                            <cfset alphabets=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-        'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' ]>
-                            <cfoutput>
-                            <cfloop index="i" from="1" to="#row#" step="1">
-                                <span class="sits__indecator"> #alphabets[i]# </span>
-                            </cfloop></cfoutput>
-                            
-                            
+                        <aside class="sits__line">
+                            <span class="sits__indecator">A</span>
+                            <span class="sits__indecator">B</span>
+                            <span class="sits__indecator">C</span>
+                            <span class="sits__indecator">D</span>
+                            <span class="sits__indecator">E</span>
+                            <span class="sits__indecator">F</span>
+                            <span class="sits__indecator">G</span>
+                            <span class="sits__indecator">I</span>
+                            <span class="sits__indecator additional-margin">J</span>
+                            <span class="sits__indecator">K</span>
+                            <span class="sits__indecator">L</span>
                         </aside>
 
                             <div class="sits__row">
-                            <span class="sits__place sits-price--cheap" data-place='A1' data-price='300'>A1</span>
-                                <span class="sits__place sits-price--cheap" data-place='A2' data-price='300'>A2</span>
+                                <span class="sits__place sits-price--cheap" data-place='A2' data-price='10'>A2</span>
                                 <span class="sits__place sits-price--cheap" data-place='A3' data-price='10'>A3</span>
                                 <span class="sits__place sits-price--cheap" data-place='A4' data-price='10'>A4</span>
                                 <span class="sits__place sits-price--cheap" data-place='A5' data-price='10'>A5</span>
@@ -94,7 +120,6 @@
                                 <span class="sits__place sits-price--cheap" data-place='A15' data-price='10'>A15</span>
                                 <span class="sits__place sits-price--cheap" data-place='A16' data-price='10'>A16</span>
                                 <span class="sits__place sits-price--cheap" data-place='A17' data-price='10'>A17</span>
-                                 <span class="sits__place sits-price--cheap" data-place='A18' data-price='10'>A18</span>
                             </div>
                             
                             <div class="sits__row">
@@ -277,15 +302,6 @@
                                 <span class="sits__place sits-price--expensive" data-place='L13' data-price='30'>L13</span>
                             </div>
 
-                        
-                        <footer class="sits__number">
-                        <cfoutput>
-                            <cfloop from="1" to="#columns#" index="i" step="1">
-                            <span class="sits__indecator">
-                            #i#</span></cfloop>
-                            </cfoutput>
-                            
-                        </footer>
                         <aside class="sits__checked">
                             <div class="checked-place">
                                 
@@ -294,6 +310,26 @@
                                 $0
                             </div>
                         </aside>
+                        <footer class="sits__number">
+                            <span class="sits__indecator">1</span>
+                            <span class="sits__indecator">2</span>
+                            <span class="sits__indecator">3</span>
+                            <span class="sits__indecator">4</span>
+                            <span class="sits__indecator">5</span>
+                            <span class="sits__indecator">6</span>
+                            <span class="sits__indecator">7</span>
+                            <span class="sits__indecator">8</span>
+                            <span class="sits__indecator">9</span>
+                            <span class="sits__indecator">10</span>
+                            <span class="sits__indecator">11</span>
+                            <span class="sits__indecator">12</span>
+                            <span class="sits__indecator">13</span>
+                            <span class="sits__indecator">14</span>
+                            <span class="sits__indecator">15</span>
+                            <span class="sits__indecator">16</span>
+                            <span class="sits__indecator">17</span>
+                            <span class="sits__indecator">18</span>
+                        </footer>
                     </div>
                 </div>
             </div>
@@ -360,8 +396,147 @@
                 
 
             </div>
-            
         </section>
         </div>
         
-        <cfinclude  template="user_footer.cfm">
+        
+
+        <div class="clearfix"></div>
+        <form id='film-and-time' class="booking-form" method='get' action='book3-buy.html'>
+
+            <input type='text' name='choosen-number' class="choosen-number">
+            <input type='text' name='choosen-number--cheap' class="choosen-number--cheap">
+            <input type='text' name='choosen-number--middle' class="choosen-number--middle">
+            <input type='text' name='choosen-number--expansive' class="choosen-number--expansive">
+            <input type='text' name='choosen-cost' class="choosen-cost">
+            <input type='text' name='choosen-sits' class="choosen-sits">
+
+
+            <div class="booking-pagination booking-pagination--margin">
+                    <a href="book1.html" class="booking-pagination__prev">
+                        <span class="arrow__text arrow--prev">prev step</span>
+                        <span class="arrow__info">what&amp;where&amp;when</span>
+                    </a>
+                    <a href="book3-buy.html" class="booking-pagination__next">
+                        <span class="arrow__text arrow--next">next step</span>
+                        <span class="arrow__info">checkout</span>
+                    </a>
+            </div>
+        </form>
+        
+        <div class="clearfix"></div>
+
+        <footer class="footer-wrapper">
+            <section class="container">
+                <div class="col-xs-4 col-md-2 footer-nav">
+                    <ul class="nav-link">
+                        <li><a href="#" class="nav-link__item">Cities</a></li>
+                        <li><a href="movie-list-left.html" class="nav-link__item">Movies</a></li>
+                        <li><a href="trailer.html" class="nav-link__item">Trailers</a></li>
+                        <li><a href="rates-left.html" class="nav-link__item">Rates</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-4 col-md-2 footer-nav">
+                    <ul class="nav-link">
+                        <li><a href="coming-soon.html" class="nav-link__item">Coming soon</a></li>
+                        <li><a href="cinema-list.html" class="nav-link__item">Cinemas</a></li>
+                        <li><a href="offers.html" class="nav-link__item">Best offers</a></li>
+                        <li><a href="news-left.html" class="nav-link__item">News</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-4 col-md-2 footer-nav">
+                    <ul class="nav-link">
+                        <li><a href="#" class="nav-link__item">Terms of use</a></li>
+                        <li><a href="gallery-four.html" class="nav-link__item">Gallery</a></li>
+                        <li><a href="contact.html" class="nav-link__item">Contacts</a></li>
+                        <li><a href="page-elements.html" class="nav-link__item">Shortcodes</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="footer-info">
+                        <p class="heading-special--small">A.Movie<br><span class="title-edition">in the social media</span></p>
+
+                        <div class="social">
+                            <a href='#' class="social__variant fa fa-facebook"></a>
+                            <a href='#' class="social__variant fa fa-twitter"></a>
+                            <a href='#' class="social__variant fa fa-vk"></a>
+                            <a href='#' class="social__variant fa fa-instagram"></a>
+                            <a href='#' class="social__variant fa fa-tumblr"></a>
+                            <a href='#' class="social__variant fa fa-pinterest"></a>
+                        </div>
+                        
+                        <div class="clearfix"></div>
+                        <p class="copy">&copy; A.Movie, 2013. All rights reserved. Done by Olia Gozha</p>
+                    </div>
+                </div>
+            </section>
+        </footer>
+    </div>
+
+    <!-- open/close -->
+        <div class="overlay overlay-hugeinc">
+            
+            <section class="container">
+
+                <div class="col-sm-4 col-sm-offset-4">
+                    <button type="button" class="overlay-close">Close</button>
+                    <form id="login-form" class="login" method='get' novalidate=''>
+                        <p class="login__title">sign in <br><span class="login-edition">welcome to A.Movie</span></p>
+
+                        <div class="social social--colored">
+                                <a href='#' class="social__variant fa fa-facebook"></a>
+                                <a href='#' class="social__variant fa fa-twitter"></a>
+                                <a href='#' class="social__variant fa fa-tumblr"></a>
+                        </div>
+
+                        <p class="login__tracker">or</p>
+                        
+                        <div class="field-wrap">
+                        <input type='email' placeholder='Email' name='user-email' class="login__input">
+                        <input type='password' placeholder='Password' name='user-password' class="login__input">
+
+                        <input type='checkbox' id='#informed' class='login__check styled'>
+                        <label for='#informed' class='login__check-info'>remember me</label>
+                         </div>
+                        
+                        <div class="login__control">
+                            <button type='submit' class="btn btn-md btn--warning btn--wider">sign in</button>
+                            <a href="#" class="login__tracker form__tracker">Forgot password?</a>
+                        </div>
+                    </form>
+                </div>
+
+            </section>
+        </div>
+
+	<!-- JavaScript-->
+        <!-- jQuery 3.1.1--> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="assets/user_template/seat/js/jquery-3.1.1.min.js"><\/script>')</script>
+        <!-- Migrate --> 
+        <script src="assets/user_template/seat/js/jquery-migrate-1.2.1.min.js"></script>
+        <!-- Bootstrap 3--> 
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+        <!-- Mobile menu -->
+        <script src="assets/user_template/seat/js/jquery.mobile.menu.js"></script>
+         <!-- Select -->
+        <script src="assets/user_template/seat/js/jquery.selectbox-0.2.min.js"></script>
+
+        <!-- Form element -->
+        <script src="assets/user_template/seat/js/form-element.js"></script>
+       <script src="assets/user_template/seat/js/form.js"></script>
+        <!-- Form validation -->
+        
+
+        <!-- Custom -->
+        <script src="assets/user_template/seat/js/custom.js"></script>
+		
+		<script type="text/javascript">
+            $(document).ready(function() {
+                init_BookingTwo();
+            });
+		</script>
+
+</body>
+</html>

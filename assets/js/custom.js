@@ -405,7 +405,7 @@ $('.show').on('click',function(){
     
 });
 
-$('.seat').on('click',function(){
+$('.seat_slot').on('click',function(){
     var modal=$("#login_value").val();
     var show_id=$(this).data('id');
     
@@ -429,6 +429,42 @@ $('.seat').on('click',function(){
         });       
     }
 });
+
+$('.confirm').on('click',function(){
+
+    var seat_arr=[];
+    var seats="";
+    var total_price=$(".checked-result").text();
+    //alert(total_price);
+   $('.choosen-place').each( function () {
+    Sits =  $(this).text();
+    seat_arr.push(Sits);
+    seats=seat_arr.toString();
+});
+    
+    if(seat_arr.length>0){
+
+        $("#confirm_alert").text("Thank You for choosing seats "+seat_arr);
+        $("#seat_labels").val(seats);
+        $("#t_price").text("Total Price : "+total_price);
+        $("#tprice").val(total_price);
+        $('.time_data').css("display", "block");
+        $("#proceed_btn").prop("disabled",false);
+    }
+    else{
+        $("#confirm_alert").text("Please Choose Seats");
+        $("#t_price").text("");
+        $("#tprice").val("");
+        $('.time_data').css("display", "none");
+        $("#proceed_btn").prop("disabled",true);
+      // $("#proceed_btn").attr("disabled","disabled");
+    }
+   // });      
+     //alert(chooseSits.split(" "));       
+                //var place= $('.choosen-place').text();
+                    
+    
+});
 function seatCheck(){
     var t_seats=$("#total_seats").val();
     var seats=$("#seats").val();
@@ -437,6 +473,7 @@ function seatCheck(){
         $(".seat_alert").text("Should be less than total seats available!!");
         //$("#seat_btn").prop("disabled","true");
         $("#seat_btn").prop("disabled",true);
+        
     }
     else{
         $(".seat_alert").text("");

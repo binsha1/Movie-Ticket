@@ -238,7 +238,7 @@ h3.other-nw {
 }
 button.btn.btn-primary {
 	  background-color: #003b64;
-  padding: 3px 16px 5px;
+  /*padding: 3px 16px 5px;*/
   font-weight: 500;
   border: none;
   border-radius: 0;

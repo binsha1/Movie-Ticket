@@ -93,7 +93,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a class="nav-link"  href="#">About Us</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link"  href="#">Contact Us</a>
+							<a class="nav-link"  href="contact-us.cfm">Contact Us</a>
 						</li>
 					</ul>
 					<ul class="navbar-nav ms-auto">
