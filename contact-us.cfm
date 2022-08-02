@@ -1,7 +1,7 @@
 <cfinclude  template="user_header.cfm">
 <cfparam name="status" default="val">
-<section class="ftco-section">
-		<div class="container">
+<section class="ftco-section p-5">
+		<div class="container text-white">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
 					
@@ -9,14 +9,14 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-10">
-					<div class="wrapper">
+					<div class="contact_wrapper">
 						<div class="row no-gutters">
 							<div class="col-md-6">
 								<div class="contact-wrap w-100 p-lg-5 p-4">
-									<h3 class="mb-4">Send us a message</h3>
+									<h3 class="mb-4">Get In Touch!</h3>
 									<div id="form-message-warning" class="mb-4"></div> 
 				      		<div id="form-message-success" class="mb-4">
-				            Your message was sent, thank you!
+				            		Send Us a Message
 				      		</div>
 									<form method="POST" id="contactForm" action="components/controller.cfc?method=contactUs" name="contactForm" class="contactForm">
 										<div class="row">
@@ -54,14 +54,7 @@
 								<div class="info-wrap w-100 p-lg-5 p-4 img">
 									<h3>Contact us</h3>
 									<p class="mb-4">We're open for any suggestion or just to have a chat</p>
-				        	<div class="dbox w-100 d-flex align-items-start">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-map-marker"></span>
-				        		</div>
-				        		<div class="text pl-3">
-					            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
-					          </div>
-				          </div>
+				        	
 				        	<div class="dbox w-100 d-flex align-items-center">
 				        		<div class="icon d-flex align-items-center justify-content-center">
 				        			<span class="fa fa-phone"></span>
@@ -70,20 +63,20 @@
 					            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
 					          </div>
 				          </div>
-				        	<div class="dbox w-100 d-flex align-items-center">
+				        	<div class="dbox w-100 d-flex align-items-center pt-3">
 				        		<div class="icon d-flex align-items-center justify-content-center">
 				        			<span class="fa fa-paper-plane"></span>
 				        		</div>
 				        		<div class="text pl-3">
-					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@bookmyticket.com</a></p>
 					          </div>
 				          </div>
-				        	<div class="dbox w-100 d-flex align-items-center">
+				        	<div class="dbox w-100 d-flex align-items-center pt-3">
 				        		<div class="icon d-flex align-items-center justify-content-center">
 				        			<span class="fa fa-globe"></span>
 				        		</div>
 				        		<div class="text pl-3">
-					            <p><span>Website</span> <a href="#">yoursite.com</a></p>
+					            <p><span>Website</span> <a href="index.cfm">BookMyTicket</a></p>
 					          </div>
 				          </div>
 			          </div>

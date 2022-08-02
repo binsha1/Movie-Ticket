@@ -35,10 +35,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <link rel="stylesheet" href="assets/carousel/fonts/icomoon/style.css">
 <link rel="stylesheet" href="assets/carousel/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/carousel/css/owl.theme.default.min.css">
 <!-- Bootstrap CSS
 <link rel="stylesheet" href="assets/carousel/css/bootstrap.min.css"> -->
 <!-- Style -->
 <link rel="stylesheet" href="assets/carousel/css/style.css">
+
 	<!-- start menu -->
 <link href="assets/user_template/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="assets/user_template/js/megamenu.js"></script>
@@ -97,21 +99,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 					</ul>
 					<ul class="navbar-nav ms-auto">
-
+							
 						<cfif structKeyExists(session, "userLog")>
+							<li class="nav-item">
+							<a class="nav-link "  ><p class="text-show">Welcome,You are In</p></a>
+						</li>
 							<div class="dropdown">
-  <a class="btn btn-showing dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-   <cfoutput>
-   Welcome #session.userLog.user_name#
-   </cfoutput>
-  </a>
-
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item" href="#">Bookings</a></li>
-    
-    <li><a class="dropdown-item" href="components/controller.cfc?method=userLogout">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
-  </ul>
-</div>
+								<a class="btn btn-showing dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+								<cfoutput>
+									#session.userLog.user_name#
+								</cfoutput>
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<li><a class="dropdown-item" href="#">Bookings</a></li>
+									
+									<li><a class="dropdown-item" href="components/controller.cfc?method=userLogout">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
+								</ul>
+							</div>
 
 						
 						<cfelse>

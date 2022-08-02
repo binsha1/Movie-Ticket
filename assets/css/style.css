@@ -357,3 +357,20 @@ background: #050b35;
   .show_right{
     float: right;
   }
+  .contact-wrap{
+    background-image: linear-gradient(to right,#a31e49 10%,#342076 100%);
+  };
+  
+.info-wrap .dbox {
+  width: 100%;
+  margin-bottom: 25px;
+}
+.info-wrap .dbox .icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+.contact_wrapper{
+  background: #050b35;
+}

@@ -431,28 +431,38 @@ $('.seat_slot').on('click',function(){
 });
 
 $('.confirm').on('click',function(){
-
+       
     var seat_arr=[];
     var seats="";
     var total_price=$(".checked-result").text();
-    //alert(total_price);
+   
    $('.choosen-place').each( function () {
     Sits =  $(this).text();
     seat_arr.push(Sits);
     seats=seat_arr.toString();
 });
-    
-    if(seat_arr.length>0){
-
+var tseats=$("#tseat").val();
+   if(seat_arr.length==tseats)
+    {
         $("#confirm_alert").text("Thank You for choosing seats "+seat_arr);
         $("#seat_labels").val(seats);
         $("#t_price").text("Total Price : "+total_price);
         $("#tprice").val(total_price);
-        $('.time_data').css("display", "block");
+        $(".time_data").css("display", "block");
         $("#proceed_btn").prop("disabled",false);
     }
-    else{
-        $("#confirm_alert").text("Please Choose Seats");
+   else if(seat_arr.length>=tseats)
+    {
+        $("#confirm_alert").text("Selected Seats should be less than required seats");
+        $("#t_price").text("");
+        $("#tprice").val("");
+        $('.time_data').css("display", "none");
+        $("#proceed_btn").prop("disabled",true);
+    }
+    
+    else if(seat_arr.length==0)
+    {
+        $("#confirm_alert").text("Please Choose Seats to proceed");
         $("#t_price").text("");
         $("#tprice").val("");
         $('.time_data').css("display", "none");

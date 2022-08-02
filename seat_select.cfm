@@ -6,36 +6,7 @@
 <cfset showId=toString(toBinary(show_id))>
 <cfset seat_s=toString(toBinary(seat_num))>
 <cfset show_res=application.show.getShowDetails(showId)>
-    <div class="wrapper place-wrapper">
-        <!-- Banner -->
-        <div class="banner-top">
-            <img alt='top banner' src="images/banners/bra.jpg">
-        </div>
-
-        <!-- Header section -->
-        <header class="header-wrapper">
-            <div class="container">
-                <!-- Logo link-->
-                <a href='index.html' class="logo">
-                    <img alt='logo' src="images/logo.png">
-                </a>
-                
-                <!-- Main website navigation-->
-           
-                
-                <!-- Additional header buttons / Auth and direct link to booking-->
-                <div class="control-panel">
-                    <a href="#" class="btn btn--sign login-window">Sign in</a>
-                    <a href="#" class="btn btn-md btn--warning btn--book login-window">Book a ticket</a>
-                </div>
-
-            </div>
-        </header>
-        
-        <!-- Search bar -->
-        
-        
-        <!-- Main content -->
+<!-- Main content -->
         <div class="place-form-area">
         <section class="container">
         <cfoutput >
@@ -56,14 +27,15 @@
                     <div class="show_right">
                         <button class="btn btn-showing">#dateformat(pdate,"full")#</button>
                         <button class="btn btn-showing">#timeFormat(i.start_time)# (#i.show_name#)</button>
-                   
+                    </div>
                 </div>
-            </div>
             </div>
                 <div class="order-step-area pt-3 text-center">
                    <!---- <div class="order-step first--step order-step--disable ">1. What &amp; Where &amp; When</div>--->
                     <div class="order-step second--step text-white text-center">Please Choose <cfoutput>#seat_s#
-                    </cfoutput> seat Now</div>
+                     seat Now</div>                    
+                    <input type="hidden" name="tseats"  id="tseat" value="#seat_s#">       
+                    </cfoutput>  
                 </div>
             
             <div class="choose-sits text-white">
@@ -75,234 +47,21 @@
                         
                     </ul>
                 </div>
-            </cfloop>
-            </cfoutput>
+
+                <cfset row=Int(Sqr(i.total_seats))>
+                <cfset columns=Int(ceiling(i.total_seats/(row)))>
+                
+                
                 <div class="choose-sits__info">
                     <ul>
                         <li class="sits-state sits-state--not">Not available</li>
-                        <li class="sits-state sits-state--your">Your choice</li>
+                        <li class="sits-state sits-state--your"></li>
                     </ul>
                 </div>
                 
                 <div class="col-sm-12 col-lg-10 col-lg-offset-1">
-                <div class="sits-area hidden-xs">
-                    <div class="sits-anchor">screen</div>
-
-                    <div class="sits">
-                        <aside class="sits__line">
-                            <span class="sits__indecator">A</span>
-                            <span class="sits__indecator">B</span>
-                            <span class="sits__indecator">C</span>
-                            <span class="sits__indecator">D</span>
-                            <span class="sits__indecator">E</span>
-                            <span class="sits__indecator">F</span>
-                            <span class="sits__indecator">G</span>
-                            <span class="sits__indecator">I</span>
-                            <span class="sits__indecator additional-margin">J</span>
-                            <span class="sits__indecator">K</span>
-                            <span class="sits__indecator">L</span>
-                        </aside>
-
-                            <div class="sits__row">
-                                <span class="sits__place sits-price--cheap" data-place='A2' data-price='10'>A2</span>
-                                <span class="sits__place sits-price--cheap" data-place='A3' data-price='10'>A3</span>
-                                <span class="sits__place sits-price--cheap" data-place='A4' data-price='10'>A4</span>
-                                <span class="sits__place sits-price--cheap" data-place='A5' data-price='10'>A5</span>
-                                <span class="sits__place sits-price--cheap" data-place='A6' data-price='10'>A6</span>
-                                <span class="sits__place sits-price--cheap" data-place='A7' data-price='10'>A7</span>
-                                <span class="sits__place sits-price--cheap" data-place='A8' data-price='10'>A8</span>
-                                <span class="sits__place sits-price--cheap" data-place='A9' data-price='10'>A9</span>
-                                <span class="sits__place sits-price--cheap" data-place='A10' data-price='10'>A10</span>
-                                <span class="sits__place sits-price--cheap" data-place='A11' data-price='10'>A11</span>
-                                <span class="sits__place sits-price--cheap" data-place='A12' data-price='10'>A12</span>
-                                <span class="sits__place sits-price--cheap" data-place='A13' data-price='10'>A13</span>
-                                <span class="sits__place sits-price--cheap" data-place='A14' data-price='10'>A14</span>
-                                <span class="sits__place sits-price--cheap" data-place='A15' data-price='10'>A15</span>
-                                <span class="sits__place sits-price--cheap" data-place='A16' data-price='10'>A16</span>
-                                <span class="sits__place sits-price--cheap" data-place='A17' data-price='10'>A17</span>
-                            </div>
-                            
-                            <div class="sits__row">
-                                <span class="sits__place sits-price--cheap" data-place='B1' data-price='10'>B1</span>
-                                <span class="sits__place sits-price--cheap" data-place='B2' data-price='10'>B2</span>
-                                <span class="sits__place sits-price--cheap" data-place='B3' data-price='10'>B3</span>
-                                <span class="sits__place sits-price--cheap" data-place='B4' data-price='10'>B4</span>
-                                <span class="sits__place sits-price--cheap" data-place='B5' data-price='10'>B5</span>
-                                <span class="sits__place sits-price--cheap" data-place='B6' data-price='10'>B6</span>
-                                <span class="sits__place sits-price--cheap" data-place='B7' data-price='10'>B7</span>
-                                <span class="sits__place sits-price--cheap" data-place='B8' data-price='10'>B8</span>
-                                <span class="sits__place sits-price--cheap" data-place='B9' data-price='10'>B9</span>
-                                <span class="sits__place sits-price--cheap" data-place='B10' data-price='10'>B10</span>
-                                <span class="sits__place sits-price--cheap" data-place='B11' data-price='10'>B11</span>
-                                <span class="sits__place sits-price--cheap" data-place='B12' data-price='10'>B12</span>
-                                <span class="sits__place sits-price--cheap" data-place='B13' data-price='10'>B13</span>
-                                <span class="sits__place sits-price--cheap" data-place='B14' data-price='10'>B14</span>
-                                <span class="sits__place sits-price--cheap" data-place='B15' data-price='10'>B15</span>
-                                <span class="sits__place sits-price--cheap" data-place='B16' data-price='10'>B16</span>
-                                <span class="sits__place sits-price--cheap" data-place='B17' data-price='10'>B17</span>
-                                <span class="sits__place sits-price--cheap" data-place='B18' data-price='10'>B18</span>
-                            </div>
-
-                            <div class="sits__row">
-                                <span class="sits__place sits-price--cheap" data-place='C1' data-price='10'>C1</span>
-                                <span class="sits__place sits-price--cheap" data-place='C2' data-price='10'>C2</span>
-                                <span class="sits__place sits-price--cheap" data-place='C3' data-price='10'>C3</span>
-                                <span class="sits__place sits-price--cheap" data-place='C4' data-price='10'>C4</span>
-                                <span class="sits__place sits-price--cheap" data-place='C5' data-price='10'>C5</span>
-                                <span class="sits__place sits-price--cheap" data-place='C6' data-price='10'>C6</span>
-                                <span class="sits__place sits-price--cheap" data-place='C7' data-price='10'>C7</span>
-                                <span class="sits__place sits-price--cheap" data-place='C8' data-price='10'>C8</span>
-                                <span class="sits__place sits-price--cheap" data-place='C9' data-price='10'>C9</span>
-                                <span class="sits__place sits-price--cheap" data-place='C10' data-price='10'>C10</span>
-                                <span class="sits__place sits-price--cheap" data-place='C11' data-price='10'>C11</span>
-                                <span class="sits__place sits-price--cheap" data-place='C12' data-price='10'>C12</span>
-                                <span class="sits__place sits-price--cheap" data-place='C13' data-price='10'>C13</span>
-                                <span class="sits__place sits-price--cheap" data-place='C14' data-price='10'>C14</span>
-                                <span class="sits__place sits-price--cheap" data-place='C15' data-price='10'>C15</span>
-                                <span class="sits__place sits-price--cheap" data-place='C16' data-price='10'>C16</span>
-                                <span class="sits__place sits-price--cheap" data-place='C17' data-price='10'>C17</span>
-                                <span class="sits__place sits-price--cheap" data-place='C18' data-price='10'>C18</span>
-                            </div>
-
-                            <div class="sits__row">
-                                <span class="sits__place sits-price--cheap" data-place='D1' data-price='10'>D1</span>
-                                <span class="sits__place sits-price--cheap" data-place='D2' data-price='10'>D2</span>
-                                <span class="sits__place sits-price--cheap" data-place='D3' data-price='10'>D3</span>
-                                <span class="sits__place sits-price--cheap" data-place='D4' data-price='10'>D4</span>
-                                <span class="sits__place sits-price--cheap" data-place='D5' data-price='10'>D5</span>
-                                <span class="sits__place sits-price--cheap" data-place='D6' data-price='10'>D6</span>
-                                <span class="sits__place sits-price--cheap sits-state--not" data-place='D7' data-price='10'>D7</span>
-                                <span class="sits__place sits-price--cheap sits-state--not" data-place='D8' data-price='10'>D8</span>
-                                <span class="sits__place sits-price--cheap" data-place='D9' data-price='10'>D9</span>
-                                <span class="sits__place sits-price--cheap" data-place='D10' data-price='10'>D10</span>
-                                <span class="sits__place sits-price--cheap" data-place='D11' data-price='10'>D11</span>
-                                <span class="sits__place sits-price--cheap" data-place='D12' data-price='10'>D12</span>
-                                <span class="sits__place sits-price--cheap" data-place='D13' data-price='10'>D13</span>
-                                <span class="sits__place sits-price--cheap" data-place='D14' data-price='10'>D14</span>
-                                <span class="sits__place sits-price--cheap" data-place='D15' data-price='10'>D15</span>
-                                <span class="sits__place sits-price--cheap" data-place='D16' data-price='10'>D16</span>
-                                <span class="sits__place sits-price--cheap" data-place='D17' data-price='10'>D17</span>
-                                <span class="sits__place sits-price--cheap" data-place='D18' data-price='10'>D18</span>
-                            </div>
-
-                            <div class="sits__row">
-                                <span class="sits__place sits-price--middle" data-place='E1' data-price='20'>E1</span>
-                                <span class="sits__place sits-price--middle" data-place='E2' data-price='20'>E2</span>
-                                <span class="sits__place sits-price--middle" data-place='E3' data-price='20'>E3</span>
-                                <span class="sits__place sits-price--middle" data-place='E4' data-price='20'>E4</span>
-                                <span class="sits__place sits-price--middle" data-place='E5' data-price='20'>E5</span>
-                                <span class="sits__place sits-price--middle" data-place='E6' data-price='20'>E6</span>
-                                <span class="sits__place sits-price--middle" data-place='E7' data-price='20'>E7</span>
-                                <span class="sits__place sits-price--middle" data-place='E8' data-price='20'>E8</span>
-                                <span class="sits__place sits-price--middle" data-place='E9' data-price='20'>E9</span>
-                                <span class="sits__place sits-price--middle" data-place='E10' data-price='20'>E10</span>
-                                <span class="sits__place sits-price--middle" data-place='E11' data-price='20'>E11</span>
-                                <span class="sits__place sits-price--middle" data-place='E12' data-price='20'>E12</span>
-                                <span class="sits__place sits-price--middle" data-place='E13' data-price='20'>E13</span>
-                                <span class="sits__place sits-price--middle" data-place='E14' data-price='20'>E14</span>
-                                <span class="sits__place sits-price--middle" data-place='E15' data-price='20'>E15</span>
-                                <span class="sits__place sits-price--middle" data-place='E16' data-price='20'>E16</span>
-                                <span class="sits__place sits-price--middle" data-place='E17' data-price='20'>E17</span>
-                                <span class="sits__place sits-price--middle" data-place='E18' data-price='20'>E18</span>
-                            </div>
-
-                            <div class="sits__row">
-                                <span class="sits__place sits-price--middle" data-place='F1' data-price='20'>F1</span>
-                                <span class="sits__place sits-price--middle" data-place='F2' data-price='20'>F2</span>
-                                <span class="sits__place sits-price--middle" data-place='F3' data-price='20'>F3</span>
-                                <span class="sits__place sits-price--middle" data-place='F4' data-price='20'>F4</span>
-                                <span class="sits__place sits-price--middle" data-place='F5' data-price='20'>F5</span>
-                                <span class="sits__place sits-price--middle" data-place='F6' data-price='20'>F6</span>
-                                <span class="sits__place sits-price--middle" data-place='F7' data-price='20'>F7</span>
-                                <span class="sits__place sits-price--middle" data-place='F8' data-price='20'>F8</span>
-                                <span class="sits__place sits-price--middle" data-place='F9' data-price='20'>F9</span>
-                                <span class="sits__place sits-price--middle" data-place='F10' data-price='20'>F10</span>
-                                <span class="sits__place sits-price--middle" data-place='F11' data-price='20'>F11</span>
-                                <span class="sits__place sits-price--middle" data-place='F12' data-price='20'>F12</span>
-                                <span class="sits__place sits-price--middle" data-place='F13' data-price='20'>F13</span>
-                                <span class="sits__place sits-price--middle" data-place='F14' data-price='20'>F14</span>
-                                <span class="sits__place sits-price--middle" data-place='F15' data-price='20'>F15</span>
-                                <span class="sits__place sits-price--middle" data-place='F16' data-price='20'>F16</span>
-                                <span class="sits__place sits-price--middle" data-place='F17' data-price='20'>F17</span>
-                                <span class="sits__place sits-price--middle" data-place='F18' data-price='20'>F18</span>
-                            </div>
-
-                            <div class="sits__row">
-                                <span class="sits__place sits-price--middle" data-place='G1' data-price='20'>G1</span>
-                                <span class="sits__place sits-price--middle" data-place='G2' data-price='20'>G2</span>
-                                <span class="sits__place sits-price--middle" data-place='G3' data-price='20'>G3</span>
-                                <span class="sits__place sits-price--middle" data-place='G4' data-price='20'>G4</span>
-                                <span class="sits__place sits-price--middle" data-place='G5' data-price='20'>G5</span>
-                                <span class="sits__place sits-price--middle" data-place='G6' data-price='20'>G6</span>
-                                <span class="sits__place sits-price--middle" data-place='G7' data-price='20'>G7</span>
-                                <span class="sits__place sits-price--middle" data-place='G8' data-price='20'>G8</span>
-                                <span class="sits__place sits-price--middle" data-place='G9' data-price='20'>G9</span>
-                                <span class="sits__place sits-price--middle" data-place='G10' data-price='20'>G10</span>
-                                <span class="sits__place sits-price--middle" data-place='G11' data-price='20'>G11</span>
-                                <span class="sits__place sits-price--middle" data-place='G12' data-price='20'>G12</span>
-                                <span class="sits__place sits-price--middle" data-place='G13' data-price='20'>G13</span>
-                                <span class="sits__place sits-price--middle" data-place='G14' data-price='20'>G14</span>
-                                <span class="sits__place sits-price--middle" data-place='G15' data-price='20'>G15</span>
-                                <span class="sits__place sits-price--middle" data-place='G16' data-price='20'>G16</span>
-                                <span class="sits__place sits-price--middle" data-place='G17' data-price='20'>G17</span>
-                                <span class="sits__place sits-price--middle" data-place='G18' data-price='20'>G18</span>
-                            </div>
-
-                            <div class="sits__row">
-                                <span class="sits__place sits-price--middle" data-place='I3' data-price='20'>I3</span>
-                                <span class="sits__place sits-price--middle" data-place='I4' data-price='20'>I4</span>
-                                <span class="sits__place sits-price--middle" data-place='I5' data-price='20'>I5</span>
-                                <span class="sits__place sits-price--middle" data-place='I6' data-price='20'>I6</span>
-                                <span class="sits__place sits-price--middle" data-place='I7' data-price='20'>I7</span>
-                                <span class="sits__place sits-price--middle" data-place='I8' data-price='20'>I8</span>
-                                <span class="sits__place sits-price--middle" data-place='I9' data-price='20'>I9</span>
-                                <span class="sits__place sits-price--middle" data-place='I10' data-price='20'>I10</span>
-                                <span class="sits__place sits-price--middle" data-place='I11' data-price='20'>I11</span>
-                                <span class="sits__place sits-price--middle" data-place='I12' data-price='20'>I12</span>
-                                <span class="sits__place sits-price--middle" data-place='I13' data-price='20'>I13</span>
-                                <span class="sits__place sits-price--middle" data-place='I14' data-price='20'>I14</span>
-                                <span class="sits__place sits-price--middle" data-place='I15' data-price='20'>I15</span>
-                                <span class="sits__place sits-price--middle" data-place='I16' data-price='20'>I16</span>
-                            </div>
-
-                            <div class="sits__row additional-margin">
-                                <span class="sits__place sits-price--expensive" data-place='J5' data-price='30'>J5</span>
-                                <span class="sits__place sits-price--expensive" data-place='J6' data-price='30'>J6</span>
-                                <span class="sits__place sits-price--expensive" data-place='J7' data-price='30'>J7</span>
-                                <span class="sits__place sits-price--expensive" data-place='J8' data-price='30'>J8</span>
-                                <span class="sits__place sits-price--expensive" data-place='J9' data-price='30'>J9</span>
-                                <span class="sits__place sits-price--expensive" data-place='J10' data-price='30'>J10</span>
-                                <span class="sits__place sits-price--expensive" data-place='J11' data-price='30'>J11</span>
-                                <span class="sits__place sits-price--expensive" data-place='J12' data-price='30'>J12</span>
-                                <span class="sits__place sits-price--expensive" data-place='J13' data-price='30'>J13</span>
-                                <span class="sits__place sits-price--expensive" data-place='J14' data-price='30'>J14</span>
-                            </div>
-
-                            <div class="sits__row">
-                                <span class="sits__place sits-price--expensive" data-place='K5' data-price='30'>K5</span>
-                                <span class="sits__place sits-price--expensive" data-place='K6' data-price='30'>K6</span>
-                                <span class="sits__place sits-price--expensive" data-place='K7' data-price='30'>K7</span>
-                                <span class="sits__place sits-price--expensive" data-place='K8' data-price='30'>K8</span>
-                                <span class="sits__place sits-price--expensive" data-place='K9' data-price='30'>K9</span>
-                                <span class="sits__place sits-price--expensive" data-place='K10' data-price='30'>K10</span>
-                                <span class="sits__place sits-price--expensive" data-place='K11' data-price='30'>K11</span>
-                                <span class="sits__place sits-price--expensive" data-place='K12' data-price='30'>K12</span>
-                                <span class="sits__place sits-price--expensive" data-place='K13' data-price='30'>K13</span>
-                                <span class="sits__place sits-price--expensive" data-place='K14' data-price='30'>K14</span>
-                            </div>
-
-                            <div class="sits__row">
-                                <span class="sits__place sits-price--expensive" data-place='L6' data-price='30'>L6</span>
-                                <span class="sits__place sits-price--expensive" data-place='L7' data-price='30'>L7</span>
-                                <span class="sits__place sits-price--expensive" data-place='L8' data-price='30'>L8</span>
-                                <span class="sits__place sits-price--expensive" data-place='L9' data-price='30'>L9</span>
-                                <span class="sits__place sits-price--expensive" data-place='L10' data-price='30'>L10</span>
-                                <span class="sits__place sits-price--expensive" data-place='L11' data-price='30'>L11</span>
-                                <span class="sits__place sits-price--expensive" data-place='L12' data-price='30'>L12</span>
-                                <span class="sits__place sits-price--expensive" data-place='L13' data-price='30'>L13</span>
-                            </div>
-
-                        <aside class="sits__checked">
+                <div class="sits">
+                <aside class="sits__checked">
                             <div class="checked-place">
                                 
                             </div>
@@ -310,26 +69,83 @@
                                 $0
                             </div>
                         </aside>
+                </div>
+                <div class="sits-area hidden-xs">
+                    <div class="sits-anchor">screen</div>
+                    
+                    <div class="sits">
+                    
+                        <cfoutput>
+                            <cfloop from="1" to="#columns#" index="k" step="1">
+                            <span class="sits__indecator">
+                            #k#</span></cfloop>
+                            </cfoutput>
+                    </div>
+                    <h6 class="pt-3">SILVER PLUS</h6>
+                    <div class="sits">
+                    
+                        <aside class="sits__line text-white">
+                            <cfset charArray=arrayNew(1)>
+                            <cfset alphabets=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+        'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' ]>
+                            <cfoutput>
+                            <cfloop index="j" from="1" to="#Round(row/2)#" step="1">
+                                <span class="sits__indecator"> #alphabets[j]# </span>
+                            </cfloop>
+                            <div class="pt-3">
+                             <cfloop index="j" from=#Round(row/2)+1# to=#row# step="1">
+                                <span class="sits__indecator"> #alphabets[j]# </span>
+                                </cfloop>
+                            </div>
+                            </cfoutput>
+                            
+                        </aside>
+                        <cfoutput>
+                            <cfloop index="j" from="1" to=#Round(row/2)# step="1">
+                                <div class="sits__row">
+                                    <cfloop index="k" from="1" to="#columns#" step="1">
+                                        <span class="sits__place sits-price--cheap" data-place='#alphabets[j]&k#' data-price=#i.silver_rate#>#alphabets[j]&k#</span>
+                                   </cfloop>
+                                </div>
+                            </cfloop>
+                            <h6>GOLD PLUS</h6>
+                            <div class="">
+                            
+                            <cfloop index="j" from=#Round(row/2)+1# to=#row-1# step="1">
+                                <div class="sits__row">
+                                    <cfset n=(row*columns)-i.total_seats>
+                                    <cfloop index="k" from="1" to="#columns#" step="1">
+                                        <span class="sits__place sits-price--middle " data-place='#alphabets[j]&k#' data-price=#i.gold_rate#>#alphabets[j]&k#</span>
+                                   </cfloop>
+                                </div>
+                            </cfloop>
+                            <cfloop index="j" from=#row# to=#row# step="1">
+                                <div class="sits__row">
+                                    <cfset n=(row*columns)-i.total_seats>
+                                    <cfloop index="k" from="1" to="#columns-n#" step="1">
+                                        <span class="sits__place sits-price--middle " data-place='#alphabets[j]&k#' data-price=#i.gold_rate#>#alphabets[j]&k#</span>
+                                   </cfloop>
+                                   <cfloop index="k" from="#(columns-n)+1#" to="#columns#" step="1">
+                                        <span class="sits__place sits-price--middle sits-state--not" data-place='#alphabets[j]&k#' data-price=#i.gold_rate#>#alphabets[j]&k#</span>
+                                   </cfloop>
+                                   
+                                </div>
+                            </cfloop>
+                        </div>
+                        </cfoutput>
+                        </cfloop>
+                </cfoutput>
+                            
+                        <!---
                         <footer class="sits__number">
-                            <span class="sits__indecator">1</span>
-                            <span class="sits__indecator">2</span>
-                            <span class="sits__indecator">3</span>
-                            <span class="sits__indecator">4</span>
-                            <span class="sits__indecator">5</span>
-                            <span class="sits__indecator">6</span>
-                            <span class="sits__indecator">7</span>
-                            <span class="sits__indecator">8</span>
-                            <span class="sits__indecator">9</span>
-                            <span class="sits__indecator">10</span>
-                            <span class="sits__indecator">11</span>
-                            <span class="sits__indecator">12</span>
-                            <span class="sits__indecator">13</span>
-                            <span class="sits__indecator">14</span>
-                            <span class="sits__indecator">15</span>
-                            <span class="sits__indecator">16</span>
-                            <span class="sits__indecator">17</span>
-                            <span class="sits__indecator">18</span>
-                        </footer>
+                        <cfoutput>
+                            <cfloop from="1" to="#columns#" index="i" step="1">
+                            <span class="sits__indecator">
+                            #i#</span></cfloop>
+                            </cfoutput>
+                            
+                        </footer>--->
+                        
                     </div>
                 </div>
             </div>
@@ -337,6 +153,7 @@
             <div class="col-sm-12 visible-xs"> 
                 <div class="sits-area--mobile">
                     <div class="sits-area--mobile-wrap">
+                        <!---
                         <div class="sits-select">
                             <select name="sorting_item" class="sits__sort sit-row" tabindex="0">
                                     <option value="1" selected='selected'>A</option>
@@ -388,155 +205,19 @@
                             </div>
                     </aside>
 
-                    <img alt="" src="images/components/sits_mobile.png">
-                </div>
-            </div>   
-                
-            </div>
-                
-
-            </div>
-        </section>
-        </div>
-        
-        
-
-        <div class="clearfix"></div>
-        <form id='film-and-time' class="booking-form" method='get' action='book3-buy.html'>
-
-            <input type='text' name='choosen-number' class="choosen-number">
-            <input type='text' name='choosen-number--cheap' class="choosen-number--cheap">
-            <input type='text' name='choosen-number--middle' class="choosen-number--middle">
-            <input type='text' name='choosen-number--expansive' class="choosen-number--expansive">
-            <input type='text' name='choosen-cost' class="choosen-cost">
-            <input type='text' name='choosen-sits' class="choosen-sits">
-
-
-            <div class="booking-pagination booking-pagination--margin">
-                    <a href="book1.html" class="booking-pagination__prev">
-                        <span class="arrow__text arrow--prev">prev step</span>
-                        <span class="arrow__info">what&amp;where&amp;when</span>
-                    </a>
-                    <a href="book3-buy.html" class="booking-pagination__next">
-                        <span class="arrow__text arrow--next">next step</span>
-                        <span class="arrow__info">checkout</span>
-                    </a>
-            </div>
-        </form>
-        
-        <div class="clearfix"></div>
-
-        <footer class="footer-wrapper">
-            <section class="container">
-                <div class="col-xs-4 col-md-2 footer-nav">
-                    <ul class="nav-link">
-                        <li><a href="#" class="nav-link__item">Cities</a></li>
-                        <li><a href="movie-list-left.html" class="nav-link__item">Movies</a></li>
-                        <li><a href="trailer.html" class="nav-link__item">Trailers</a></li>
-                        <li><a href="rates-left.html" class="nav-link__item">Rates</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-4 col-md-2 footer-nav">
-                    <ul class="nav-link">
-                        <li><a href="coming-soon.html" class="nav-link__item">Coming soon</a></li>
-                        <li><a href="cinema-list.html" class="nav-link__item">Cinemas</a></li>
-                        <li><a href="offers.html" class="nav-link__item">Best offers</a></li>
-                        <li><a href="news-left.html" class="nav-link__item">News</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-4 col-md-2 footer-nav">
-                    <ul class="nav-link">
-                        <li><a href="#" class="nav-link__item">Terms of use</a></li>
-                        <li><a href="gallery-four.html" class="nav-link__item">Gallery</a></li>
-                        <li><a href="contact.html" class="nav-link__item">Contacts</a></li>
-                        <li><a href="page-elements.html" class="nav-link__item">Shortcodes</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <div class="footer-info">
-                        <p class="heading-special--small">A.Movie<br><span class="title-edition">in the social media</span></p>
-
-                        <div class="social">
-                            <a href='#' class="social__variant fa fa-facebook"></a>
-                            <a href='#' class="social__variant fa fa-twitter"></a>
-                            <a href='#' class="social__variant fa fa-vk"></a>
-                            <a href='#' class="social__variant fa fa-instagram"></a>
-                            <a href='#' class="social__variant fa fa-tumblr"></a>
-                            <a href='#' class="social__variant fa fa-pinterest"></a>
-                        </div>
-                        
-                        <div class="clearfix"></div>
-                        <p class="copy">&copy; A.Movie, 2013. All rights reserved. Done by Olia Gozha</p>
+                    <img alt="" src="images/components/sits_mobile.png">---> 
+                    <div class="text-center pb-3">
+                    <button type="button" class="btn btn-showing confirm " data-bs-toggle="modal"  data-bs-target=".confirmModal"  >Confirm Selection</button>
                     </div>
                 </div>
-            </section>
-        </footer>
-    </div>
+            </div>  
+                
+            </div>
+                
 
-    <!-- open/close -->
-        <div class="overlay overlay-hugeinc">
+            </div>
             
-            <section class="container">
-
-                <div class="col-sm-4 col-sm-offset-4">
-                    <button type="button" class="overlay-close">Close</button>
-                    <form id="login-form" class="login" method='get' novalidate=''>
-                        <p class="login__title">sign in <br><span class="login-edition">welcome to A.Movie</span></p>
-
-                        <div class="social social--colored">
-                                <a href='#' class="social__variant fa fa-facebook"></a>
-                                <a href='#' class="social__variant fa fa-twitter"></a>
-                                <a href='#' class="social__variant fa fa-tumblr"></a>
-                        </div>
-
-                        <p class="login__tracker">or</p>
-                        
-                        <div class="field-wrap">
-                        <input type='email' placeholder='Email' name='user-email' class="login__input">
-                        <input type='password' placeholder='Password' name='user-password' class="login__input">
-
-                        <input type='checkbox' id='#informed' class='login__check styled'>
-                        <label for='#informed' class='login__check-info'>remember me</label>
-                         </div>
-                        
-                        <div class="login__control">
-                            <button type='submit' class="btn btn-md btn--warning btn--wider">sign in</button>
-                            <a href="#" class="login__tracker form__tracker">Forgot password?</a>
-                        </div>
-                    </form>
-                </div>
-
-            </section>
+        </section>
         </div>
-
-	<!-- JavaScript-->
-        <!-- jQuery 3.1.1--> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="assets/user_template/seat/js/jquery-3.1.1.min.js"><\/script>')</script>
-        <!-- Migrate --> 
-        <script src="assets/user_template/seat/js/jquery-migrate-1.2.1.min.js"></script>
-        <!-- Bootstrap 3--> 
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-
-        <!-- Mobile menu -->
-        <script src="assets/user_template/seat/js/jquery.mobile.menu.js"></script>
-         <!-- Select -->
-        <script src="assets/user_template/seat/js/jquery.selectbox-0.2.min.js"></script>
-
-        <!-- Form element -->
-        <script src="assets/user_template/seat/js/form-element.js"></script>
-       <script src="assets/user_template/seat/js/form.js"></script>
-        <!-- Form validation -->
-        
-
-        <!-- Custom -->
-        <script src="assets/user_template/seat/js/custom.js"></script>
-		
-		<script type="text/javascript">
-            $(document).ready(function() {
-                init_BookingTwo();
-            });
-		</script>
-
-</body>
-</html>
+        <cfinclude  template="modals/confirm.cfm">
+        <cfinclude  template="user_footer.cfm">

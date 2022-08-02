@@ -33,7 +33,7 @@
 					<li class="time">
 						<!---<a href="components/controller.cfc?method=checkLogin">#start_time#</a>
                         --->
-                        <button type="button" class="btn btn-primary seat_slot" data-bs-toggle="modal" data-id="#id#" data-bs-target=".loginModal"  >#start_time#</button>
+                        <button type="button" class="btn btn-primary seat_slot" data-bs-toggle="modal" data-id="#id#" data-bs-target=".loginModal"  >#timeformat(start_time)#</button>
 					</li>
 					<!---<li class="time">
 						<a href="movie-payment.html">3:00 PM</a>

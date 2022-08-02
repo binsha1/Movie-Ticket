@@ -10,11 +10,6 @@
 			<h4 class="text-center">ARE YOU LOOKING FOR A MOVIE</h4>
 			<div class="p-3">	
 				<form action='components/movie.cfc?method=searchMovie' method="post" class="col-lg-6 offset-lg-3">
-					
-
-
-
-					
 					<div class='input-group mb-3'>
 					
 					<select class="js-example-basic-single form-control required" name='movie_id' required>

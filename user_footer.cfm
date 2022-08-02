@@ -28,8 +28,8 @@
 
 <!-- Modernizr --> 
         <script src="assets/user_template/seat/js/modernizr.custom.js"></script>
-<!----
-    <script src="assets/js/popper.min.js"></script>---->
+
+    <script src="assets/js/popper.min.js"></script>
     
     <script src="assets/carousel/js/owl.carousel.min.js"></script>
     <script src="assets/carousel/js/main.js"></script>
@@ -71,7 +71,9 @@
       } )( jQuery );
 
     </script>
+  
 <script>
+
     var multipleCardCarousel = document.querySelector(
     "#carouselExampleControls"
     );
@@ -80,6 +82,7 @@
         interval: false,
     });
     var carouselWidth = $(".carousel-inner")[0].scrollWidth;
+    
     var cardWidth = $(".carousel-item").width();
     var scrollPosition = 0;
     $("#carouselExampleControls .carousel-control-next").on("click", function () {
@@ -111,7 +114,7 @@
     var all_carousel = new bootstrap.Carousel(allCardCarousel, {
         interval: false,
     });
-    var allCarouselWidth = $(".carousel-inner")[0].scrollWidth;
+    var allCarouselWidth = $(".carousel-inner")[2].scrollWidth;
     var allCardWidth = $(".carousel-item").width();
     var allScrollPosition = 0;
     $("#carouselAllDetails .carousel-control-next").on("click", function () {
@@ -143,7 +146,7 @@
     var coming_carousel = new bootstrap.Carousel(comingCardCarousel, {
         interval: false,
     });
-    var comingCarouselWidth = $(".carousel-inner")[0].scrollWidth;
+    var comingCarouselWidth = $(".carousel-inner")[1].scrollWidth;
     var comingCardWidth = $(".carousel-item").width();
     var comingScrollPosition = 0;
     $("#carouselComingDetails .carousel-control-next").on("click", function () {

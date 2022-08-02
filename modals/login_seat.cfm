@@ -71,7 +71,7 @@
                             <input type="password" class="form-control input-lg" name="pass" required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!---<div class="form-group">
                         <div>
                             <div class="checkbox">
                                 <label>
@@ -79,7 +79,7 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div>--->
                     <div class="form-group">
                         <div>
                             

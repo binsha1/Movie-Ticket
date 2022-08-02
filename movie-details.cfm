@@ -6,8 +6,7 @@
 <cfset crew_res=application.movie.crewDetails(movId)>
 <div class="container p-5">
 	<cfoutput >
-		<cfloop array="#mov_res#" index="i">
-			
+		<cfloop array="#mov_res#" index="i">			
 			<div class="row">
 				<img src="uploads/#i.wallpaper#" alt="" class="img-fluid mov_wall ">
 				<div class="col-md-4 text-center mt-5">
@@ -16,30 +15,31 @@
 				<div class="col-md-8 p-4">
 					<div class="card_datails">
 						<h1 class="text-white mov_title">#i.movie_name#</h1>
-						<div class="card_cat">
-						
-						<p class="year"> <i class="fa-solid fa-calendar-days"></i> #dateFormat('#i.release_date#','dd-mm-yyyy')#</p>
-						<p class="genre"><i class="fa-solid fa-masks-theater px-3"></i> #i.genre# </p>
-						<p class="time"><i class="fa-solid fa-hourglass px-3"></i> #i.duration#</p>
+						<div class="card_cat">						
+							<p class="year"> <i class="fa-solid fa-calendar-days"></i> #dateFormat('#i.release_date#','dd-mm-yyyy')#</p>
+							<p class="genre"><i class="fa-solid fa-masks-theater px-3"></i> #i.genre# </p>
+							<p class="time"><i class="fa-solid fa-hourglass px-3"></i> #i.duration#</p>
 						</div>
 						<div class='text-white'>
-						<p class="text-dark"><span class="mfor">#i.movie_format#</span> <span class="mfor">#i.language#</span></p>
-						<p class="disc pt-3 text-white">#i.description#</p>
-					</div>
+							<p class="text-dark"><span class="mfor">#i.movie_format#</span> <span class="mfor">#i.language#</span></p>
+							<p class="disc pt-3 text-white">#i.description#</p>
+						</div>
 					<div class="social-btn pt-3">
 						<!-- WATCH TRAILER-->
 						<a href="#i.trailer_url#" class="btn btn-primary">
 						<i class="fas fa-play"></i> TRAILER
 						</a>
 						<!-- GET-->
-						<a href="book-ticket.cfm?id=#id#" class="btn btn-showing">
-							<i class="fa-solid fa-ticket"></i> Book Ticket
+						<a href="show.cfm" class="btn btn-showing">
+							<i class="fa-solid fa-ticket">
+							</i> Book Ticket
 						</a>
 					</div>  
 				</div>
 			</div>
 		</cfloop>
 	</cfoutput>
+	
 	</div>
 	<div class="container cc_div mt-5">
 		<div class="row pt-5 text-white">

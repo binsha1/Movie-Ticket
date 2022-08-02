@@ -1,7 +1,6 @@
 <cfinclude  template="user_header.cfm">
 <cfset t_date=toBase64(DateFormat(Now(),"yyyy-mm-dd"))>
 <cfset today_date=parseDateTime(toString(toBinary(t_date)))>
-
 <cfparam name="cdate" default="#DateFormat(Now(),"yyyy-mm-dd")#">
 <!---<cfset pdate=toString(toBinary(cdate))>--->
 <cfset fromDate = Now()> 
@@ -14,8 +13,7 @@
 			<li class="nav-item">
 			
 			<cfoutput>
-		
-			<a class=" nav-link date-nav "  href="components/show.cfc?method=getMovieDate&date=#DateFormat(i,"yyyy-mm-dd")#">
+		<a class=" nav-link date-nav "  href="components/show.cfc?method=getMovieDate&date=#DateFormat(i,"yyyy-mm-dd")#">
  				#dateformat(i, "dd")#<br>
 				#dateformat(i, "ddd")#
 			</cfoutput></a>

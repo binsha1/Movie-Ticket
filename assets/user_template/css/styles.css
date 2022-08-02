@@ -3650,7 +3650,9 @@ img.pp-img {
 .payment-right {
 	padding: 1em;
 	border: 1px solid #eee;
-	background-color:#FDFDFD;
+	/*background-color:#FDFDFD;*/
+	background: #050b35;
+	color: white;
 }
 .payment-right h3 {
 	font-size: 1.5em;
@@ -3668,20 +3670,20 @@ img.pp-img {
 	      margin: 0.8em 0;
     font-weight: 600;
     font-size: 1em;
-    color: #003B64;
+   /*8 color: #003B64;*/
 }
 .payment-right h4 {
 	  margin: 1em 0;
   font-weight: 600;
   font-size: 1.4em;
-  color:#000;
+ /* color:#000;*/
 }
 .payment-right h4 span {
-	color: #000;
+	/*color: #000;*/
 }
 .payment-right p {
 	  margin: 0.8em 0;
-  color: #B6B6B6;
+ /* color: #B6B6B6;*/
   font-size: 0.85em;
 }
 .payment-right span {
@@ -3690,7 +3692,7 @@ img.pp-img {
   float: left;
   font-size: 1.1em;
   font-weight: 600;
-  color:#000;
+  /*color:#000;*/
 }
 .payment-right h5 {
 	  margin: 0.5em 0;
@@ -3699,6 +3701,7 @@ img.pp-img {
   font-weight: 600;
   padding: 1em 0 1.2em 0;
   background-color: #F4F2F2;
+  color: black;
 }
 .ticket-note{
 	padding: 1em;

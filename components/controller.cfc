@@ -197,10 +197,13 @@
         <cfargument  name="tprice" type="string">
         <cfargument  name="time_sl" type="integer">
         <cfargument  name="show_id" type="integer">
+        <cfargument  name="date" type="date">
         <cfset sh_id=toBase64(arguments.show_id)>
         <cfset tp=toBase64(arguments.tprice)>
         <cfset ts=toBase64(arguments.time_sl)>
-        <cflocation  url="../payment.cfm?show_id=#sh_id#&tprice=#tp#&ts=#ts#">ss
+        <cfset pdate=toBase64(arguments.date)>
+        <cfset seat_num=toBase64(arguments.seats)>
+        <cflocation  url="../payment.cfm?show_id=#sh_id#&tprice=#tp#&ts=#ts#&date=#pdate#&seat_num=#seat_num#" addtoken="no">
     </cffunction>
 
     <cffunction name="contactUs" access="remote">
