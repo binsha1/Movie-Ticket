@@ -124,12 +124,3 @@
 
 </html>
 
-Status Update	            :  29-07-2022
-Working on 	            :  Movie ticket
-Task                             : Seat Arrangement Template Design & Functionality |
-                                   Forgot Password Form Design|
-                                   Forgot Password Functionality|
-                                   Forgot Password Backend Validation
-Task Completion        :  66%
-ETA                             : 12-08-2022
-Link                            : https://github.com/binsha1/Movie-Ticket.git
