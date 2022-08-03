@@ -37,24 +37,24 @@
 
         <div class="col-md-8">
             <div class="payment-right">
-                <form action="components/controller.cfc?method=userSignUp" method="post">
+                
                 <cfoutput>
                 <div class="form-outline mb-4">
                  <label class="form-label" for="form3Example1cg"> Name</label>
-                  <input type="text" id="form3Example1cg" name="full_name" class="form-control " placeholder="Name" value="#session.userLog.user_name#" required/>
+                  <input type="text" id="name_p" name="full_name" class="form-control " placeholder="Name" value="#session.userLog.user_name#" required/>
                  
                 </div>
 
                 <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example3cg">Email</label>
-                  <input type="email" name="email" id="form3Example3cg" class="form-control"  placeholder="Email Id" value="#session.userLog.email_id#" required/>
+                  <input type="email" name="email" id="email_p" class="form-control"  placeholder="Email Id" value="#session.userLog.email_id#" required/>
                   
                 </div>
 
                 <div class="form-outline mb-4 col-lg-5">
                 <label class="form-label" for="form3Example4cg">Total Amount</label>
                 
-                  <input type="text" name="total_amount" id="form3Example3cg" class="form-control"  placeholder="Total Amount" value="#total_price#" disabled />
+                  <input type="text" name="total_amount" id="amount" class="form-control"  placeholder="Total Amount" value="#total_price#" disabled />
                 </cfoutput> 
                 </div>
                 <div class="form-group row">
@@ -63,9 +63,10 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <input type="submit" class="btn btn-showing" name="submit" value="Payment">
+                 <!--- <input type="submit" class="btn btn-showing" name="submit" value="Payment">--->
+                 <button id="rzp-button1" onclick="payNow()">Pay</button>
                 </div>
-            </form>
+            
             </div>
 		</div>
     </div>
@@ -74,4 +75,11 @@
 			<div class="clearfix"></div>
 		</div>
 		</div>
+
+    
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+</script>
+
 <cfinclude  template="user_footer.cfm">
