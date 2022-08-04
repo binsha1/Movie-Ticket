@@ -198,12 +198,95 @@
         <cfargument  name="time_sl" type="integer">
         <cfargument  name="show_id" type="integer">
         <cfargument  name="date" type="date">
+        <cfset local.seat_split =arguments.seats.Split(",")>
+        <cfset local.seat_num=ArrayLen(seat_split)>
+        <cfquery name="select_seat" result="select_res">
+            SELECT * FROM movie_ticket.reservation WHERE 
+            seats=<cfqueryparam value="#arguments.seats#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        <cfif select_res.RecordCount EQ 0>
+            <cfquery name="reserve" result="reserve_res">
+                    INSERT into movie_ticket.reservation(
+                        seats,
+                        seat_num,
+                        select_date,
+                        time_slot,
+                        show_id,
+                        price,
+                        paid
+                    )
+                    VALUES(
+                        <cfqueryparam value="#arguments.seats#" cfsqltype="CF_SQL_VARCHAR">,
+                        <cfqueryparam value="#local.seat_num#" cfsqltype="CF_SQL_VARCHAR">,
+                        <cfqueryparam value="#arguments.date#" cfsqltype="CF_SQL_DATE">,
+                        <cfqueryparam value="#arguments.time_sl#" cfsqltype="CF_SQL_INTEGER">,
+                        <cfqueryparam value="#arguments.show_id#" cfsqltype="CF_SQL_INTEGER">,
+                        <cfqueryparam value="#arguments.tprice#" cfsqltype="CF_SQL_VARCHAR">,
+                        <cfqueryparam value="0" cfsqltype="CF_SQL_INTEGER">
+                    )
+
+            </cfquery>
+            <cfif reserve_res.RecordCount EQ 1>
+                <cfset reserve_id=reserve_res.GENERATED_KEY>
+                <cflocation  url="../payment.cfm?reserve_id=#toBase64(reserve_id)#" addtoken="no">       
+            </cfif>
+        </cfif>
+        <!---<cfset sh_id=toBase64(arguments.show_id)>
+        <cfset tp=toBase64(arguments.tprice)>
+        <cfset ts=toBase64(arguments.time_sl)>
+        <cfset pdate=toBase64(arguments.date)>
+        <cfset seat_num=toBase64(arguments.seats)>---->
+    </cffunction>
+    
+    <cffunction name="getReservation" access="remote">
+        <cfargument name="id" type="integer">
+        <cfquery name="reserve_res" result="reserve">
+            SELECT r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
+            m.movie_name,m.language,m.genre,m.movie_format,
+            th.theatre_name,th.address,
+            s.screen_name,
+            sh.theatre_id,sh.total_seats,
+            st.start_time,st.show_name
+            FROM reservation r INNER JOIN manage_shows sh ON r.show_id=sh.id
+            INNER JOIN screen_show_time st ON st.id=r.time_slot
+            INNER JOIN theatre th ON th.id=sh.theatre_id
+            INNER JOIN movie m ON m.id=sh.movie_id
+            INNER JOIN screen s ON s.id=sh.screen_id
+            WHERE r.id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+      
+        
+        <cfreturn reserve_res>
+    </cffunction>
+
+    <cffunction name="confirmPayment" access="remote">
+        <cfargument  name="reserve_id" type="integer">
+        
+        <cfquery name="update_reserve" result="up_reserve">
+            UPDATE movie_ticket.reservation 
+            SET paid=<cfqueryparam value="1" cfsqltype="CF_SQL_INTEGER">
+            WHERE id=<cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        
+        <!---
+        <cfset local.id=arguments.reserve_id>
+        <cfset reserve_data=getReservation(local.id)>
+        <cfdump var="#reserve_data#">
+        <cfabort>
+        <cfargument  name="seats" type="string">
+        <cfargument  name="tprice" type="string">
+        <cfargument  name="time_sl" type="integer">
+        <cfargument  name="show_id" type="integer">
+        <cfargument  name="date" type="date">
         <cfset sh_id=toBase64(arguments.show_id)>
         <cfset tp=toBase64(arguments.tprice)>
         <cfset ts=toBase64(arguments.time_sl)>
         <cfset pdate=toBase64(arguments.date)>
         <cfset seat_num=toBase64(arguments.seats)>
         <cflocation  url="../payment.cfm?show_id=#sh_id#&tprice=#tp#&ts=#ts#&date=#pdate#&seat_num=#seat_num#" addtoken="no">
+        --->
+        <cflocation  url="../ticket_download.cfm" addtoken="no">
     </cffunction>
 
     <cffunction name="contactUs" access="remote">

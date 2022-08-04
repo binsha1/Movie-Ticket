@@ -74,7 +74,6 @@
                     <div class="sits-anchor">screen</div>
                     
                     <div class="sits">
-                    
                         <cfoutput>
                             <cfloop from="1" to="#columns#" index="k" step="1">
                             <span class="sits__indecator">

@@ -451,7 +451,15 @@ var tseats=$("#tseat").val();
         $(".time_data").css("display", "block");
         $("#proceed_btn").prop("disabled",false);
     }
-   else if(seat_arr.length>=tseats)
+    else if(seat_arr.length>tseats)
+    {
+        $("#confirm_alert").text("Selected Seats should be less than required seats");
+        $("#t_price").text("");
+        $("#tprice").val("");
+        $('.time_data').css("display", "none");
+        $("#proceed_btn").prop("disabled",true);
+    }
+    else if(seat_arr.length<tseats)
     {
         $("#confirm_alert").text("Selected Seats should be less than required seats");
         $("#t_price").text("");
@@ -972,11 +980,14 @@ document.querySelector('.custom-file-input').addEventListener('change', function
 
 function payNow()
 {
-    alert("sdgs");
+    
   var email=document.getElementById('email_p').value;
    var name=document.getElementById('name_p').value;
   var amount=document.getElementById('amount').value;
+  var phone=document.getElementById('phone_num').value;
+  var reserve_id=document.getElementById('reserve_id').value;
   var t_price=amount*100;
+ var pay_id="";
   
 var options = {
     "key": "rzp_test_s9cSqIJIxI5xGT", // Enter the Key ID generated from the Dashboard
@@ -989,19 +1000,37 @@ var options = {
     "handler": function (response){
         alert(response.razorpay_payment_id);
         alert(response.razorpay_order_id);
-        alert(response.razorpay_signature)
+        alert(response.razorpay_signature);
+        pay_id=response.razorpay_payment_id;
+        alert("http://127.0.0.1:8500/movie_ticket/components/controller.cfc?method=confirmPayment&reserve_id="+reserve_id+"&pay_id="+response.razorpay_payment_id);
     },
+    
     "prefill": {
         "name": name,
         "email": email,
-        "contact": "9999999999"
+        "contact":phone
     },
     "notes": {
         "address": "Razorpay Corporate Office"
     },
     "theme": {
         "color": "#3399cc"
-    }
+    },
+    "modal": {
+        "ondismiss": function () {
+          if (confirm("Are you sure, you want to close the form?")) {
+            txt = "You pressed OK!";
+            console.log("Checkout form closed by the user");
+          } else {
+            txt = "You pressed Cancel!";
+            console.log("Complete the Payment")
+          }
+        }
+      },
+      
+   "redirect":true,
+    "callback_url":"http://127.0.0.1:8500/movie_ticket/components/controller.cfc?method=confirmPayment&reserve_id="+reserve_id
+
 };
 var rzp1 = new Razorpay(options);
 rzp1.on('payment.failed', function (response){
