@@ -980,8 +980,12 @@
     background-repeat: no-repeat;
   }
   .ticket .ticket__inner {
+<<<<<<< HEAD
    /* border: 3px solid #dbdee1;*/
    border:3px solid black;
+=======
+    border: 3px solid #dbdee1;
+>>>>>>> 6c70a43d9e8a906ab1d1ce1ef136579617b564d9
     overflow: hidden;
     float: left;
     height: 300px;
@@ -989,15 +993,23 @@
   }
   .ticket .ticket__indecator {
     position: relative;
+<<<<<<< HEAD
    /* border: 3px solid #dbdee1;*/
    border: 3px solid black;
+=======
+    border: 3px solid #dbdee1;
+>>>>>>> 6c70a43d9e8a906ab1d1ce1ef136579617b564d9
     width: 50px;
     float: left;
     height: 300px;
     font-family: 'PT Mono';
     font-size: 12px;
+<<<<<<< HEAD
    /* color: #dbdee1;*/
    color:black;
+=======
+    color: #dbdee1;
+>>>>>>> 6c70a43d9e8a906ab1d1ce1ef136579617b564d9
   }
   .ticket .indecator-text {
     position: absolute;
@@ -1052,7 +1064,11 @@
   }
   .ticket .ticket__item {
     display: block;
+<<<<<<< HEAD
    /* margin-bottom: 10px;*/
+=======
+    margin-bottom: 10px;
+>>>>>>> 6c70a43d9e8a906ab1d1ce1ef136579617b564d9
     font-family: 'PT Mono';
     font-size: 14px;
     text-transform: uppercase;
@@ -1071,18 +1087,28 @@
     margin-top: 40px;
   }
   .ticket .ticket__film {
+<<<<<<< HEAD
     border-bottom: 1px solid black;
     /*padding-bottom: 44px;*/
     /*margin-bottom: 28px;*/
     margin-bottom: 0.5rem;
+=======
+    border-bottom: 1px solid #dbdee1;
+    padding-bottom: 44px;
+    margin-bottom: 28px;
+>>>>>>> 6c70a43d9e8a906ab1d1ce1ef136579617b564d9
   }
   .ticket .ticket__movie {
     text-transform: none;
   }
   .ticket-primery {
     overflow: hidden;
+<<<<<<< HEAD
    /* border-left: 3px double #dbdee1;*/
    border-left: 3px double black;
+=======
+    border-left: 3px double #dbdee1;
+>>>>>>> 6c70a43d9e8a906ab1d1ce1ef136579617b564d9
     margin-top: 37px;
     padding: 27px 35px 22px 30px;
   }
