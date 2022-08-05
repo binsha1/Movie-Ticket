@@ -1,4 +1,9 @@
 <cfinclude  template="user_header.cfm">
+<cfparam  name="reserve_id" default="0">
+<cfset id=toString(toBinary(reserve_id))>
+<cfset ticket_res=application.obj.getBookDetails(id)>
+<cfoutput query="ticket_res">
+
 <section class="container text-dark">
             <div class="order-container">
                 <div class="order pt-3">
@@ -12,17 +17,21 @@
                         <div class="ticket__inner">
 
                             <div class="ticket-secondary">
-                                <span class="ticket__item">Ticket number <strong class="ticket__number">a126bym4</strong></span>
-                                <span class="ticket__item ticket__date">25/10/2013</span>
-                                <span class="ticket__item ticket__time">17:45</span>
-                                <span class="ticket__item">Cinema: <span class="ticket__cinema">Cineworld</span></span>
-                                <span class="ticket__item">Hall: <span class="ticket__hall">Visconti</span></span>
-                                <span class="ticket__item ticket__price">price: <strong class="ticket__cost">$60</strong></span>
+                                <h1 class="text-center text-uppercase">#theatre_name#</h1>
+                                <span class="ticket__item">Ticket number : <strong class="ticket__number">#ticket_id#</strong></span>
+                                <span class="ticket__item ">Show date: <strong>#dateFormat(select_date,"full")#</strong></span>
+                                <span class="ticket__item ">Show: <strong>#timeFormat(start_time)#</strong></span>
+                                <span class="ticket__item">Language: <strong><span class="ticket__hall">#language#-#movie_format#</strong></span></span>
+                                <span class="ticket__item">Screen: <strong><span class="ticket__hall">#screen_name#</strong></span></span>
+                                <span class="ticket__item ">price: <strong class="ticket__cost">Rs #price#</strong></span>
                             </div>
 
                             <div class="ticket-primery">
-                                <span class="ticket__item ticket__item--primery ticket__film">Film<br><strong class="ticket__movie">The Fifth Estate (2013)</strong></span>
-                                <span class="ticket__item ticket__item--primery">Sits: <span class="ticket__place">11F, 12F, 13F</span></span>
+                                <span class="ticket__item ticket__item--primery ticket__film">Movie<br><strong class="ticket__movie">#movie_name#</strong></span>
+                                <span class="ticket__item ticket__item--primery">Seats: <span class="ticket__place">#seats#</span></span>
+                                <span class="ticket__item ">Number of Tickets:  <span class="ticket__place">#seat_num#</span></span>
+                                <span class="ticket__item ">Printed On:  <span class="ticket__place">#dateFormat(book_date)# #timeformat(book_time,"hh:mm:ss ")#</span></span>
+                                <h3>Confirmed</h3>
                             </div>
 
 
@@ -32,10 +41,11 @@
                 </div>
 
                 <div class="ticket-control">
-                    <a href="#" class="btn btn-showing">Download</a>
-                    <a href="#" class="btn btn-showing">Back to Home</a>
+                    <a href="download_file.cfm?id=#id#" class="btn btn-showing">Download</a>
+                    <a href="index.cfm" class="btn btn-showing">Back to Home</a>
                 </div>
 
             </div>
         </section>
+        </cfoutput>
 <cfinclude  template="user_footer.cfm">

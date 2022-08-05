@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</cfoutput>
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-									<li><a class="dropdown-item" href="#">Bookings</a></li>
+									<li><a class="dropdown-item" href="view_bookings.cfm">Bookings</a></li>
 									
 									<li><a class="dropdown-item" href="components/controller.cfc?method=userLogout">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
 								</ul>
@@ -130,3 +130,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</nav>				
 	</div>
+
+

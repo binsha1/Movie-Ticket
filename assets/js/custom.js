@@ -1002,7 +1002,8 @@ var options = {
         alert(response.razorpay_order_id);
         alert(response.razorpay_signature);
         pay_id=response.razorpay_payment_id;
-        alert("http://127.0.0.1:8500/movie_ticket/components/controller.cfc?method=confirmPayment&reserve_id="+reserve_id+"&pay_id="+response.razorpay_payment_id);
+        location.href="http://127.0.0.1:8500/movie_ticket/components/controller.cfc?method=confirmPayment&reserve_id="+reserve_id+"&pay_id="+response.razorpay_payment_id;
+        //alert("http://127.0.0.1:8500/movie_ticket/components/controller.cfc?method=confirmPayment&reserve_id="+reserve_id+"&pay_id="+response.razorpay_payment_id);
     },
     
     "prefill": {
@@ -1028,8 +1029,8 @@ var options = {
         }
       },
       
-   "redirect":true,
-    "callback_url":"http://127.0.0.1:8500/movie_ticket/components/controller.cfc?method=confirmPayment&reserve_id="+reserve_id
+   //"redirect":true,
+    //"callback_url":"http://127.0.0.1:8500/movie_ticket/components/controller.cfc?method=confirmPayment&reserve_id="+reserve_id
 
 };
 var rzp1 = new Razorpay(options);

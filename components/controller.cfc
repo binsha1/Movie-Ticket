@@ -246,7 +246,8 @@
             th.theatre_name,th.address,
             s.screen_name,
             sh.theatre_id,sh.total_seats,
-            st.start_time,st.show_name
+            st.start_time,st.show_name,
+            m.id as m_id , sh.id as sh_id, s.id as s_id , st.id as st_id ,th.id as th_id
             FROM reservation r INNER JOIN manage_shows sh ON r.show_id=sh.id
             INNER JOIN screen_show_time st ON st.id=r.time_slot
             INNER JOIN theatre th ON th.id=sh.theatre_id
@@ -259,34 +260,85 @@
         <cfreturn reserve_res>
     </cffunction>
 
+    <cffunction name="getBookDetails" access="remote">
+        <cfargument name="id" type="integer">
+        <cfquery name="book_res" result="res_book">
+            SELECT t.ticket_id ,t.payment_id, book_date,book_time,r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
+                m.movie_name,m.language,m.genre,m.movie_format,
+                th.theatre_name,th.address,
+                s.screen_name,
+                sh.theatre_id,sh.total_seats,
+                st.start_time,st.show_name,
+                m.id as m_id , sh.id as sh_id, s.id as s_id , st.id as st_id ,th.id as th_id
+                FROM book_ticket t INNER JOIN reservation r ON t.reserve_id=r.id
+                INNER JOIN manage_shows sh ON r.show_id=sh.id
+                INNER JOIN screen_show_time st ON st.id=r.time_slot
+                INNER JOIN theatre th ON th.id=sh.theatre_id
+                INNER JOIN movie m ON m.id=sh.movie_id
+                INNER JOIN screen s ON s.id=sh.screen_id
+                WHERE r.id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        <cfreturn book_res>
+    </cffunction>
+
+    <cffunction name="getBookings" access="remote">
+        
+        <cfquery name="book_res" result="res_book">
+            SELECT t.ticket_id ,t.payment_id, book_date,book_time,r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
+                m.movie_name,m.language,m.genre,m.movie_format,
+                th.theatre_name,th.address,
+                s.screen_name,
+                sh.theatre_id,sh.total_seats,
+                st.start_time,st.show_name,
+                m.id as m_id , sh.id as sh_id, s.id as s_id , st.id as st_id ,th.id as th_id
+                FROM book_ticket t INNER JOIN reservation r ON t.reserve_id=r.id
+                INNER JOIN manage_shows sh ON r.show_id=sh.id
+                INNER JOIN screen_show_time st ON st.id=r.time_slot
+                INNER JOIN theatre th ON th.id=sh.theatre_id
+                INNER JOIN movie m ON m.id=sh.movie_id
+                INNER JOIN screen s ON s.id=sh.screen_id
+                WHERE t.user_id=<cfqueryparam value="#session.userLog.user_id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        <cfreturn book_res>
+    </cffunction>
+
     <cffunction name="confirmPayment" access="remote">
         <cfargument  name="reserve_id" type="integer">
-        
-        <cfquery name="update_reserve" result="up_reserve">
-            UPDATE movie_ticket.reservation 
-            SET paid=<cfqueryparam value="1" cfsqltype="CF_SQL_INTEGER">
-            WHERE id=<cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        
-        
-        <!---
-        <cfset local.id=arguments.reserve_id>
-        <cfset reserve_data=getReservation(local.id)>
-        <cfdump var="#reserve_data#">
-        <cfabort>
-        <cfargument  name="seats" type="string">
-        <cfargument  name="tprice" type="string">
-        <cfargument  name="time_sl" type="integer">
-        <cfargument  name="show_id" type="integer">
-        <cfargument  name="date" type="date">
-        <cfset sh_id=toBase64(arguments.show_id)>
-        <cfset tp=toBase64(arguments.tprice)>
-        <cfset ts=toBase64(arguments.time_sl)>
-        <cfset pdate=toBase64(arguments.date)>
-        <cfset seat_num=toBase64(arguments.seats)>
-        <cflocation  url="../payment.cfm?show_id=#sh_id#&tprice=#tp#&ts=#ts#&date=#pdate#&seat_num=#seat_num#" addtoken="no">
-        --->
-        <cflocation  url="../ticket_download.cfm" addtoken="no">
+        <cfargument  name="pay_id" type="string">
+        <cfif Len(Trim(arguments.pay_id)) GT 0>
+            <cfquery name="update_reserve" result="up_reserve">
+                UPDATE movie_ticket.reservation 
+                SET paid=<cfqueryparam value="1" cfsqltype="CF_SQL_INTEGER">
+                WHERE id=<cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">
+            </cfquery>
+            <cfset local.id=arguments.reserve_id>
+            <cfset reserve_data=getReservation(local.id)>
+            <cfoutput query='reserve_res'>
+                <cfset local.ticket_id="BKID" & m_id & th_id & s_id & st_id & sh_id & id>
+            </cfoutput>
+            <cfquery name="insert_ticket" result="ins_ticket">
+                INSERT into movie_ticket.book_ticket(
+                        ticket_id,
+                        payment_id,
+                        book_date,
+                        book_time,
+                        reserve_id,
+                        user_id                        
+                    )
+                    VALUES(
+                        <cfqueryparam value="#local.ticket_id#" cfsqltype="CF_SQL_VARCHAR">,
+                        <cfqueryparam value="#arguments.pay_id#" cfsqltype="CF_SQL_VARCHAR">,
+                        <cfqueryparam value="#dateformat(now(),"yyyy-mm-dd")#" cfsqltype="CF_SQL_DATE">,
+                        <cfqueryparam value="#timeFormat(now(), "hh:mm:ss")#" cfsqltype="CF_SQL_TIME">,
+                        <cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">,
+                        <cfqueryparam value="#session.userLog.user_id#" cfsqltype="CF_SQL_INTEGER">
+                      
+                    )
+            </cfquery>
+        </cfif> 
+        <cfif ins_ticket.RecordCount  NEQ 0>     
+            <cflocation  url="../ticket_download.cfm?reserve_id=#toBase64(arguments.reserve_id)#" addtoken="no">
+        </cfif>
     </cffunction>
 
     <cffunction name="contactUs" access="remote">
