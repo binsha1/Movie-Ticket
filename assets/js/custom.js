@@ -421,7 +421,8 @@ $('.seat_slot').on('click',function(){
             },
             success:function(data) {  
                 console.log(data);
-                $(".seat_label").text("(" +data[0].total_seats+ " Left)");
+                var available=data[0].total_seats-data[0].booked_seat;
+                $(".seat_label").text("(" +available+ " Left)");
                 $("#total_seats").val(data[0].total_seats);
                 $("#show_id").val(data[0].id);
 

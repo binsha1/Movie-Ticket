@@ -35,7 +35,8 @@
                         screen_time_id,
                         end_date,                        
                         priority,                      
-                        total_seats
+                        total_seats,
+                        booked_seat
                         
                         ) 
                     VALUES(                            
@@ -45,7 +46,8 @@
                             <cfqueryparam value="#arguments.screen_time#" cfsqltype="CF_SQL_INTEGER">,
                             <cfqueryparam value="#arguments.end_date#" cfsqltype="CF_SQL_VARCHAR">,
                             <cfqueryparam value="#arguments.show_priority#" cfsqltype="CF_SQL_VARCHAR">,                            
-                            <cfqueryparam value="#arguments.total_seats#" cfsqltype="CF_SQL_VARCHAR"> 
+                            <cfqueryparam value="#arguments.total_seats#" cfsqltype="CF_SQL_VARCHAR">, 
+                            <cfqueryparam value="0" cfsqltype="CF_SQL_VARCHAR">
                             )
                 </cfquery>            
                 <cfif show_res.RecordCount EQ 1>
@@ -138,7 +140,7 @@
             th.theatre_name,
             s.screen_name, s.gold_rate,s.silver_rate,
             st.start_time,st.show_name,
-            sh.end_date,sh.priority,sh.total_seats,
+            sh.end_date,sh.priority,sh.total_seats,sh.booked_seat,
             sh.id,m.id as m_id,th.id as t_id,s.id as s_id,st.id as st_id        
             FROM movie_ticket.manage_shows sh
             INNER JOIN movie_ticket.movie m ON sh.movie_id =m.id

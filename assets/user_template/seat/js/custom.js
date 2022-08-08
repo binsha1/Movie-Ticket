@@ -542,6 +542,28 @@ $('.order__control-btn').click(function (e) {
 function init_BookingTwo () {
 "use strict";
 
+var shIdVal=$("#shIdVal").val();
+$.ajax({   
+    url: "components/controller.cfc",
+    type: 'get',
+    dataType:"json",
+    data:{
+    method:"getTheatreSeats",
+      show_id:shIdVal         
+    },
+    success: function(data)
+    {
+        //console.log(data.length);      
+        for(let i=0;i<data.length;i++)      
+        {
+          // alert(data[i].seat_name);
+           var place=document.querySelector('[data-place="'+data[i].seat_name+'"]');
+            $(place).addClass("sits-state--not");
+        }
+                          
+    }         
+});
+
 //1. Buttons for choose order method
 //order factor
 $('.order__control-btn').click(function (e) {
