@@ -10,6 +10,7 @@
         <div class="place-form-area">
         <section class="container">
         <cfoutput >
+        <input type="hidden" name="shId"  id="shIdVal" value="#showId#">       
         <cfloop array="#show_res#" index="i">
             <div class="order-container">
                 <div class="order pt-3">
