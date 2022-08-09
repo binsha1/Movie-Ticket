@@ -29,7 +29,7 @@ CREATE TABLE `crew` (
   `crew_photo` varchar(200) DEFAULT NULL,
   `movie_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `crew` (
 
 LOCK TABLES `crew` WRITE;
 /*!40000 ALTER TABLE `crew` DISABLE KEYS */;
-INSERT INTO `crew` VALUES (1,'Director','R Madhavan','madhavan.jpeg',1),(3,'Musician','Sam','user_image.png',1);
+INSERT INTO `crew` VALUES (1,'Director','R Madhavan','madhavan.jpeg',1),(3,'Musician','Sam','user_image.png',1),(4,'Director','Shaji Kailas','road.jpg',5);
 /*!40000 ALTER TABLE `crew` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-11 18:47:40
+-- Dump completed on 2022-08-09 18:32:16

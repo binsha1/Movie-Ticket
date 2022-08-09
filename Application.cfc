@@ -45,7 +45,22 @@
                     <cfabort>
                 </cfoutput>
             </cfif>
-        </cfif> 
+            </cfif>
+
+            <cfif NOT structKeyExists(session, 'userLog') >   
+                <cfif findNoCase("seat_select.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                    findNoCase("payment.cfm",cgi.SCRIPT_NAME) GT 0||
+                    findNoCase("view_bookings.cfm",cgi.SCRIPT_NAME) GT 0||
+                    findNoCase("ticket_download.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                    findNoCase("download_file.cfm",cgi.SCRIPT_NAME) GT 0>                    
+                    <cfoutput>                                        
+                        <center><h1>Login Required</h1>
+                        <p>Please Login to your account</p><br>
+                        <a href="login.cfm">Click Here</a></center>
+                        <cfabort>
+                    </cfoutput>
+                </cfif>
+            </cfif> 
     </cffunction>      
 
     <!---<cffunction name="onSessionEnd" returntype="void" access="public">

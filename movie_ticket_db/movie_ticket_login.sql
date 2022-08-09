@@ -27,8 +27,10 @@ CREATE TABLE `login` (
   `user_name` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `role` varchar(45) DEFAULT NULL,
+  `email_id` varchar(100) DEFAULT NULL,
+  `registered_on` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +39,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (1,'admin','f865b53623b121fd34ee5426c792e5c33af8c227','admin');
+INSERT INTO `login` VALUES (1,'admin','F865B53623B121FD34EE5426C792E5C33AF8C227','admin',NULL,NULL),(11,'binsh','48697F32BCA5D36491477A1DB1C355086D4AF911','user','binsh@gmail.com','2022-07-28 15:44:46'),(12,'bin','BF69CC69DF81BA7C74E6DF455ABCF7CB1F94913A','user','bin@gmail.com','2022-07-28 15:44:58');
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-11 18:47:41
+-- Dump completed on 2022-08-09 18:32:15

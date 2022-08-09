@@ -28,11 +28,12 @@ CREATE TABLE `manage_shows` (
   `theatre_id` int DEFAULT NULL,
   `screen_id` int DEFAULT NULL,
   `screen_time_id` int DEFAULT NULL,
-  `end_date` varchar(45) DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
   `priority` varchar(45) DEFAULT NULL,
   `total_seats` varchar(45) DEFAULT NULL,
+  `booked_seat` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +42,7 @@ CREATE TABLE `manage_shows` (
 
 LOCK TABLES `manage_shows` WRITE;
 /*!40000 ALTER TABLE `manage_shows` DISABLE KEYS */;
-INSERT INTO `manage_shows` VALUES (1,1,3,7,1,'2022-07-30','Top','23'),(2,1,4,10,5,'2022-07-28','Medium','25');
+INSERT INTO `manage_shows` VALUES (1,1,3,11,8,'2022-08-05','Top','45',0),(4,1,3,7,1,'2022-08-20','Top','56',6),(5,1,4,9,3,'2022-08-13','Bottom','63',2),(6,10,3,11,8,'2022-09-17','Top','56',0),(8,5,4,9,4,'2022-08-16','Medium','20',0),(9,3,3,7,1,'2022-08-09','Top','12',0),(13,11,3,7,1,'2022-08-03','Top','12',0),(14,5,12,15,12,'2022-08-28','Top','34',0);
 /*!40000 ALTER TABLE `manage_shows` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-11 18:47:41
+-- Dump completed on 2022-08-09 18:32:16

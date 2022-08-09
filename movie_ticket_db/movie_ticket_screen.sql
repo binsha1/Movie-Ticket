@@ -29,7 +29,7 @@ CREATE TABLE `screen` (
   `silver_rate` double DEFAULT NULL,
   `theatre_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `screen` (
 
 LOCK TABLES `screen` WRITE;
 /*!40000 ALTER TABLE `screen` DISABLE KEYS */;
-INSERT INTO `screen` VALUES (1,'Screen1',300,200,2),(3,'Screen2',400,200,2),(7,'Screen1',100,200,3),(8,'Screen2',200,300,3),(9,'Screen1',200,300,4),(10,'Screen2',300,400,4);
+INSERT INTO `screen` VALUES (1,'Screen1',300,200,2),(3,'Screen2',400,200,2),(7,'Screen1',100,200,3),(9,'Screen1',200,300,4),(10,'Screen2',300,400,4),(11,'Screen2',200,300,3),(13,'Screen3',300,400,3),(14,'dgs',100,100,3),(15,'Screen1',300,400,12);
 /*!40000 ALTER TABLE `screen` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-11 18:47:41
+-- Dump completed on 2022-08-09 18:32:16

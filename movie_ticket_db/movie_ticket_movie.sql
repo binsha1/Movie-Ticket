@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `movie`;
 CREATE TABLE `movie` (
   `id` int NOT NULL AUTO_INCREMENT,
   `movie_name` varchar(100) DEFAULT NULL,
-  `release_date` varchar(100) DEFAULT NULL,
+  `release_date` date DEFAULT NULL,
   `movie_format` varchar(45) DEFAULT NULL,
   `genre` varchar(45) DEFAULT NULL,
   `language` varchar(100) DEFAULT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `movie` (
   `wallpaper` varchar(100) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `movie` (
 
 LOCK TABLES `movie` WRITE;
 /*!40000 ALTER TABLE `movie` DISABLE KEYS */;
-INSERT INTO `movie` VALUES (1,'Rocketry','2022-06-29','3D','Drama','English','02:00:00','https://youtu.be/nvOB1uGUSl0','rocketry.jpg','rocketry_wallpaper.jpg','A biographical drama based on the life of former ISRO scientist Nambi Narayanan, who fought years on end for justice after being falsely accused of espionage.'),(3,'Spider-Man: No Way Home','2021-06-16','3D','Adventure','English','02:00:00','https://youtu.be/o_beiBRTp1c','spider_man-poster.jpg','spider-wallpaper.jpg','When Dr. Strange`s spell to restore Spider-Man`s identity goes awry, Peter is forced to overcome his greatest challenge yet.'),(4,'fdgfdh','2022-07-04','3D','Action','English','02:00:00','fdhdfhdhdhfgjf','spider-wallpaper.jpg','spider-wallpaper.jpg','fgfdhfdh');
+INSERT INTO `movie` VALUES (1,'Rocketry','2022-06-29','3D','Drama','English','02:30:00','https://youtu.be/nvOB1uGUSl0','rocketry.jpg','rocketry_wallpaper.jpg','A biographical drama based on the life of former ISRO scientist Nambi Narayanan, who fought years on end for justice after being falsely accused of espionage.'),(3,'Spider-Man: No Way Home','2021-06-16','3D','Adventure','English','02:00:00','https://youtu.be/o_beiBRTp1c','spider_man-poster.jpg','spider-wallpaper.jpg','When Dr. Strange`s spell to restore Spider-Man`s identity goes awry, Peter is forced to overcome his greatest challenge yet.'),(5,'Kaduva','2022-07-07','2D','Action','Malayalam','02:30:00','https://youtu.be/qNHJrP3ihy8','kaduva.jpg','kaduva-wallpaper.jpg','Set in the late 90s, Kaduva revolves around the life of a young rubber planter from Mundakayam and his rivalry with a high ranking officer in the Kerala Police.'),(9,'dfgdf','2022-07-23','3D','Action','Malayalam','02:00:00','dgdf','pic-2.jpg','event-single.jpg','sgsgsg'),(10,'fdgfdgfd','2022-08-26','2D','Comedy','English','02:03:00','sgss','b2.jpg','b4.jpg','cbxchfdfg'),(11,'sdgsdg','2022-07-07','3D','Action','English','02:00:00','sdg','e1.jpg','f2.jpg','sdgsdgsd');
 /*!40000 ALTER TABLE `movie` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-11 18:47:40
+-- Dump completed on 2022-08-09 18:32:17

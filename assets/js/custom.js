@@ -800,6 +800,19 @@ function checkTheatreEmail()
     }
 
    }
+
+   $(" a.nav-link.date-nav ").on("click", function(e) {
+    
+    $("a.nav-link.date-nav.active").removeClass("active");
+    $(this).addClass("active");
+   //e.preventDefault();
+  });
+
+  $(".nav-link").on("click", function(){
+	$(".nav-link.active").removeClass("active");
+	$(this).addClass("active");
+});
+   
    /*function printTable() {
     
     var printContents = document.getElementById('tableData').innerHTML;    
@@ -988,7 +1001,7 @@ function payNow()
   var phone=document.getElementById('phone_num').value;
   var reserve_id=document.getElementById('reserve_id').value;
   var t_price=amount*100;
- var pay_id="";
+   var pay_id="";
   
 var options = {
     "key": "rzp_test_s9cSqIJIxI5xGT", // Enter the Key ID generated from the Dashboard
@@ -999,12 +1012,12 @@ var options = {
     "image": "https://example.com/your_logo",
     //"order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
     "handler": function (response){
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
+      //  alert(response.razorpay_payment_id);
+      //  alert(response.razorpay_order_id);
+       // alert(response.razorpay_signature);
         pay_id=response.razorpay_payment_id;
         location.href="http://127.0.0.1:8500/movie_ticket/components/controller.cfc?method=confirmPayment&reserve_id="+reserve_id+"&pay_id="+response.razorpay_payment_id;
-        //alert("http://127.0.0.1:8500/movie_ticket/components/controller.cfc?method=confirmPayment&reserve_id="+reserve_id+"&pay_id="+response.razorpay_payment_id);
+        
     },
     
     "prefill": {

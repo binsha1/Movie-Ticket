@@ -209,13 +209,13 @@
         <cfargument  name="time_sl" type="integer">
         <cfargument  name="show_id" type="integer">
         <cfargument  name="date" type="date">
-        <cfset local.seat_split =arguments.seats.Split(",")>
-        
+        <cfset local.seat_split =arguments.seats.Split(",")>        
         
         <cfset local.seat_num=ArrayLen(seat_split)>
         <cfquery name="select_seat" result="select_res">
             SELECT * FROM movie_ticket.reservation WHERE 
-            seats=<cfqueryparam value="#arguments.seats#" cfsqltype="CF_SQL_VARCHAR">
+            seats=<cfqueryparam value="#arguments.seats#" cfsqltype="CF_SQL_VARCHAR"> 
+            AND show_id=<cfqueryparam value="#arguments.show_id#" cfsqltype="CF_SQL_INTEGER"> 
         </cfquery>
         <cfif select_res.RecordCount EQ 0>
             <cfquery name="reserve" result="reserve_res">
@@ -237,12 +237,9 @@
                         <cfqueryparam value="#arguments.tprice#" cfsqltype="CF_SQL_VARCHAR">,
                         <cfqueryparam value="0" cfsqltype="CF_SQL_INTEGER">
                     )
-
-
             </cfquery>
            
-                    <cfloop from="1" to="#local.seat_num#" index="i">
-                     
+                    <cfloop from="1" to="#local.seat_num#" index="i">                     
                         <cfquery name="seat_ins" result="seat_res">
                         INSERT into movie_ticket.seat(
                         seat_name,
@@ -313,10 +310,9 @@
         <cfreturn book_res>
     </cffunction>
 
-    <cffunction name="getBookings" access="remote">
-        
+    <cffunction name="getBookings" access="remote">        
         <cfquery name="book_res" result="res_book">
-            SELECT t.ticket_id ,t.payment_id, book_date,book_time,r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
+            SELECT t.ticket_id ,t.payment_id, t.book_date,t.book_time,r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
                 m.movie_name,m.language,m.genre,m.movie_format,
                 th.theatre_name,th.address,
                 s.screen_name,

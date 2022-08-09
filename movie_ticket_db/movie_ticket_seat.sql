@@ -16,30 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `screen_show_time`
+-- Table structure for table `seat`
 --
 
-DROP TABLE IF EXISTS `screen_show_time`;
+DROP TABLE IF EXISTS `seat`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `screen_show_time` (
+CREATE TABLE `seat` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `show_name` varchar(100) DEFAULT NULL,
-  `screen_id` int DEFAULT NULL,
-  `theatre_id` int DEFAULT NULL,
-  `start_time` varchar(45) DEFAULT NULL,
+  `seat_name` varchar(45) DEFAULT NULL,
+  `reserve_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `screen_show_time`
+-- Dumping data for table `seat`
 --
 
-LOCK TABLES `screen_show_time` WRITE;
-/*!40000 ALTER TABLE `screen_show_time` DISABLE KEYS */;
-INSERT INTO `screen_show_time` VALUES (1,'First Show',7,3,'17:00'),(2,'Second Show',8,3,'23:00'),(3,'First Show',9,4,'16:00'),(4,'Matinee',9,4,'12:00'),(5,'Second Show',10,4,'22:00'),(7,'Matinee',12,3,'13:00'),(8,'Second Show',11,3,'21:00'),(9,'Matinee',13,3,'13:00'),(11,'Second Show',7,3,'17:00'),(12,'First Show',15,12,'12:00');
-/*!40000 ALTER TABLE `screen_show_time` ENABLE KEYS */;
+LOCK TABLES `seat` WRITE;
+/*!40000 ALTER TABLE `seat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `seat` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
