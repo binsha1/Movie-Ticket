@@ -252,8 +252,7 @@
                     )
                     </cfquery>
                     
-                    </cfloop>
-                    
+                    </cfloop>                  
             
             <cfif reserve_res.RecordCount EQ 1 && seat_res.RecordCount NEQ 0>
                 <cfset reserve_id=reserve_res.GENERATED_KEY>
@@ -334,50 +333,51 @@
         <cfargument  name="reserve_id" type="integer">
         <cfargument  name="pay_id" type="string">
         <cfif Len(Trim(arguments.pay_id)) GT 0>
-            <cfquery name="update_reserve" result="up_reserve">
-                UPDATE movie_ticket.reservation 
-                SET paid=<cfqueryparam value="1" cfsqltype="CF_SQL_INTEGER">
-                WHERE id=<cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">
-            </cfquery>
-            <cfquery name="select_booked" result="book_show_res">
-                SELECT sh.booked_seat FRom movie_ticket.manage_shows sh 
-                inner join movie_ticket.reservation r ON r.show_id=sh.id 
-                WHERE r.id=<cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">
-            </cfquery>
-            <cfoutput query="select_booked">
-                <cfset local.booked=booked_seat>                
-            </cfoutput>
-            <cfset local.id=arguments.reserve_id>
-            <cfset reserve_data=getReservation(local.id)>
-            <cfoutput query='reserve_res'>
-                <cfset local.ticket_id="BKID" & m_id & th_id & s_id & st_id & sh_id & id>
-                <cfset local.total_booked=local.booked+seat_num>                
-            </cfoutput>
-            
-            <cfquery name="insert_ticket" result="ins_ticket">
-                INSERT into movie_ticket.book_ticket(
-                        ticket_id,
-                        payment_id,
-                        book_date,
-                        book_time,
-                        reserve_id,
-                        user_id                        
-                    )
-                    VALUES(
-                        <cfqueryparam value="#local.ticket_id#" cfsqltype="CF_SQL_VARCHAR">,
-                        <cfqueryparam value="#arguments.pay_id#" cfsqltype="CF_SQL_VARCHAR">,
-                        <cfqueryparam value="#dateformat(now(),"yyyy-mm-dd")#" cfsqltype="CF_SQL_DATE">,
-                        <cfqueryparam value="#timeFormat(now(), "hh:mm:ss")#" cfsqltype="CF_SQL_TIME">,
-                        <cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">,
-                        <cfqueryparam value="#session.userLog.user_id#" cfsqltype="CF_SQL_INTEGER">                      
-                    )
-            </cfquery>
-            <cfquery name="up_book" result="booked_res">
-                UPDATE movie_ticket.manage_shows sh
-                INNER JOIN movie_ticket.reservation r ON  sh.id=r.show_id SET 
-                sh.booked_seat=<cfqueryparam value="#local.total_booked#" cfsqltype="CF_SQL_NUMERIC">
-                 WHERE r.id=<cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">
-            </cfquery>
+            <cftransaction>
+                <cfquery name="update_reserve" result="up_reserve">
+                    UPDATE movie_ticket.reservation 
+                    SET paid=<cfqueryparam value="1" cfsqltype="CF_SQL_INTEGER">
+                    WHERE id=<cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">
+                </cfquery>
+                <cfquery name="select_booked" result="book_show_res">
+                    SELECT sh.booked_seat FRom movie_ticket.manage_shows sh 
+                    inner join movie_ticket.reservation r ON r.show_id=sh.id 
+                    WHERE r.id=<cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">
+                </cfquery>
+                <cfoutput query="select_booked">
+                    <cfset local.booked=booked_seat>                
+                </cfoutput>
+                <cfset local.id=arguments.reserve_id>
+                <cfset reserve_data=getReservation(local.id)>
+                <cfoutput query='reserve_res'>
+                    <cfset local.ticket_id="BKID" & m_id & th_id & s_id & st_id & sh_id & id>
+                    <cfset local.total_booked=local.booked+seat_num>                
+                </cfoutput>            
+                <cfquery name="insert_ticket" result="ins_ticket">
+                    INSERT into movie_ticket.book_ticket(
+                            ticket_id,
+                            payment_id,
+                            book_date,
+                            book_time,
+                            reserve_id,
+                            user_id                        
+                        )
+                        VALUES(
+                            <cfqueryparam value="#local.ticket_id#" cfsqltype="CF_SQL_VARCHAR">,
+                            <cfqueryparam value="#arguments.pay_id#" cfsqltype="CF_SQL_VARCHAR">,
+                            <cfqueryparam value="#dateformat(now(),"yyyy-mm-dd")#" cfsqltype="CF_SQL_DATE">,
+                            <cfqueryparam value="#timeFormat(now(), "hh:mm:ss")#" cfsqltype="CF_SQL_TIME">,
+                            <cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">,
+                            <cfqueryparam value="#session.userLog.user_id#" cfsqltype="CF_SQL_INTEGER">                      
+                        )
+                </cfquery>
+                <cfquery name="up_book" result="booked_res">
+                    UPDATE movie_ticket.manage_shows sh
+                    INNER JOIN movie_ticket.reservation r ON  sh.id=r.show_id SET 
+                    sh.booked_seat=<cfqueryparam value="#local.total_booked#" cfsqltype="CF_SQL_NUMERIC">
+                    WHERE r.id=<cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">
+                </cfquery>
+            </cftransaction>
         </cfif> 
         <cfif ins_ticket.RecordCount  NEQ 0 && booked_res.RecordCount NEQ 0>   
               
@@ -409,7 +409,7 @@
                 </cfquery>
                 <cfif result.RecordCount EQ 1>
                     <cfset local.status=hash('1','sha')>
-                </cfif>>
+                </cfif>
         <cfelse>
             <cfset local.status=hash('2','sha')>
         </cfif>

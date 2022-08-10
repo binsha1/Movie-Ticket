@@ -3,8 +3,11 @@
 <cfset today_date=parseDateTime(toString(toBinary(t_date)))>
 <cfparam name="cdate" default="#DateFormat(Now(),"yyyy-mm-dd")#">
 <cfset fromDate = Now()+1> 
-<cfset toDate = Now() + 5> 
-<cfset today_movies=application.show.todayDetails()>
+<cfset toDate = Now() + 5>
+
+<cfset today_movies=application.show.showDate(today_date)> 
+<!---
+<cfset today_movies=application.show.todayDetails()>--->
 <div class="container p-5">
 	<ul class="nav nav-pills justify-content-center" >
 		<cfoutput>
@@ -44,6 +47,7 @@
 											<th>Watch Trailer</th>
 										</tr>								
 										<tr>
+										
 											<td>#movie_name#</td>
 											<td>#genre#</td>
 											<td>#DateFormat(release_date,"mmmm dd, yyyy")#</td>
@@ -61,8 +65,19 @@
 										</tr>
 										<tr>
 											<td colspan="2"> #theatre_name#</td>
-											<td> #screen_name#</td>
-											<td colspan="2">#DateFormat(release_date,"mmmm dd, yyyy")# - #DateFormat(end_date,"mmmm dd, yyyy")#</td>
+											
+											<td>
+												<!---<cfset showList="">
+												<cfset show_names=application.show.showNameTheatre(cdate,th_id,m_id)>
+												<cfloop array="#show_names#" index="i">
+													<cfset showList=listAppend(showList, i.show_name)>
+												</cfloop>
+											#showList#--->
+											#show_name#
+
+											</td>
+												<td colspan="2">#DateFormat(release_date,"mmmm dd, yyyy")# - #DateFormat(end_date,"mmmm dd, yyyy")#</td>
+											
 										</tr>
 									</table>
 								</td>
@@ -110,7 +125,15 @@
 										</tr>
 										<tr>
 											<td colspan="2"> #theatre_name#</td>
-											<td> #screen_name#</td>
+											<!---<cfset show_names=application.show.showNameTheatre(cdate,th_id,m_id)>
+											<td>
+												<cfset showList="">
+												<cfloop array="#show_names#" index="i">
+													<cfset showList=listAppend(showList, i.show_name)>
+												</cfloop>
+											#showList#--->
+											<td>#show_name#
+											</td>
 											<td colspan="2">#DateFormat(release_date,"mmmm dd, yyyy")# - #DateFormat(end_date,"mmmm dd, yyyy")#</td>
 										</tr>
 									</table>

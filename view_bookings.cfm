@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <cfinclude  template="user_header.cfm">
 <cfset book_res=application.obj.getBookings()>
 <section class="p-5">

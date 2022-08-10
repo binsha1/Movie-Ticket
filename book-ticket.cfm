@@ -27,14 +27,16 @@
                     <cfoutput query='mov_res'>
                     
 					<li class="location">
-						<a href="pic-a-movie.html"><i class="fa fa-map-marker"></i>#theatre_name#</a>
+						<a href="##"><i class="fa fa-map-marker"></i>#theatre_name#</a>
 					</li>
-
-					<li class="time">
-						<!---<a href="components/controller.cfc?method=checkLogin">#start_time#</a>
-                        --->
-                        <button type="button" class="btn btn-primary seat_slot" data-bs-toggle="modal" data-id="#id#" data-bs-target=".loginModal"  >#timeformat(start_time)#</button>
-					</li>
+					<cfset time_res=application.show.getTimeSlots(th_id,m_id,pdate)>
+					<cfloop index="i" array="#time_res#">
+						<li class="time">
+							<!---<a href="components/controller.cfc?method=checkLogin">#start_time#</a>
+							--->
+							<button type="button" class="btn btn-primary seat_slot" data-bs-toggle="modal" data-id="#i.sh_id#" data-bs-target=".loginModal"  >#timeformat(i.start_time)#</button>
+						</li>
+					</cfloop>
 					<!---<li class="time">
 						<a href="movie-payment.html">3:00 PM</a>
 					</li>
