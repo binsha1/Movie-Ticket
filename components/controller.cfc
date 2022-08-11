@@ -252,8 +252,7 @@
                     )
                     </cfquery>
                     
-                    </cfloop>                  
-            
+                    </cfloop>                 
             <cfif reserve_res.RecordCount EQ 1 && seat_res.RecordCount NEQ 0>
                 <cfset reserve_id=reserve_res.GENERATED_KEY>
                 <cflocation  url="../payment.cfm?reserve_id=#toBase64(reserve_id)#" addtoken="no">       
@@ -327,6 +326,27 @@
                 WHERE t.user_id=<cfqueryparam value="#session.userLog.user_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         <cfreturn book_res>
+    </cffunction>
+
+    <cffunction name="getAllBookings" access="remote">        
+        <cfquery name="book_all_res" result="res_book">
+             SELECT t.ticket_id ,l.user_name,l.email_id,payment_id, t.book_date,t.book_time,r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
+                m.movie_name,m.language,m.genre,m.movie_format,
+                th.theatre_name,th.address,
+                s.screen_name,
+                sh.theatre_id,sh.total_seats,
+                st.start_time,st.show_name,
+                m.id as m_id , sh.id as sh_id, s.id as s_id , st.id as st_id ,th.id as th_id
+                FROM book_ticket t INNER JOIN reservation r ON t.reserve_id=r.id
+                INNER JOIN manage_shows sh ON r.show_id=sh.id
+                INNER JOIN screen_show_time st ON st.id=r.time_slot
+                INNER JOIN theatre th ON th.id=sh.theatre_id
+                INNER JOIN movie m ON m.id=sh.movie_id
+                INNER JOIN screen s ON s.id=sh.screen_id
+                INNER JOIN login l ON l.id=t.user_id
+                
+        </cfquery>
+        <cfreturn book_all_res>
     </cffunction>
 
     <cffunction name="confirmPayment" access="remote">

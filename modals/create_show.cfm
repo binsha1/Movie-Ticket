@@ -24,8 +24,10 @@
                         <div class="col-lg-4 ">
                             <select name="movie" id="movie" class="form-control" required>
                                 <option value="">Select Movie</option>
-                                <cfoutput query='movie_res'>                                    
-                                    <option value="#id#">#movie_name#</option>                                    
+                                <cfoutput > 
+                                <cfloop array="#movie_res#" index="i">                                   
+                                    <option value="#i.id#">#i.movie_name#</option>  
+                                    </cfloop>                                  
                                 </cfoutput>                                
                             </select>
                         </div>

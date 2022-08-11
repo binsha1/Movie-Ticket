@@ -989,6 +989,95 @@ document.querySelector('.custom-file-input').addEventListener('change', function
         ]
     } );
 } );*/
+$(document).ready(function(){
+    
+
+$.ajax({   
+    url: "components/movie.cfc",
+    type: 'get',
+    dataType:"json",
+    data:{
+    method:"movieDetails"       
+    },
+    success: function(data)
+    {
+        console.log(data); 
+        var myData = [];   
+        for (var i = 0; i < data.length; i++)
+        {
+            myData.push({
+                value: data[i].movie_name,
+                label: data[i].movie_name,
+                url: "http://127.0.0.1:8500/movie_ticket/movie-details.cfm?id="+btoa(data[i].id)
+            });
+        }
+       /* for(let i=0;i<=data.length; i++)    
+        {
+        var myData = [{
+            value: data[i].movie_name,
+            label: data[i].movie_name,
+            url: "http://127.0.0.1:8500/movie_ticket/movie-details.cfm?id="+btoa(data[i].id)
+          },
+          
+        ]   ;
+    }*/
+        $(function() {
+            function redirect(u) {
+              window.location.href = u;
+            }
+            $("#searchbox").autocomplete({
+              source: myData,
+              autoFocus: true,
+              select: function(e, ui) {
+               // $("#searchallresults_shop").val();
+               $("#searchbox").val(ui.item.label);
+                $("#searchbutton_jq").data("url", ui.item.url);
+                return false;
+              },
+              focus: function(e, ui) {
+                //$("#searchallresults_shop").val(ui.item.label);
+                $("#searchbox").val(ui.item.label);
+                $("#searchbutton_jq").data("url", ui.item.url);
+                return false;
+              }
+            });
+            $("#searchbutton_jq").click(function() {
+              if ($(this).data("url") != undefined) {
+                redirect($(this).data("url"));
+              }
+            });
+          });
+        /*if(data.RECORDCOUNT==1)
+        {                
+            $('.movie_alert').text("Movie Name Already Exists!!");
+            $('#mov_btn').prop('disabled', true);                
+        }
+        else{
+
+            $('.movie_alert').text(" ");
+            $('#mov_btn').prop('disabled', false);
+        }   */                      
+    }         
+});
+});
+
+/*
+var myData = [{
+    value: "jquery",
+    label: "jQuery",
+    url: "https://jquery.com/"
+  },
+  {
+    value: "jquery-ui",
+    label: "jQuery UI",
+    url: "https://jqueryui.com/"
+  },
+  {
+    value: "sizzlejs",
+    label: "Sizzle JS",
+    url: "https://sizzlejs.com/"
+  }
+];*/
 
 
 

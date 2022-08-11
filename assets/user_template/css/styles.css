@@ -2434,7 +2434,8 @@ ul.tabs-menu li a{
   padding: 0.5em 0em;
   width: 100%;
   text-decoration: none;
-  color: #000;
+ /* color: #000;*/
+ color:white;
   display: inline-block;
   padding-right: 20%;
   text-align: right;
@@ -2465,7 +2466,8 @@ ul.tabs-menu li a:hover{
 }
 .tab-grid h5 {
 	font-size: 2em;
-    color: #000;
+    /*color: #000;*/
+	color:aquamarine;
     font-weight: 600;
 }
 .tab-grid p {
@@ -2478,7 +2480,8 @@ ul.tabs-menu li a:hover{
   font-size: 1.1em;
   font-weight: 400;
   margin: 15px 5px;
-  color: #007DD3;
+ /* color: #007DD3;*/
+ color:white;
 }
 .about-section {
 	padding: 0 1em;
@@ -2624,18 +2627,21 @@ h3.p-c-text {
 }
 i.fa.fa-clock-o,i.fa.fa-users,i.fa.fa-sitemap,i.fa.fa-pencil-square-o,i.fa.fa-book {
 	font-size: 40px;
-	color: #007DD3;
+	/*color: #007DD3;*/
+	color:aquamarine;
 }
 i.fa.fa-mobile {
 	font-size: 60px;
-	color: #007DD3;
+	/*color: #007DD3;*/
+	color: aquamarine;
 }
 .about-left-img img{
 	width:100%;
 }
 .about-left-info a{
   font-size: 20px;
-  color: #003b64;
+  /*color: #003b64;*/
+  color:white;
   margin: 0 0 .5em 0;
   font-weight: 600;
   text-decoration: none;
@@ -2656,7 +2662,8 @@ i.fa.fa-mobile {
   font-size: 17px;
   margin: 0;
   font-weight: 600;
-  color: #282828;
+  /*color: #282828;*/
+  color:aquamarine;
 }
 .tb-one {
     margin-bottom: 1.5em;
@@ -2665,7 +2672,8 @@ i.fa.fa-mobile {
     margin-top: 0.5em;
 }
 .tab-grid p {
-	color: #8B8B8B;
+	/*color: #8B8B8B;*/
+	color: white;
   font-size: 0.95em;
   line-height: 1.8em;
   font-weight: 400;

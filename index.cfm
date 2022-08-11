@@ -1,14 +1,25 @@
 <cfset movieDetails=application.movie.movieDetails()>
 <cfinclude  template="user_header.cfm">
 <div class="header">
-		<div class="logo">
-			<h1>BOOK YOUR <h1> 
-			<h1>TICKET FOR <span>MOVIE</span></h1>
-			<p class="slide-text">Safe, Secure,reliable ticketing.Your ticket to live entertainment!</p>
-		</div>
-		<div class="search">
-			<h4 class="text-center">ARE YOU LOOKING FOR A MOVIE</h4>
-			<div class="p-3">	
+	<div class="logo">
+		<h1>BOOK YOUR <h1> 
+		<h1>TICKET FOR <span>MOVIE</span></h1>
+		<p class="slide-text">Safe, Secure,reliable ticketing.Your ticket to live entertainment!</p>
+	</div>
+	<div class="search">
+		<h4 class="text-center">ARE YOU LOOKING FOR A MOVIE</h4>
+		<div class="p-3">
+			<div class="row">
+				<div class="col-lg-6 offset-lg-3 p-3">
+					<div class='input-group mb-3'>
+						<input type="text" name="searchbox" id="searchbox" class="form-control" placeholder="Search For Movie"/>
+						<button type="submit" id="searchbutton_jq" class="btn btn-primary"> Search</button>
+					</div>
+				</div>
+			</div>
+  <!---
+<br /> Shop: <input type="text" id="searchallresults_shop" />---->
+			<!---
 				<form action='components/movie.cfc?method=searchMovie' method="post" class="col-lg-6 offset-lg-3">
 					<div class='input-group mb-3'>
 					
@@ -29,7 +40,7 @@
 						<input class='btn btn-outline-primary' id='button-addon2' name="submit" value="Ok" type='submit'>
 					</div>
 					</div>
-          		</form>
+          		</form>--->
 				<div class="col-md-5" style="position: relative;margin-top: -38px;margin-left: 215px;">
         <div class="list-group" id="show-list">
           <!-- Here autocomplete list will be display -->

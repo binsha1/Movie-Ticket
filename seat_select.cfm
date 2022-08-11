@@ -62,6 +62,7 @@
                 
                 <div class="col-sm-12 col-lg-10 col-lg-offset-1">
                 <div class="sits">
+                <!---
                 <aside class="sits__checked">
                             <div class="checked-place">
                                 
@@ -69,7 +70,7 @@
                             <div class="checked-result">
                                 $0
                             </div>
-                        </aside>
+                        </aside>--->
                 </div>
                 <div class="sits-area hidden-xs">
                     <div class="sits-anchor">screen</div>
@@ -194,7 +195,7 @@
                         </div>
                     </div>
 
-                    <a href="#" class="watchlist add-sits-line">Add new sit</a>
+                    <a href="#" class="watchlist add-sits-line">Add new sit</a>---> 
 
                     <aside class="sits__checked">
                             <div class="checked-place">
@@ -205,8 +206,8 @@
                             </div>
                     </aside>
 
-                    <img alt="" src="images/components/sits_mobile.png">---> 
-                    <div class="text-center pb-3">
+                    <img alt="" src="images/components/sits_mobile.png">
+                    <div class="text-center pb-3 pt-3">
                     <button type="button" class="btn btn-showing confirm " data-bs-toggle="modal"  data-bs-target=".confirmModal"  >Confirm Selection</button>
                     </div>
                 </div>

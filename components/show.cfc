@@ -229,13 +229,8 @@
             INNER JOIN movie_ticket.screen_show_time st ON sh.screen_time_id=st.id          
             WHERE sh.end_date >= <cfqueryparam value="#arguments.cdate#" cfsqltype="cf_sql_date"> 
             AND m.release_date <= <cfqueryparam value="#arguments.cdate#" cfsqltype="cf_sql_date"> 
-            
-            
-                 
         </cfquery>
         <cfreturn date_details>  
-    
-   
 </cffunction>
 <cffunction name="todayDetails" access="public" >
     

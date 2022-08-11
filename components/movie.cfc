@@ -45,32 +45,37 @@
             && arguments.genre!="" && arguments.language!="" && arguments.duration!="" && arguments.trailer_url!="" 
             && arguments.description!="">
             <cfif movie_res.RecordCount EQ 0 and trailer_res.RecordCount EQ 0 and fileupload.filesize LT 1000000 and wallUpload.filesize LT 1000000>
-                <cfquery name="add_movie" result="movie_res">
-                    INSERT INTO movie_ticket.movie(                        
-                        movie_name,
-                        release_date,
-                        movie_format,
-                        genre,
-                        language,                        
-                        duration,                      
-                        trailer_url,
-                        poster,
-                        wallpaper,
-                        description
-                        ) 
-                    VALUES(                            
-                            <cfqueryparam value="#arguments.movie_name#" cfsqltype="CF_SQL_VARCHAR">,
-                            <cfqueryparam value="#arguments.release_date#" cfsqltype="CF_SQL_VARCHAR">,
-                            <cfqueryparam value="#arguments.movie_format#" cfsqltype="CF_SQL_VARCHAR">,
-                            <cfqueryparam value="#arguments.genre#" cfsqltype="CF_SQL_VARCHAR">,
-                            <cfqueryparam value="#arguments.language#" cfsqltype="CF_SQL_VARCHAR">,                            
-                            <cfqueryparam value="#arguments.duration#" cfsqltype="CF_SQL_VARCHAR">,
-                            <cfqueryparam value="#arguments.trailer_url#" cfsqltype="CF_SQL_VARCHAR">,
-                            <cfqueryparam value="#local.poster#" cfsqltype="CF_SQL_VARCHAR">,
-                            <cfqueryparam value="#local.wallpaper#" cfsqltype="CF_SQL_VARCHAR">,                
-                            <cfqueryparam value="#arguments.description#" cfsqltype="CF_SQL_VARCHAR">                                                          
-                            )
-                    </cfquery>
+                <cftry>
+                    <cfquery name="add_movie" result="movie_res">
+                        INSERT INTO movie_ticket.movie(                        
+                            movie_name,
+                            release_date,
+                            movie_format,
+                            genre,
+                            language,                        
+                            duration,                      
+                            trailer_url,
+                            poster,
+                            wallpaper,
+                            description
+                            ) 
+                        VALUES(                            
+                                <cfqueryparam value="#arguments.movie_name#" cfsqltype="CF_SQL_VARCHAR">,
+                                <cfqueryparam value="#arguments.release_date#" cfsqltype="CF_SQL_VARCHAR">,
+                                <cfqueryparam value="#arguments.movie_format#" cfsqltype="CF_SQL_VARCHAR">,
+                                <cfqueryparam value="#arguments.genre#" cfsqltype="CF_SQL_VARCHAR">,
+                                <cfqueryparam value="#arguments.language#" cfsqltype="CF_SQL_VARCHAR">,                            
+                                <cfqueryparam value="#arguments.duration#" cfsqltype="CF_SQL_VARCHAR">,
+                                <cfqueryparam value="#arguments.trailer_url#" cfsqltype="CF_SQL_VARCHAR">,
+                                <cfqueryparam value="#local.poster#" cfsqltype="CF_SQL_VARCHAR">,
+                                <cfqueryparam value="#local.wallpaper#" cfsqltype="CF_SQL_VARCHAR">,                
+                                <cfqueryparam value="#arguments.description#" cfsqltype="CF_SQL_VARCHAR">                                                          
+                                )
+                        </cfquery>
+                        <cfcatch type="any">
+                            Error: <cfoutput>#cfcatch.message#</cfoutput>
+                        </cfcatch>
+                    </cftry>
                 <cfif movie_res.RecordCount EQ 1>
                     <cfset local.status=hash("1","sha")>
                 </cfif>
@@ -221,8 +226,8 @@
     </cffunction>
 
     <!------------Get details of all movies -------->
-    <cffunction name="movieDetails" access="public" output="true">
-        <cfquery name="movie_details"  result="res">
+    <cffunction name="movieDetails" access="remote" output="true" returnFormat = "json">
+        <cfquery name="movie_details"  result="res" returntype="array">
             SELECT * FROM movie_ticket.movie;
         </cfquery>
         <cfreturn movie_details>

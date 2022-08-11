@@ -206,6 +206,7 @@
 
         <!-- Custom -->
         <script src="assets/user_template/seat/js/custom.js"></script>
+         <script src="assets/js/jquery-ui.js"></script>
 		<script src="assets/user_template/seat/js/script.js"></script>
 		<script type="text/javascript">
             $(document).ready(function() {
