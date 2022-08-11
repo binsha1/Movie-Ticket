@@ -1,4 +1,5 @@
 <cfparam  name="status" default="v">
+<cfset book_res=application.obj.getAllBookings()>
 <cfinclude  template="dash_header.cfm">
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -35,20 +36,20 @@
                         </tr>
                     </tfoot>                                       
                     <tbody>
-                    <!---<cfoutput query='res'>
-                        <cfset addr=address & ", " & street_name & ", " & pincode &" .">                        
-                        <cfset local.theatre_id=toBase64(id)>
+
+                    <cfoutput query='book_res'> 
+                                      
                         <tr>
-                            <td><img src="../uploads/#photo#" class="img-fluid img-poster"></td>
-                            <td>#theatre_name#</td>
+                            <td>#user_name#</td>
                             <td>#email_id#</td>
-                            <td>#phone#</td>
-                            <td>#addr#</td>
-                            <td><a href="screen_time.cfm?theatre_id=#local.theatre_id#" class="btn btn-outline-primary">Manage Screen & Time</a></td>
-                            <td><button class="btn btn-outline-primary edit title" id="edit" data-bs-toggle="modal" data-bs-target=".myModal" data-id="#id#" >Edit</button></td>
-                            <td><a href="../components/controller.cfc?method=deleteTheatre&id=#id#" class="btn btn-outline-primary">Delete</a></td>
+                            <td>#movie_name#</td>
+                            <td>#dateFormat(book_date,"dd-mm-yyyy")#</td>
+                            <td>#screen_name# |#show_name#| #start_time# </td>
+                            <td>#seat_num# Seat| #price#</td>
+                            <td>#ticket_id#</td>
+                            <td>#theatre_name# : #address#</td>
                         </tr>
-                    </cfoutput>   --->                 
+                    </cfoutput>         
                     </tbody>
                 </table>
             </div>

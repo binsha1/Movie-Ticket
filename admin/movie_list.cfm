@@ -83,23 +83,25 @@
                         </tr>
                     </tfoot>                                       
                     <tbody>
-                        <cfoutput query='res'>                                             
-                            <cfset local.movie_id=toBase64(id)> 
-                            <tr>
-                                <td><img src="../uploads/#poster#" class="img-fluid img-poster"></td>
-                                <td><img src="../uploads/#wallpaper#" class="img-fluid img-wall"></td>
-                                <td>#movie_name#</td>
-                                <td>#release_date#</td>
-                                <td>#movie_format#</td>
-                                <td>#genre#</td>
-                                <td>#language#</td>
-                                <td>#duration#</td>
-                                <td>#description#</td>
-                                <td><a href="#trailer_url#">#trailer_url#</a></td>
-                                <td><a href="cast_crew.cfm?movie_id=#local.movie_id#" class="btn btn-outline-primary">Manage Cast & Crew</a></td>
-                                <td><button class="btn btn-outline-primary edit movie" id="edit" data-bs-toggle="modal" data-bs-target=".movieModal" data-id="#id#" >Edit</button></td>
-                                <td><a href="../components/movie.cfc?method=deleteMovie&id=#id#" class="btn btn-outline-primary">Delete</a></td>
-                            </tr>
+                        <cfoutput >              
+                            <cfloop array="#res#" index="i">                               
+                                <cfset local.movie_id=toBase64(i.id)> 
+                                <tr>
+                                    <td><img src="../uploads/#i.poster#" class="img-fluid img-poster"></td>
+                                    <td><img src="../uploads/#i.wallpaper#" class="img-fluid img-wall"></td>
+                                    <td>#i.movie_name#</td>
+                                    <td>#i.release_date#</td>
+                                    <td>#i.movie_format#</td>
+                                    <td>#i.genre#</td>
+                                    <td>#i.language#</td>
+                                    <td>#i.duration#</td>
+                                    <td>#i.description#</td>
+                                    <td><a href="#i.trailer_url#">#i.trailer_url#</a></td>
+                                    <td><a href="cast_crew.cfm?movie_id=#local.movie_id#" class="btn btn-outline-primary">Manage Cast & Crew</a></td>
+                                    <td><button class="btn btn-outline-primary edit movie" id="edit" data-bs-toggle="modal" data-bs-target=".movieModal" data-id="#i.id#" >Edit</button></td>
+                                    <td><a href="../components/movie.cfc?method=deleteMovie&id=#i.id#" class="btn btn-outline-primary">Delete</a></td>
+                                </tr>
+                            </cfloop>
                         </cfoutput>                    
                     </tbody>
                 </table>

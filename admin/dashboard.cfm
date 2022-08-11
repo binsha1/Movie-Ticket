@@ -33,7 +33,9 @@
                             <div class="text-xs font-weight-bold text-white  mb-1">
                                 Movies</div>
                                 <cfset movie=application.movie.movieDetails()>
-                            <div class="h5 mb-0 font-weight-bold text-white"><cfoutput>#movie.RecordCount#
+                            <div class="h5 mb-0 font-weight-bold text-white"><cfoutput>
+                            
+                            #ArrayLen(movie)#
                             </cfoutput></div>
                         </div>
                         <div class="col-auto">
@@ -52,8 +54,13 @@
                             <div class="text-xs font-weight-bold text-white  mb-1">User Registrations
                             </div>
                             <div class="row no-gutters align-items-center">
+                            <cfset users=application.obj.allUsers()>
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-white">0</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-white">
+                                    <cfoutput>
+                                        #users.RecordCount#
+                                    </cfoutput>
+                                    </div>
                                 </div>                                
                             </div>
                         </div>
@@ -62,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="btn btn-dboard">More Info <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="user_list.cfm" class="btn btn-dboard">More Info <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>        
         <div class="col-xl-3 col-md-6 mb-4">
@@ -73,8 +80,13 @@
                             <div class="text-xs font-weight-bold text-white  mb-1">Movie Bookings
                             </div>
                             <div class="row no-gutters align-items-center">
+                            <cfset bookings=application.obj.getAllBookings()>
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-white">0</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-white">
+                                    <cfoutput>
+                                        #bookings.RecordCount#
+                                    </cfoutput>
+                                    </div>
                                 </div>                                                
                             </div>
                         </div>
@@ -83,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="btn btn-dboard">More Info <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="booking_list.cfm" class="btn btn-dboard">More Info <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
         <div class="col-lg-6 mb-4 dash_content">                          
@@ -91,3 +103,5 @@
     </div>
 </div>
 <cfinclude template="../admin/dash_footer.cfm">
+
+
