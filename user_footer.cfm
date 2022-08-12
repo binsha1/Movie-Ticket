@@ -1,9 +1,8 @@
 </div>
 <div class="copy-rights text-center">
 	<p><span>Copyright &copy; Book My Ticket 2022</span></p>
-</div>
-			
- <script type="text/javascript">
+</div>			
+<script type="text/javascript">
     $(document).ready(function() {
         /*
         var defaults = {
@@ -12,10 +11,8 @@
             scrollSpeed: 1200,
             easingType: 'linear' 
         };
-        */
-        
-        $().UItoTop({ easingType: 'easeOutQuart' });
-        
+        */        
+        $().UItoTop({ easingType: 'easeOutQuart' });        
     });
 </script>
 <a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
@@ -25,53 +22,47 @@
 <script src="assets/js/custom.js"></script>	
 <script src="assets/js/autocomplete.js"></script>	
 <script src="assets/js/select2.min.js"></script>
-
 <!-- Modernizr --> 
-        <script src="assets/user_template/seat/js/modernizr.custom.js"></script>
-
-    <script src="assets/js/popper.min.js"></script>
-    
-    <script src="assets/carousel/js/owl.carousel.min.js"></script>
-    <script src="assets/carousel/js/main.js"></script>
+<script src="assets/user_template/seat/js/modernizr.custom.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/carousel/js/owl.carousel.min.js"></script>
+<script src="assets/carousel/js/main.js"></script>
 <!-- FlexSlider -->
 <script defer src="assets/user_template/js/jquery.flexslider.js"></script>
-    <link rel="stylesheet" href="assets/user_template/css/flexslider.css" type="text/css" media="screen" />
-    <script type="text/javascript">
-        $(function(){
-        SyntaxHighlighter.all();
-        });
-        $(window).load(function(){
-        $('.flexslider').flexslider({
-            animation: "slide",
-            start: function(slider){
-            $('body').removeClass('loading');
-            }
-        });
-        });
+<link rel="stylesheet" href="assets/user_template/css/flexslider.css" type="text/css" media="screen" />
+<script type="text/javascript">
+    $(function(){
+    SyntaxHighlighter.all();
+    });
+    $(window).load(function(){
+    $('.flexslider').flexslider({
+        animation: "slide",
+        start: function(slider){
+        $('body').removeClass('loading');
+        }
+    });
+    });
 </script>
-
 <script src="assets/user_template/js/responsive-tabs.js"></script>
-    <script type="text/javascript">
-      $( '#myTab a' ).click( function ( e ) {
-        e.preventDefault();
-        $( this ).tab( 'show' );
-      } );
+<script type="text/javascript">
+    $( '#myTab a' ).click( function ( e ) {
+    e.preventDefault();
+    $( this ).tab( 'show' );
+    } );
 
-      $( '#moreTabs a' ).click( function ( e ) {
-        e.preventDefault();
-        $( this ).tab( 'show' );
-      } );
+    $( '#moreTabs a' ).click( function ( e ) {
+    e.preventDefault();
+    $( this ).tab( 'show' );
+    } );
 
-      ( function( $ ) {
-          // Test for making sure event are maintained
-          $( '.js-alert-test' ).click( function () {
-            alert( 'Button Clicked: Event was maintained' );
-          } );
-          fakewaffle.responsiveTabs( [ 'xs', 'sm' ] );
-      } )( jQuery );
-
-    </script>
-  
+    ( function( $ ) {
+        // Test for making sure event are maintained
+        $( '.js-alert-test' ).click( function () {
+        alert( 'Button Clicked: Event was maintained' );
+        } );
+        fakewaffle.responsiveTabs( [ 'xs', 'sm' ] );
+    } )( jQuery );
+</script>  
 <script>
 
     var multipleCardCarousel = document.querySelector(
@@ -171,47 +162,26 @@
     $(comingCardCarousel).addClass("slide");
     }
 </script>
-<script>
-/*$("a.nav-link").on("click",function()
-{
-    var id=$(this).attr('href');
-    $(id).addClass("active");
-    
-    //$('.tab-pane:eq('+$(this).index()+')').removeClass('active'); 
-     /*$(".nav-item , .tab-pane").addClass('active');
-  $(this).removeClass('active');
-  $('.tab-pane:eq('+$(this).index()+')').removeClass('active');
-    
-});*/
+<script>window.jQuery || document.write('<script src="assets/user_template/seat/js/jquery-3.1.1.min.js"><\/script>')</script>
+<!-- Migrate --> 
+<script src="assets/user_template/seat/js/jquery-migrate-1.2.1.min.js"></script>
+<!-- Bootstrap 3-->      
+<!-- Mobile menu -->
+<script src="assets/user_template/seat/js/jquery.mobile.menu.js"></script>
+<!-- Select -->
+<script src="assets/user_template/seat/js/jquery.selectbox-0.2.min.js"></script>
+<!-- Form element -->
+<script src="assets/user_template/seat/js/form-element.js"></script>
+<script src="assets/user_template/seat/js/form.js"></script>
+<!-- Form validation -->
+<!-- Custom -->
+<script src="assets/user_template/seat/js/custom.js"></script>
+<script src="assets/js/jquery-ui.js"></script>
+<script src="assets/user_template/seat/js/script.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        init_BookingTwo();
+    });
 </script>
-
-
-
-        <script>window.jQuery || document.write('<script src="assets/user_template/seat/js/jquery-3.1.1.min.js"><\/script>')</script>
-        <!-- Migrate --> 
-        <script src="assets/user_template/seat/js/jquery-migrate-1.2.1.min.js"></script>
-        <!-- Bootstrap 3--> 
-     
-
-        <!-- Mobile menu -->
-        <script src="assets/user_template/seat/js/jquery.mobile.menu.js"></script>
-         <!-- Select -->
-        <script src="assets/user_template/seat/js/jquery.selectbox-0.2.min.js"></script>
-
-        <!-- Form element -->
-        <script src="assets/user_template/seat/js/form-element.js"></script>
-       <script src="assets/user_template/seat/js/form.js"></script>
-        <!-- Form validation -->
-        
-
-        <!-- Custom -->
-        <script src="assets/user_template/seat/js/custom.js"></script>
-		<script src="assets/user_template/seat/js/script.js"></script>
-		<script type="text/javascript">
-            $(document).ready(function() {
-                init_BookingTwo();
-            });
-		</script>
-
 </body>
 </html>

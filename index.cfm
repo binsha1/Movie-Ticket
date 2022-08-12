@@ -1,4 +1,7 @@
 <cfset movieDetails=application.movie.movieDetails()>
+<cfset now_res=application.show.nowDetails()>
+<cfset coming_res=application.show.comingDetails()>
+<cfset all_res=application.show.allDetails()>	
 <cfinclude  template="user_header.cfm">
 <div class="header">
 	<div class="logo">
@@ -17,55 +20,24 @@
 					</div>
 				</div>
 			</div>
-  <!---
-<br /> Shop: <input type="text" id="searchallresults_shop" />---->
-			<!---
-				<form action='components/movie.cfc?method=searchMovie' method="post" class="col-lg-6 offset-lg-3">
-					<div class='input-group mb-3'>
-					
-					<select class="js-example-basic-single form-control required" name='movie_id' required>
-					<option value="default">Search For a Movie</option>
-						<cfoutput query='movieDetails'>
-                            <option value="#id#">
-                                       #movie_name#
-                                    </option>
-                             </cfoutput>             
-                            </select>
-						
-					<!---
-					<div class='input-group mb-3'>
-					<input aria-describedby='button-addon2' aria-label='Country' class='form-control autocomplete' id='mov_input'
-					name='movie' placeholder='Search for a movie' type='text' >--->
-					<div class='input-group-append'>
-						<input class='btn btn-outline-primary' id='button-addon2' name="submit" value="Ok" type='submit'>
-					</div>
-					</div>
-          		</form>--->
-				<div class="col-md-5" style="position: relative;margin-top: -38px;margin-left: 215px;">
-        <div class="list-group" id="show-list">
-          <!-- Here autocomplete list will be display -->
-        </div>
-      </div>
-		  		<!---<form autocomplete="off" action="components/movie.cfc?method=searchMovie">
-					<i class="fa fa-search"></i>
-					<input type="text" value="" placeholder="Search for a movie" name="movie" class="form-control" id="mov_input"/>
-					<input type="submit" value="submit" name="submit" class="btn btn-primary">
-				</form>--->
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>	        
-    <div class="clearfix"></div>
-	<div class="footer-top-grid">
-		<div class="list-of-movies col-md-12">
-			<div class="featured">
-				<div class="showing-title">
-					<button class="btn btn-showing featured_btn">Now Showing</button>
-					<h4>MOVIES</h4>
-					<p class="text-white">Be sure not to miss these movies today</p>
+			<div class="col-md-5" style="position: relative;margin-top: -38px;margin-left: 215px;">
+				<div class="list-group" id="show-list">			
 				</div>
-				<cfset now_res=application.show.nowDetails()>
-				<div class="container">					
+      		</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>	        
+<div class="clearfix"></div>
+<div class="footer-top-grid">
+	<div class="list-of-movies col-md-12">
+		<div class="featured">
+			<div class="showing-title">
+				<button class="btn btn-showing featured_btn">Now Showing</button>
+				<h4>MOVIES</h4>
+				<p class="text-white">Be sure not to miss these movies today</p>
+			</div>
+			<div class="container">					
 				<div id="carouselExampleControls" class="carousel " data-bs-ride="carousel">
 					<div class="carousel-inner">								
 						<cfoutput>
@@ -105,8 +77,7 @@
 				<button class="btn btn-showing featured_btn">Coming Soon</button>
 				<h4>MOVIES</h4>
 				<p class="text-white">Be sure not to miss these Upcoming Movies</p>
-			</div>
-			<cfset coming_res=application.show.comingDetails()>	
+			</div>			
 			<div class="container">		
 				<div id="carouselComingDetails" class="carousel " data-bs-ride="carousel">
 					<div class="carousel-inner carousel-coming">								
@@ -146,9 +117,8 @@
 			<div class="showing-title">
 				<button class="btn btn-showing featured_btn">All</button>
 				<h4>MOVIES</h4>
-				<p class="text-white">Be sure not to miss these Movies in Theatres Now</p>
-			</div>
-			<cfset all_res=application.show.allDetails()>
+				<p class="text-white">Be sure not to miss these Movies in Theatres </p>
+			</div>			
 			<div class="container">					
 				<div id="carouselAllDetails" class="carousel " data-bs-ride="carousel">
 					<div class="carousel-inner">								
@@ -182,45 +152,46 @@
 				</div>	
 			</div>				
 		</div>
-	</div>            
-	<div class="clearfix"></div>	
-	<div class="footer">			
-		<div class="clearfix"></div>
-		<div class="col-md-12 subscribe_div ">
-			<div class="subscribe-form">
-				<div class="subscribe_head text-center">
-					<h5 class="sub_text">SUBSCRIBE TO BOOKMYTICKET</h5>
-					<h2 class="text-white p-3">TO GET EXCLUSIVE BENEFITS</h2>
-				</div>
-				<div class="row p-3">
-					<div class="col-md-4"></div>
-					<div class="col-md-4">
-						<input type="text" class="text form-control" name="email_id" placeholder="Enter Email Id">
-					</div>
-					<div class="col-md-4">
-						<input type="submit" value="Subscribe" class="btn btn-showing" name="subscribe">
-					</div>
-					<div class="col-md-4"></div>
-				</div>
-				<div class="clearfix"></div>
-			</div>		
-		</div>			
-		<div class="clearfix"></div>	
-		<div class="clearfix"></div>
-		<div class="follow-us">	
-			<div class="footer-brand text-center text-white">
-				<i class="fa-solid fa-ticket"></i>
-				<h6 >BookMyTicket</h6>
-			</div>		
-			<ul class="social-icons">
-				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-				<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-				<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-				<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-			</ul>			
-			<div class="clearfix"></div>
-		</div>
 	</div>
+</div>            
+<div class="clearfix"></div>	
+<div class="footer">			
+	<div class="clearfix"></div>
+	<div class="col-md-12 subscribe_div">
+		<div class="subscribe-form">
+			<div class="subscribe_head text-center">
+				<h5 class="sub_text">SUBSCRIBE TO BOOKMYTICKET</h5>
+				<h2 class="text-white p-3">TO GET EXCLUSIVE BENEFITS</h2>
+			</div>
+			<div class="row p-3">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<input type="text" class="text form-control" name="email_id" placeholder="Enter Email Id">
+				</div>
+				<div class="col-md-4">
+					<input type="submit" value="Subscribe" class="btn btn-showing" name="subscribe">
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="clearfix"></div>
+		</div>		
+	</div>			
+	<div class="clearfix"></div>	
+	<div class="clearfix"></div>
+	<div class="follow-us">	
+		<div class="footer-brand text-center text-white">
+			<i class="fa-solid fa-ticket"></i>
+			<h6 >BookMyTicket</h6>
+		</div>		
+		<ul class="social-icons">
+			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+			<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+			<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+			<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+			<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+		</ul>			
+		<div class="clearfix"></div>
+	</div>
+</div>
 <cfinclude  template="user_footer.cfm">			

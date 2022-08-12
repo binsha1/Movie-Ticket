@@ -1,7 +1,6 @@
 <cfinclude template="user_header.cfm">
-<div class="about-section">
-		
-		<div class="tabs-box">
+<div class="about-section">		
+<div class="tabs-box">
 			<ul class="tabs-menu">
 				<li><a href="#tab1"><span> </span>About-us</a></li>
 				<li><a href="#tab2"><span> </span>Our History</a></li>
