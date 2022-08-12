@@ -6,7 +6,7 @@
         <cfquery name="loginUser" datasource="movie_ticket" result="log_res">
             SELECT * FROM movie_ticket.login 
             WHERE user_name=<cfqueryparam value="#arguments.user_name#" cfsqltype="CF_SQL_VARCHAR">
-             AND password=<cfqueryparam value="#local.password#" cfsqltype="CF_SQL_VARCHAR">
+            AND password=<cfqueryparam value="#local.password#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>        
         <cfif log_res.recordCount EQ 1>                      
             <cfset session.sessionUser={'user_id'=loginUser.id,'user_name'=loginUser.user_name}>           
@@ -23,6 +23,7 @@
         <cfset structDelete(session, "sessionUser")>
         <cflocation url="../admin/index.cfm" addtoken="no">
     </cffunction>
+
     <cffunction name="userLogout" access="remote" output="false">
         <cfset structDelete(session, "userLog")>
         <cflocation url="../index.cfm" addtoken="no">
@@ -96,12 +97,10 @@
         <cfquery name="address_email" result="email_res">
             SELECT * FROM movie_ticket.login
             WHERE email_id=<cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR">
-        </cfquery>
-       
+        </cfquery>       
         <cfif email_res.RecordCount NEQ 0>
             <cfset local.status=hash('2','sha')>
-        </cfif>
-        
+        </cfif>        
         <cfif arguments.full_name!="" && arguments.email!="" && arguments.pass!="" >
             <cfif email_res.RecordCount EQ 0  >
                 <cfquery name="signup" result="result">
@@ -176,6 +175,7 @@
         </cfquery>
         <cfreturn user_list>
     </cffunction>
+
     <cffunction  name="contactList" access="public">
         <cfquery name="user_list" result="user_res">
             SELECT * from movie_ticket.contact_us 
@@ -209,8 +209,7 @@
         <cfargument  name="time_sl" type="integer">
         <cfargument  name="show_id" type="integer">
         <cfargument  name="date" type="date">
-        <cfset local.seat_split =arguments.seats.Split(",")>        
-        
+        <cfset local.seat_split =arguments.seats.Split(",")>     
         <cfset local.seat_num=ArrayLen(seat_split)>
         <cfquery name="select_seat" result="select_res">
             SELECT * FROM movie_ticket.reservation WHERE 
@@ -238,21 +237,18 @@
                         <cfqueryparam value="0" cfsqltype="CF_SQL_INTEGER">
                     )
             </cfquery>
-           
-                    <cfloop from="1" to="#local.seat_num#" index="i">                     
-                        <cfquery name="seat_ins" result="seat_res">
-                        INSERT into movie_ticket.seat(
-                        seat_name,
-                        reserve_id
-                        )
-                        VALUES(
-                        <cfqueryparam value="#local.seat_split[i]#" cfsqltype="CF_SQL_VARCHAR">,
-                        <cfqueryparam value="#reserve_res.GENERATED_KEY#" cfsqltype="CF_SQL_INTEGER">
-                        
+            <cfloop from="1" to="#local.seat_num#" index="i">                     
+                <cfquery name="seat_ins" result="seat_res">
+                    INSERT into movie_ticket.seat(
+                    seat_name,
+                    reserve_id
                     )
-                    </cfquery>
-                    
-                    </cfloop>                 
+                    VALUES(
+                    <cfqueryparam value="#local.seat_split[i]#" cfsqltype="CF_SQL_VARCHAR">,
+                    <cfqueryparam value="#reserve_res.GENERATED_KEY#" cfsqltype="CF_SQL_INTEGER">
+                    )
+                </cfquery>
+            </cfloop>                 
             <cfif reserve_res.RecordCount EQ 1 && seat_res.RecordCount NEQ 0>
                 <cfset reserve_id=reserve_res.GENERATED_KEY>
                 <cflocation  url="../payment.cfm?reserve_id=#toBase64(reserve_id)#" addtoken="no">       
@@ -282,8 +278,6 @@
             INNER JOIN screen s ON s.id=sh.screen_id
             WHERE r.id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-      
-        
         <cfreturn reserve_res>
     </cffunction>
 
@@ -343,8 +337,7 @@
                 INNER JOIN theatre th ON th.id=sh.theatre_id
                 INNER JOIN movie m ON m.id=sh.movie_id
                 INNER JOIN screen s ON s.id=sh.screen_id
-                INNER JOIN login l ON l.id=t.user_id
-                
+                INNER JOIN login l ON l.id=t.user_id                
         </cfquery>
         <cfreturn book_all_res>
     </cffunction>
@@ -398,9 +391,9 @@
                     WHERE r.id=<cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">
                 </cfquery>
             </cftransaction>
-        </cfif> 
-        <cfif ins_ticket.RecordCount  NEQ 0 && booked_res.RecordCount NEQ 0>   
-              
+        </cfif>
+        
+        <cfif ins_ticket.RecordCount  NEQ 0 && booked_res.RecordCount NEQ 0> 
             <cflocation  url="../ticket_download.cfm?reserve_id=#toBase64(arguments.reserve_id)#" addtoken="no">
         </cfif>
     </cffunction>
@@ -412,24 +405,24 @@
         <cfargument  name="message" type="string">
         <cfif arguments.name!="" && arguments.email!="" && arguments.subject!="" && arguments.message!="">
             <cfquery name="contact_us" result="result">
-                    INSERT INTO movie_ticket.contact_us(
-                        name,
-                        email_id,
-                        subject,
-                        message,
-                        ondate) 
-                    VALUES(
-                        <cfqueryparam value="#arguments.name#" cfsqltype="CF_SQL_VARCHAR">,
-                        
-                        <cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR">,
-                        <cfqueryparam value="#arguments.subject#" cfsqltype="CF_SQL_VARCHAR">,
-                        <cfqueryparam value="#arguments.message#" cfsqltype="CF_SQL_VARCHAR"> ,  
-                        <cfqueryparam value="#datetimeformat(now(),"yyyy-mm-dd HH:n:s")#" cfsqltype="CF_SQL_TIMESTAMP">                 
-                        )
-                </cfquery>
-                <cfif result.RecordCount EQ 1>
-                    <cfset local.status=hash('1','sha')>
-                </cfif>
+                INSERT INTO movie_ticket.contact_us(
+                    name,
+                    email_id,
+                    subject,
+                    message,
+                    ondate) 
+                VALUES(
+                    <cfqueryparam value="#arguments.name#" cfsqltype="CF_SQL_VARCHAR">,
+                    
+                    <cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR">,
+                    <cfqueryparam value="#arguments.subject#" cfsqltype="CF_SQL_VARCHAR">,
+                    <cfqueryparam value="#arguments.message#" cfsqltype="CF_SQL_VARCHAR"> ,  
+                    <cfqueryparam value="#datetimeformat(now(),"yyyy-mm-dd HH:n:s")#" cfsqltype="CF_SQL_TIMESTAMP">                 
+                    )
+            </cfquery>
+            <cfif result.RecordCount EQ 1>
+                <cfset local.status=hash('1','sha')>
+            </cfif>
         <cfelse>
             <cfset local.status=hash('2','sha')>
         </cfif>

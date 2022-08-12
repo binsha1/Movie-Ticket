@@ -24,67 +24,64 @@
 							<p class="text-dark"><span class="mfor">#i.movie_format#</span> <span class="mfor">#i.language#</span></p>
 							<p class="disc pt-3 text-white">#i.description#</p>
 						</div>
-					<div class="social-btn pt-3">
-						<!-- WATCH TRAILER-->
-						<a href="#i.trailer_url#" class="btn btn-primary">
-						<i class="fas fa-play"></i> TRAILER
-						</a>
-						<!-- GET-->
-						<a href="show.cfm" class="btn btn-showing">
-							<i class="fa-solid fa-ticket">
-							</i> Book Ticket
-						</a>
-					</div>  
+						<div class="social-btn pt-3">
+							<!-- WATCH TRAILER-->
+							<a href="#i.trailer_url#" class="btn btn-primary">
+								<i class="fas fa-play"></i> TRAILER
+							</a>
+							<!-- GET-->
+							<a href="show.cfm" class="btn btn-showing">
+								<i class="fa-solid fa-ticket">
+								</i> Book Ticket
+							</a>
+						</div>  
+					</div>
 				</div>
 			</div>
 		</cfloop>
 	</cfoutput>
-	
-	</div>
-	<div class="container cc_div mt-5">
-		<div class="row pt-5 text-white">
-			<h3>CAST</h3>
-			<hr class="mt-3">
-			<div class="site-section bg-left-half mb-5">
-      			<div class="container owl-2-style">  
-					 <cfoutput>
-					 	<input type="hidden" id="cast_num" value="#cast_res.RecordCount()#">  
-					 </cfoutput>
-					<div class="owl-carousel owl-2">						
-						<cfoutput query='cast_res'>
-
-							<div class="media-29101">
-								<img src="uploads/#actor_photo#" alt="Image" class="img-fluid scroll_image">
-								<h3>#actor_name#</h3>
-								<p>as #character_name#</p>
-							</div>
-						</cfoutput>
-					</div>
-      			</div>
-   			</div>
-  		</div>          
-		<div class="row pt-5 text-white">
-			<h3>CREW</h3> 
-			<hr class="mt-3">
-			<div class="site-section bg-left-half mb-5">
-      			<div class="container owl-2-style">	
+</div>
+<div class="container cc_div mt-5">
+	<div class="row pt-5 text-white">
+		<h3>CAST</h3>
+		<hr class="mt-3">
+		<div class="site-section bg-left-half mb-5">
+      		<div class="container owl-2-style">  
 				<cfoutput>
-					 	<input type="hidden" id="crew_num" value="#crew_res.RecordCount()#">  
-					 </cfoutput>
-
-					<div class="owl-carousel owl-3">						
-						<cfoutput query='crew_res'>						
+					<input type="hidden" id="cast_num" value="#cast_res.RecordCount()#">  
+				</cfoutput>
+				<div class="owl-carousel owl-2">						
+					<cfoutput query='cast_res'>
+						<div class="media-29101">
+							<img src="uploads/#actor_photo#" alt="Image" class="img-fluid scroll_image">
+							<h3>#actor_name#</h3>
+							<p>as #character_name#</p>
+						</div>
+					</cfoutput>
+				</div>
+      		</div>
+   		</div>
+  	</div>          
+	<div class="row pt-5 text-white">
+		<h3>CREW</h3> 
+		<hr class="mt-3">
+		<div class="site-section bg-left-half mb-5">
+      		<div class="container owl-2-style">	
+				<cfoutput>
+					<input type="hidden" id="crew_num" value="#crew_res.RecordCount()#">  
+				</cfoutput>
+				<div class="owl-carousel owl-3">						
+					<cfoutput query='crew_res'>						
 						<div class="media-29101">
 							<img src="uploads/#crew_photo#" alt="Image" class="img-fluid scroll_image">
 							<h3>#person_name#</h3>
 							<p>#role_name#</p>
 						</div>
-						</cfoutput>
-					</div>
-      			</div>
-   			</div>          
-		</div>
+					</cfoutput>
+				</div>
+      		</div>
+   		</div>          
 	</div>
-
+</div>
 <cfinclude  template="user_footer.cfm">
 

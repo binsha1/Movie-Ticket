@@ -228,7 +228,7 @@
     <!------------Get details of all movies -------->
     <cffunction name="movieDetails" access="remote" output="true" returnFormat = "json">
         <cfquery name="movie_details"  result="res" returntype="array">
-            SELECT * FROM movie_ticket.movie;
+            SELECT * FROM movie_ticket.movie order by movie_name asc;
         </cfquery>
         <cfreturn movie_details>
     </cffunction>

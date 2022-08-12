@@ -487,6 +487,7 @@ var tseats=$("#tseat").val();
 function seatCheck(){
     var t_seats=$("#total_seats").val();
     var seats=$("#seats").val();
+    
     if(parseInt(t_seats)<parseInt(seats))
     {
         $(".seat_alert").text("Should be less than total seats available!!");
@@ -1098,7 +1099,7 @@ var options = {
     "currency": "INR",
     "name": "BookMyTicket",
     "description": "Test Transaction",
-    "image": "https://example.com/your_logo",
+    "image": "http://127.0.0.1:8500/movie_ticket/assets/user_template/images/logo.jpg",
     //"order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
     "handler": function (response){
       //  alert(response.razorpay_payment_id);

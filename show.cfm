@@ -2,24 +2,27 @@
 <cfset t_date=toBase64(DateFormat(Now(),"yyyy-mm-dd"))>
 <cfset today_date=parseDateTime(toString(toBinary(t_date)))>
 <cfparam name="cdate" default="#DateFormat(Now(),"yyyy-mm-dd")#">
-<cfset fromDate = Now()+1> 
+<cfset fromDate = Now()+2> 
 <cfset toDate = Now() + 5>
-
 <cfset today_movies=application.show.showDate(today_date)> 
-<!---
-<cfset today_movies=application.show.todayDetails()>--->
 <div class="container p-5">
 	<ul class="nav nav-pills justify-content-center" >
 		<cfoutput>
 			<li class="nav-item">
-				<a class="nav-link date-nav"  href="components/show.cfc?method=getMovieDate&date=#DateFormat(Now(),"yyyy-mm-dd")#">
+				<a class="nav-link date-nav text-uppercase"  href="components/show.cfc?method=getMovieDate&date=#DateFormat(Now(),"yyyy-mm-dd")#">
 					#dateformat(Now(), "dd")#<br>
-					#dateformat(Now(), "ddd")#
+					Today
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link date-nav text-uppercase"  href="components/show.cfc?method=getMovieDate&date=#DateFormat(Now()+1,"yyyy-mm-dd")#">
+					#dateformat(Now()+1, "dd")#<br>
+					Tmrw
 				</a>
 			</li>
 			<cfloop from="#fromDate#" to="#toDate#" index="i" step="#CreateTimeSpan(1,0,0,0)#"> 
 				<li class="nav-item">
-					<a class=" nav-link date-nav"  href="components/show.cfc?method=getMovieDate&date=#DateFormat(i,"yyyy-mm-dd")#">
+					<a class=" nav-link date-nav text-uppercase"  href="components/show.cfc?method=getMovieDate&date=#DateFormat(i,"yyyy-mm-dd")#">
 						#dateformat(i, "dd")#<br>
 						#dateformat(i, "ddd")#
 					</a>
@@ -64,8 +67,7 @@
 											<th colspan="2">Show Date</th>
 										</tr>
 										<tr>
-											<td colspan="2"> #theatre_name#</td>
-											
+											<td colspan="2"> #theatre_name#</td>											
 											<td>
 												<!---<cfset showList="">
 												<cfset show_names=application.show.showNameTheatre(cdate,th_id,m_id)>
@@ -74,10 +76,8 @@
 												</cfloop>
 											#showList#--->
 											#show_name#
-
 											</td>
-												<td colspan="2">#DateFormat(release_date,"mmmm dd, yyyy")# - #DateFormat(end_date,"mmmm dd, yyyy")#</td>
-											
+											<td colspan="2">#DateFormat(release_date,"mmmm dd, yyyy")# - #DateFormat(end_date,"mmmm dd, yyyy")#</td>
 										</tr>
 									</table>
 								</td>
@@ -131,7 +131,7 @@
 												<cfloop array="#show_names#" index="i">
 													<cfset showList=listAppend(showList, i.show_name)>
 												</cfloop>
-											#showList#--->
+												#showList#--->
 											<td>#show_name#
 											</td>
 											<td colspan="2">#DateFormat(release_date,"mmmm dd, yyyy")# - #DateFormat(end_date,"mmmm dd, yyyy")#</td>

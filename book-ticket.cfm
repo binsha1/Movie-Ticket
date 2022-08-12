@@ -37,15 +37,7 @@
 							<button type="button" class="btn btn-primary seat_slot" data-bs-toggle="modal" data-id="#i.sh_id#" data-bs-target=".loginModal"  >#timeformat(i.start_time)#</button>
 						</li>
 					</cfloop>
-					<!---<li class="time">
-						<a href="movie-payment.html">3:00 PM</a>
-					</li>
-					<li class="time">
-						<a href="movie-payment.html">6:20 PM</a>
-					</li>
-					<li class="time">
-						<a href="movie-payment.html">9:00 PM</a>
-					</li>---->
+					
                     </cfoutput>
 				</ul>
 			</div>
