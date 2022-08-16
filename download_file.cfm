@@ -36,6 +36,7 @@
             <cfheader name="Content-Disposition" value="attachment;filename=ticket.pdf">
             <cfcontent type="application/octet-stream" file="#expandPath('.')#\ticket.pdf" deletefile="Yes">
         </div>
+
     </section>
 </cfoutput>
 <cfinclude  template="user_footer.cfm">

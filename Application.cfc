@@ -1,3 +1,4 @@
+
 <cfcomponent output="false">
     <cfset this.name="movie_ticket">
     <cfset this.sessionManagement = "true" >
@@ -83,6 +84,7 @@
     
     <cffunction name="onMissingTemplate" access="public" returntype="void">
         <cflocation url="404.cfm" addtoken="no">        
-    </cffunction>  
+    </cffunction> 
+
 
 </cfcomponent>

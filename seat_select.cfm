@@ -1,3 +1,4 @@
+
 <cfinclude  template="user_header.cfm">
 <cfparam  name="seat_num" default="0">
 <cfparam  name="show_id" default="0">

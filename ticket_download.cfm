@@ -74,6 +74,15 @@
                         </div>
                     </div>
                 </div>
+
+
+                <div class="ticket-control">
+                    <a href="download_file.cfm?id=#id#" class="btn btn-showing">Download</a>
+                    <a href="index.cfm" class="btn btn-showing">Back to Home</a>
+                </div>
+                <a href=""></a>
+
+
             </div>
         </cfmailpart>
     </cfmail> 

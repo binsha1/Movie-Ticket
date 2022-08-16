@@ -47,4 +47,3 @@
 	</div>
 </section>
 <cfinclude  template="user_footer.cfm">
-

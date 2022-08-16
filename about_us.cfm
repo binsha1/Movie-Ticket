@@ -1,3 +1,4 @@
+
 <cfinclude template="user_header.cfm">
 <div class="about-section">		
 	<div class="tabs-box">
@@ -147,4 +148,3 @@
 	</script>
 	</div>
 	</div>
-<cfinclude template="user_footer.cfm">
