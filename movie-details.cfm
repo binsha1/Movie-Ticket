@@ -1,4 +1,4 @@
-<cfparam  name="id" default="val">
+<cfparam  name="id" default="0">
 <cfinclude  template="user_header.cfm">
 <cfset movId=toString(toBinary(id))>
 <cfset mov_res=application.movie.getMovie(movId)>
@@ -30,7 +30,7 @@
 								<i class="fas fa-play"></i> TRAILER
 							</a>
 							<!-- GET-->
-							<a href="show.cfm" class="btn btn-showing">
+							<a href="book-ticket.cfm?mid=#id#&date=#toBase64(dateformat(now(),"yyyy-mm-dd"))#" class="btn btn-showing">
 								<i class="fa-solid fa-ticket">
 								</i> Book Ticket
 							</a>
@@ -84,4 +84,3 @@
 	</div>
 </div>
 <cfinclude  template="user_footer.cfm">
-

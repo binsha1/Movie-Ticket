@@ -1,3 +1,4 @@
+
 <cfcomponent output="false">
     <cfset this.name="movie_ticket">
     <cfset this.sessionManagement = "true" >
@@ -70,7 +71,7 @@
         <cfargument name="sessionScope" type="any" required="true" hint="Session Scope"/>
         <cfdump var="#sessionScope#">
         <cfdump var="#arguments.sessionScope.dateInitialized# : #now()#"/> 
-    </cffunction>---->
+    </cffunction>
 
 
     <cffunction  name="onError" access="public" returntype="void" output="true">
@@ -79,10 +80,11 @@
         <cfoutput>
             #Exception.Message#
         </cfoutput>        
-    </cffunction>
+    </cffunction>---->
     
     <cffunction name="onMissingTemplate" access="public" returntype="void">
         <cflocation url="404.cfm" addtoken="no">        
-    </cffunction>  
+    </cffunction> 
+
 
 </cfcomponent>

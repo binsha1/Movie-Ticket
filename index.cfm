@@ -194,4 +194,5 @@
 		<div class="clearfix"></div>
 	</div>
 </div>
+
 <cfinclude  template="user_footer.cfm">			

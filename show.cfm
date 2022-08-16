@@ -53,7 +53,11 @@
 											<td>#movie_name#</td>
 											<td>#genre#</td>
 											<td>#DateFormat(release_date,"mmmm dd, yyyy")#</td>
-											<td><a href="book-ticket.cfm?id=#toBase64(id)#&mid=#toBase64(m_id)#&date=#toBase64(cdate)#" class="btn btn-showing">
+											<td>
+											<!---
+											<a href="book-ticket.cfm?id=#toBase64(id)#&mid=#toBase64(m_id)#&date=#toBase64(cdate)#" class="btn btn-showing">
+											--->
+											<a href="book-ticket.cfm?mid=#toBase64(m_id)#&date=#toBase64(cdate)#" class="btn btn-showing">
 												<i class="fa-solid fa-ticket"></i> Book Ticket
 												</a></td>
 											<td><a href="#trailer_url#" class="btn btn-primary">
@@ -108,7 +112,10 @@
 											<td>#movie_name#</td>
 											<td>#genre#</td>
 											<td>#DateFormat(release_date,"mmmm dd, yyyy")#</td>
-											<td><a href="book-ticket.cfm?id=#toBase64(id)#&mid=#toBase64(m_id)#&date=#toBase64(cdate)#" class="btn btn-showing">
+											<td>
+											<!---<a href="book-ticket.cfm?id=#toBase64(id)#&mid=#toBase64(m_id)#&date=#toBase64(cdate)#" class="btn btn-showing">
+											--->
+											<a href="book-ticket.cfm?mid=#toBase64(m_id)#&date=#toBase64(cdate)#" class="btn btn-showing">
 												<i class="fa-solid fa-ticket"></i> Book Ticket
 												</a>
 											</td>
@@ -146,4 +153,3 @@
 	</div>	
 </div>
 <cfinclude  template="user_footer.cfm">
-

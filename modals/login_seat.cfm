@@ -24,6 +24,7 @@
                              
                         </label>
                         <div>
+                        
                             <input type="text" class="form-control input-lg" id="seats" name="seats" value="" onchange="seatCheck();">
                             <span class="text-danger seat_alert"></span>
                         </div>
@@ -56,7 +57,7 @@
                     <input type="hidden" name="login_value" value="1" id="login_value">
                     <cfoutput >
                         <input type="hidden" name="movie_id" value="#movId#">
-                        <input type="hidden" name="show_id" value="#showId#">
+                        <!---<input type="hidden" name="show_id" value="#showId#">--->
                         <input type="hidden" name="cdate" value="#pdate#">
                     </cfoutput>
                     
@@ -78,7 +79,9 @@
                                 <label>
                                     <input type="checkbox" name="remember"> Remember Me
                                 </label>
-                            </div>
+                            </div>show_details
+
+
                         </div>
                     </div>--->
                     <div class="form-group">

@@ -1,11 +1,14 @@
 <cfinclude  template="user_header.cfm">
 <cfparam  name="date" default="#dateFormat(now(),'yyyy-mm-dd')#">
+<cfparam  name="mid" default="0">
 <cfset pdate=toString(toBinary(date))>
-<cfset showId=toString(toBinary(id))>
+<!---
+<cfset showId=toString(toBinary(id))>--->
 <cfset movId=toString(toBinary(mid))>
 <cfset mov_res=application.show.getMovieShows(movId,pdate)>
 <cfset mov_details=application.movie.getMovie(movId)>
-<cfset show_details=application.show.getShowDetails(showId)>
+<!---
+<cfset show_details=application.show.getShowDetails(showId)>---->
 <div class="container">
     <cfoutput >
 		<cfloop array="#mov_details#" index="i">
@@ -25,7 +28,7 @@
 					<cfset time_res=application.show.getTimeSlots(th_id,m_id,pdate)>
 					<cfloop index="i" array="#time_res#">
 						<li class="time">								
-							<button type="button" class="btn btn-primary seat_slot" data-bs-toggle="modal" data-id="#i.sh_id#" data-bs-target=".loginModal"  >#timeformat(i.start_time)#</button>
+							<button type="button" class="btn btn-primary seat_slot" data-bs-toggle="modal" data-id="#i.sh_id#" data-bs-target=".loginModal" >#timeformat(i.start_time)#</button>
 						</li>
 					</cfloop>						
 				</cfoutput>

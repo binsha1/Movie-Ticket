@@ -145,7 +145,7 @@
      <cffunction name="userLogin" access="remote" output="true" >
         <cfargument  name="email" type="string" required="true">
         <cfargument  name="pass" type="string" required="true">
-        <cfargument  name="show_id" type="integer">
+        <!---<cfargument  name="show_id" type="integer">--->
         <cfargument  name="movie_id" type="integer">
         <cfargument  name="cdate" type="date">
            
@@ -161,7 +161,7 @@
                 <cfif arguments.login_value EQ "0">
                     <cflocation  url="../index.cfm" addtoken="no">
                 <cfelse>    
-                    <cflocation  url="../book-ticket.cfm?id=#toBase64(arguments.show_id)#&mid=#toBase64(arguments.movie_id)#&date=#toBase64(arguments.cdate)#" addtoken="no">
+                    <cflocation  url="../book-ticket.cfm?mid=#toBase64(arguments.movie_id)#&date=#toBase64(arguments.cdate)#" addtoken="no">
                 </cfif>
             </cfif>
         <cfelse>
