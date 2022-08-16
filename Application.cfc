@@ -24,8 +24,7 @@
     </cffunction>
     <!---OnRequestStart Method--->
 
-    <cffunction name="OnRequestStart"  access="public">
-        <!---<cfargument  name="requestname" type="string">--->
+    <cffunction name="OnRequestStart"  access="public">        
         <cfif NOT structKeyExists(session, 'sessionUser') >   
             <cfif findNoCase("/admin/dashboard.cfm",cgi.SCRIPT_NAME) GT 0||
                   findNoCase("/admin/booking_list.cfm",cgi.SCRIPT_NAME) GT 0 ||
@@ -36,8 +35,7 @@
                    findNoCase("/admin/user_list.cfm",cgi.SCRIPT_NAME) GT 0 ||
                    findNoCase("/admin/contact_list.cfm",cgi.SCRIPT_NAME) GT 0 ||
                    findNoCase("/admin/screen_time.cfm",cgi.SCRIPT_NAME) GT 0 ||
-                   findNoCase("/admin/update_password.cfm",cgi.SCRIPT_NAME) GT 0>
-                
+                   findNoCase("/admin/update_password.cfm",cgi.SCRIPT_NAME) GT 0>                
                 <cfoutput>                                        
                     <center><h1>Login Required</h1>
                     <p>Please Login to your account</p><br>
@@ -45,22 +43,21 @@
                     <cfabort>
                 </cfoutput>
             </cfif>
+        </cfif>
+        <cfif NOT structKeyExists(session, 'userLog') >   
+            <cfif findNoCase("seat_select.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                findNoCase("payment.cfm",cgi.SCRIPT_NAME) GT 0||
+                findNoCase("view_bookings.cfm",cgi.SCRIPT_NAME) GT 0||
+                findNoCase("ticket_download.cfm",cgi.SCRIPT_NAME) GT 0 ||
+                findNoCase("download_file.cfm",cgi.SCRIPT_NAME) GT 0>                    
+                <cfoutput>                                        
+                    <center><h1>Login Required</h1>
+                    <p>Please Login to your account</p><br>
+                    <a href="login.cfm">Click Here</a></center>
+                    <cfabort>
+                </cfoutput>
             </cfif>
-
-            <cfif NOT structKeyExists(session, 'userLog') >   
-                <cfif findNoCase("seat_select.cfm",cgi.SCRIPT_NAME) GT 0 ||
-                    findNoCase("payment.cfm",cgi.SCRIPT_NAME) GT 0||
-                    findNoCase("view_bookings.cfm",cgi.SCRIPT_NAME) GT 0||
-                    findNoCase("ticket_download.cfm",cgi.SCRIPT_NAME) GT 0 ||
-                    findNoCase("download_file.cfm",cgi.SCRIPT_NAME) GT 0>                    
-                    <cfoutput>                                        
-                        <center><h1>Login Required</h1>
-                        <p>Please Login to your account</p><br>
-                        <a href="login.cfm">Click Here</a></center>
-                        <cfabort>
-                    </cfoutput>
-                </cfif>
-            </cfif> 
+        </cfif> 
     </cffunction>      
 
     <!---<cffunction name="onSessionEnd" returntype="void" access="public">
@@ -73,7 +70,7 @@
         <cfargument name="sessionScope" type="any" required="true" hint="Session Scope"/>
         <cfdump var="#sessionScope#">
         <cfdump var="#arguments.sessionScope.dateInitialized# : #now()#"/> 
-    </cffunction>
+    </cffunction>---->
 
 
     <cffunction  name="onError" access="public" returntype="void" output="true">
@@ -82,7 +79,7 @@
         <cfoutput>
             #Exception.Message#
         </cfoutput>        
-    </cffunction>---->
+    </cffunction>
     
     <cffunction name="onMissingTemplate" access="public" returntype="void">
         <cflocation url="404.cfm" addtoken="no">        

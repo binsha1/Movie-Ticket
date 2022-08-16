@@ -30,18 +30,16 @@
                         </tr>
                     </tfoot>                                       
                     <tbody>
-                    <cfoutput query='contact_res'>
-                        
-                        <tr>
-                            
-                            <td>#name#</td>
-                            <td>#email_id#</td>
-                            <td>#subject#</td>
-                            <td>#message#</td>
-                            <td>#ondate#</td>
-                            
-                        </tr>
-                    </cfoutput>                   
+                        <cfoutput query='contact_res'>                                    
+                            <tr>                            
+                                <td>#name#</td>
+                                <td>#email_id#</td>
+                                <td>#subject#</td>
+                                <td>#message#</td>
+                                <td>#dateformat(ondate,"dd-mm-yyyy")# #ontime#</td>   
+                                                        
+                            </tr>
+                        </cfoutput>                   
                     </tbody>
                 </table>
             </div>

@@ -424,6 +424,7 @@ $('.seat_slot').on('click',function(){
                 var available=data[0].total_seats-data[0].booked_seat;
                 $(".seat_label").text("(" +available+ " Left)");
                 $("#total_seats").val(data[0].total_seats);
+                $("#available_seat").val(parseInt(available));
                 $("#show_id").val(data[0].id);
 
             }  
@@ -462,7 +463,7 @@ var tseats=$("#tseat").val();
     }
     else if(seat_arr.length<tseats)
     {
-        $("#confirm_alert").text("Selected Seats should be less than required seats");
+        $("#confirm_alert").text("Selected Seats should be equal to required seats");
         $("#t_price").text("");
         $("#tprice").val("");
         $('.time_data').css("display", "none");
@@ -486,9 +487,10 @@ var tseats=$("#tseat").val();
 });
 function seatCheck(){
     var t_seats=$("#total_seats").val();
+    var available=$("#available_seat").val();
     var seats=$("#seats").val();
     
-    if(parseInt(t_seats)<parseInt(seats))
+    if(parseInt(available)<parseInt(seats))
     {
         $(".seat_alert").text("Should be less than total seats available!!");
         //$("#seat_btn").prop("disabled","true");

@@ -103,10 +103,7 @@
             SELECT phone FROM movie_ticket.theatre
             WHERE phone=<cfqueryparam value="#arguments.phone#" cfsqltype="CF_SQL_VARCHAR"> AND 
             id!=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_VARCHAR">
-        </cfquery>
-        <cfoutput query='theatre_email'>
-            #thaetre_email.email#
-        </cfoutput>
+        </cfquery>        
         <cfif email_res.RecordCount NEQ 0>
             <cfset local.status=hash('2','sha')>
         </cfif>
@@ -434,8 +431,7 @@
         <cfreturn time_details> 
     </cffunction>
 
-    <cffunction name="getTheatreScreenTime" access="public">
-        
+    <cffunction name="getTheatreScreenTime" access="public">        
         <cfquery name="tt_details" result="tt_res">
             SELECT DISTINCT theatre_name, t.id FROM movie_ticket.theatre t  
             INNER JOIN movie_ticket.screen s ON t.id=s.theatre_id

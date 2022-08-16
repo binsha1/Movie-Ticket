@@ -40,7 +40,7 @@
                         <tr>
                             <td>#user_name#</td>
                             <td>#email_id#</td>
-                            <td>#registered_on#</td>
+                            <td>#dateformat(registered_on,"dd-mm-yyyy")# #reg_time#</td>
                             <td><a href="../components/controller.cfc?method=deleteUser&id=#id#" class="btn btn-outline-primary">Delete</a></td>
                         </tr>
                     </cfoutput>              

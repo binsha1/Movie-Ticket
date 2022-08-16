@@ -109,14 +109,15 @@
                         password,
                         role,
                         email_id,
-                        registered_on) 
+                        registered_on,
+                        reg_time) 
                     VALUES(
-                        <cfqueryparam value="#arguments.full_name#" cfsqltype="CF_SQL_VARCHAR">,
-                        
+                        <cfqueryparam value="#arguments.full_name#" cfsqltype="CF_SQL_VARCHAR">,                        
                         <cfqueryparam value="#local.password#" cfsqltype="CF_SQL_VARCHAR">,
                         <cfqueryparam value="user" cfsqltype="CF_SQL_VARCHAR">,
                         <cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR"> ,  
-                        <cfqueryparam value="#datetimeformat(now(),"yyyy-mm-dd HH:n:s")#" cfsqltype="CF_SQL_TIMESTAMP">                 
+                        <cfqueryparam value="#dateformat(now(),"yyyy-mm-dd")#" cfsqltype="CF_SQL_DATE"> , 
+                        <cfqueryparam value="#timeformat(now(),"HH:n:ss")#" cfsqltype="CF_SQL_TIME">                
                         )
                 </cfquery>
                 <cfif result.RecordCount EQ 1>
@@ -171,16 +172,16 @@
 
     <cffunction  name="allUsers" access="public">
         <cfquery name="user_list" result="user_res">
-            SELECT * from movie_ticket.login WHERE role="user"
+            SELECT * from movie_ticket.login WHERE role="user" ORDER BY reg_time DESC
         </cfquery>
         <cfreturn user_list>
     </cffunction>
 
     <cffunction  name="contactList" access="public">
-        <cfquery name="user_list" result="user_res">
-            SELECT * from movie_ticket.contact_us 
+        <cfquery name="contact_list" result="contact_res">
+            SELECT * from movie_ticket.contact_us ORDER BY ontime DESC
         </cfquery>
-        <cfreturn user_list>
+        <cfreturn contact_list>
     </cffunction>
 
     <cffunction  name="getTheatreSeats" access="remote" returnFormat = "json">
@@ -410,14 +411,15 @@
                     email_id,
                     subject,
                     message,
-                    ondate) 
+                    ondate,
+                    ontime) 
                 VALUES(
-                    <cfqueryparam value="#arguments.name#" cfsqltype="CF_SQL_VARCHAR">,
-                    
+                    <cfqueryparam value="#arguments.name#" cfsqltype="CF_SQL_VARCHAR">,                    
                     <cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR">,
                     <cfqueryparam value="#arguments.subject#" cfsqltype="CF_SQL_VARCHAR">,
                     <cfqueryparam value="#arguments.message#" cfsqltype="CF_SQL_VARCHAR"> ,  
-                    <cfqueryparam value="#datetimeformat(now(),"yyyy-mm-dd HH:n:s")#" cfsqltype="CF_SQL_TIMESTAMP">                 
+                    <cfqueryparam value="#dateformat(now(),"yyyy-mm-dd")#" cfsqltype="CF_SQL_DATE">,
+                    <cfqueryparam value="#timeformat(now(),"HH:n:ss")#" cfsqltype="CF_SQL_TIME">                    
                     )
             </cfquery>
             <cfif result.RecordCount EQ 1>

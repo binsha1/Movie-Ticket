@@ -1,5 +1,4 @@
 <cfparam  name="id" default="0">
-<!---<cfset id=toString(toBinary(reserve_id))>--->
 <cfset ticket_res=application.obj.getBookDetails(id)>
 <cfoutput query="ticket_res">
     <section class="container text-dark">
@@ -32,13 +31,11 @@
                             </div>                       
                         </div>
                     </div>
-                </cfdocument>
-                <cfheader name="Content-Disposition" value="attachment;filename=ticket.pdf">
-                <cfcontent type="application/octet-stream" file="#expandPath('.')#\ticket.pdf" deletefile="Yes">
-
-                
-
-            </div>
+                </div>
+            </cfdocument>
+            <cfheader name="Content-Disposition" value="attachment;filename=ticket.pdf">
+            <cfcontent type="application/octet-stream" file="#expandPath('.')#\ticket.pdf" deletefile="Yes">
+        </div>
     </section>
 </cfoutput>
 <cfinclude  template="user_footer.cfm">

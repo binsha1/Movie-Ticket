@@ -645,7 +645,7 @@ $('.order__control-btn').click(function (e) {
                               break;
                         }*/
 
-                    $('.checked-result').text('$'+sum)
+                    $('.checked-result').text(sum)
                 }
 
                 //data element init
@@ -769,7 +769,7 @@ $('.order__control-btn').click(function (e) {
                         break;
             }
 
-            $('.checked-result').text('$'+sum);
+            $('.checked-result').text(sum);
 
             
 
@@ -812,7 +812,7 @@ $('.order__control-btn').click(function (e) {
                                 break;
                     }
 
-                    $('.checked-result').text('$'+sum);
+                    $('.checked-result').text(sum);
                 }
 
                 

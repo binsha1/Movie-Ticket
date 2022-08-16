@@ -9,20 +9,20 @@
 	<ul class="nav nav-pills justify-content-center" >
 		<cfoutput>
 			<li class="nav-item">
-				<a class="nav-link date-nav text-uppercase"  href="components/show.cfc?method=getMovieDate&date=#DateFormat(Now(),"yyyy-mm-dd")#">
+				<a class="nav-link date-nav text-uppercase text-center"  href="components/show.cfc?method=getMovieDate&date=#DateFormat(Now(),"yyyy-mm-dd")#">
 					#dateformat(Now(), "dd")#<br>
 					Today
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link date-nav text-uppercase"  href="components/show.cfc?method=getMovieDate&date=#DateFormat(Now()+1,"yyyy-mm-dd")#">
+				<a class="nav-link date-nav text-uppercase text-center"  href="components/show.cfc?method=getMovieDate&date=#DateFormat(Now()+1,"yyyy-mm-dd")#">
 					#dateformat(Now()+1, "dd")#<br>
 					Tmrw
 				</a>
 			</li>
 			<cfloop from="#fromDate#" to="#toDate#" index="i" step="#CreateTimeSpan(1,0,0,0)#"> 
 				<li class="nav-item">
-					<a class=" nav-link date-nav text-uppercase"  href="components/show.cfc?method=getMovieDate&date=#DateFormat(i,"yyyy-mm-dd")#">
+					<a class=" nav-link date-nav text-uppercase text-center"  href="components/show.cfc?method=getMovieDate&date=#DateFormat(i,"yyyy-mm-dd")#">
 						#dateformat(i, "dd")#<br>
 						#dateformat(i, "ddd")#
 					</a>
@@ -49,8 +49,7 @@
 											<th>Book Ticket</th>
 											<th>Watch Trailer</th>
 										</tr>								
-										<tr>
-										
+										<tr>										
 											<td>#movie_name#</td>
 											<td>#genre#</td>
 											<td>#DateFormat(release_date,"mmmm dd, yyyy")#</td>

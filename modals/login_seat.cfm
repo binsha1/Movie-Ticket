@@ -20,6 +20,7 @@
                         <input type="hidden" name="show_id" value="" id="show_id">
                         <cfoutput><input type="hidden" name="cdate" value="#pdate#" id="cdate"></cfoutput>
                         <input type="hidden" name="total_seats" value="" id="total_seats">
+                        <input type="hidden" name="available" value="" id="available_seat">
                              
                         </label>
                         <div>
