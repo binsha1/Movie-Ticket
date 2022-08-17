@@ -1,6 +1,6 @@
 <cfparam  name="status" default="v">
-<cfinclude  template="dash_header.cfm">
 <cfset res=application.theatre.theatreDetails()> 
+<cfinclude  template="dash_header.cfm">
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Manage Theatre</h1>

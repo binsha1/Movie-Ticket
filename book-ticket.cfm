@@ -2,13 +2,11 @@
 <cfparam  name="date" default="#dateFormat(now(),'yyyy-mm-dd')#">
 <cfparam  name="mid" default="0">
 <cfset pdate=toString(toBinary(date))>
-<!---
-<cfset showId=toString(toBinary(id))>--->
+<!---<cfset showId=toString(toBinary(id))>--->
 <cfset movId=toString(toBinary(mid))>
 <cfset mov_res=application.show.getMovieShows(movId,pdate)>
 <cfset mov_details=application.movie.getMovie(movId)>
-<!---
-<cfset show_details=application.show.getShowDetails(showId)>---->
+<!---<cfset show_details=application.show.getShowDetails(showId)>---->
 <div class="container">
     <cfoutput >
 		<cfloop array="#mov_details#" index="i">

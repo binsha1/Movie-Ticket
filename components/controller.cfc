@@ -1,4 +1,5 @@
 <cfcomponent>
+    <!------------------------Admin Login --------------------------------->
     <cffunction name="doLogin" access="remote" output="true" >
         <cfargument  name="user_name" type="string" required="true">
         <cfargument  name="pwd" type="string" required="true">        
@@ -19,15 +20,19 @@
         </cfif>   
     </cffunction>
 
+    <!-----------------------Admin Logout ---------------------------------->
     <cffunction name="doAdminLogout" access="remote" output="false">
         <cfset structDelete(session, "sessionUser")>
         <cflocation url="../admin/index.cfm" addtoken="no">
     </cffunction>
 
+    <!-----------------------User Logout ---------------------------------->
     <cffunction name="userLogout" access="remote" output="false">
         <cfset structDelete(session, "userLog")>
         <cflocation url="../index.cfm" addtoken="no">
     </cffunction>
+
+    <!-----------------------Update Password For Admin ---------------------------------->
 
     <cffunction name="updatePass" access="remote" output="true">
         <cfargument  name="old_pass" type="string">
@@ -53,6 +58,8 @@
         </cfif>
         <cflocation  url="../admin/update_password.cfm?status=#local.status#" addtoken="no">
     </cffunction>
+
+    <!-----------------------Update Password For User ---------------------------------->
 
     <cffunction name="updateUserPassword" access="remote" output="true">
         <cfargument  name="email_id" type="string">
@@ -87,9 +94,8 @@
         <cflocation  url="../forgot_password.cfm?status=#local.status#" addtoken="no">
     </cffunction>
 
-
+    <!-----------------------User Sign Up  ---------------------------------->
     <cffunction name="userSignUp" access="remote">
-
         <cfargument  name="full_name" type="string">
         <cfargument  name="email" type="string">        
         <cfargument  name="pass" type="string">
@@ -131,24 +137,15 @@
             <cfset local.status=hash('3','sha')>
             <cflocation  url="../signup.cfm?status=#local.status#" addtoken="no">
         </cfif>      
-    </cffunction>
-    <!----<cffunction  name="checkLogin" access="remote">
-        <cfoutput>
-        #IsUserLoggedIn()#
-        </cfoutput>
-        <cfif IsUserLoggedIn() EQ "NO">
-            <cflocation  url="../modals/create_theatre.cfm" addtoken="no">
+    </cffunction>   
 
-        </cfif>
-    </cffunction>---->
-
+    <!-----------------------User Login  ---------------------------------->
      <cffunction name="userLogin" access="remote" output="true" >
         <cfargument  name="email" type="string" required="true">
         <cfargument  name="pass" type="string" required="true">
         <!---<cfargument  name="show_id" type="integer">--->
         <cfargument  name="movie_id" type="integer">
-        <cfargument  name="cdate" type="date">
-           
+        <cfargument  name="cdate" type="date">           
         <cfset local.password=hash(arguments.pass,'sha') >       
         <cfquery name="userLogData"  result="user_log">
             SELECT * FROM movie_ticket.login 
@@ -170,6 +167,17 @@
         </cfif>   
     </cffunction>
 
+    <!----------------------------Delete user by admin --------------------->
+    <cffunction  name="deleteUser" access="remote">
+        <cfargument  name="id" type="integer">
+        <cfquery name="user_list" result="user_res">
+            DELETE from movie_ticket.login WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        <cfset local.status=hash('1','sha')>
+        <cflocation url="../admin/user_list.cfm?status=#local.status#" addtoken="no">
+    </cffunction>
+
+    <!----------------------------Get all Registered Users --------------------->
     <cffunction  name="allUsers" access="public">
         <cfquery name="user_list" result="user_res">
             SELECT * from movie_ticket.login WHERE role="user" ORDER BY reg_time DESC
@@ -177,6 +185,40 @@
         <cfreturn user_list>
     </cffunction>
 
+    <!----------------------------Contact Us  --------------------->
+    <cffunction name="contactUs" access="remote">
+        <cfargument  name="name" type="string">
+        <cfargument  name="email" type="string">
+        <cfargument  name="subject" type="string">
+        <cfargument  name="message" type="string">
+        <cfif arguments.name!="" && arguments.email!="" && arguments.subject!="" && arguments.message!="">
+            <cfquery name="contact_us" result="result">
+                INSERT INTO movie_ticket.contact_us(
+                    name,
+                    email_id,
+                    subject,
+                    message,
+                    ondate,
+                    ontime) 
+                VALUES(
+                    <cfqueryparam value="#arguments.name#" cfsqltype="CF_SQL_VARCHAR">,                    
+                    <cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR">,
+                    <cfqueryparam value="#arguments.subject#" cfsqltype="CF_SQL_VARCHAR">,
+                    <cfqueryparam value="#arguments.message#" cfsqltype="CF_SQL_VARCHAR"> ,  
+                    <cfqueryparam value="#dateformat(now(),"yyyy-mm-dd")#" cfsqltype="CF_SQL_DATE">,
+                    <cfqueryparam value="#timeformat(now(),"HH:n:ss")#" cfsqltype="CF_SQL_TIME">                    
+                    )
+            </cfquery>
+            <cfif result.RecordCount EQ 1>
+                <cfset local.status=hash('1','sha')>
+            </cfif>
+        <cfelse>
+            <cfset local.status=hash('2','sha')>
+        </cfif>
+        <cflocation  url="../contact-us.cfm?status=#local.status#">
+    </cffunction>
+
+    <!----------------------------Get All Contact enquiry list --------------------->
     <cffunction  name="contactList" access="public">
         <cfquery name="contact_list" result="contact_res">
             SELECT * from movie_ticket.contact_us ORDER BY ontime DESC
@@ -184,6 +226,7 @@
         <cfreturn contact_list>
     </cffunction>
 
+    <!----------------------------Get Reserved seats  --------------------->
     <cffunction  name="getTheatreSeats" access="remote" returnFormat = "json">
         <cfargument  name="show_id" type="integer">
         <cfquery name="seat_list" result="user_res" returntype="array">
@@ -193,17 +236,8 @@
             and  r.show_id=<cfqueryparam value="#arguments.show_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         <cfreturn seat_list>
-    </cffunction>
-
-    <cffunction  name="deleteUser" access="remote">
-        <cfargument  name="id" type="integer">
-        <cfquery name="user_list" result="user_res">
-            DELETE from movie_ticket.login WHERE id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        <cfset local.status=hash('1','sha')>
-        <cflocation url="../admin/user_list.cfm?status=#local.status#" addtoken="no">
-    </cffunction>
-    
+    </cffunction>    
+    <!----------------------------Add Reservation --------------------->
     <cffunction name="proceedPayment" access="remote">
         <cfargument  name="seats" type="string">
         <cfargument  name="tprice" type="string">
@@ -262,6 +296,7 @@
         <cfset seat_num=toBase64(arguments.seats)>---->
     </cffunction>
     
+    <!------------------------Get Reservation Details------------------->
     <cffunction name="getReservation" access="remote">
         <cfargument name="id" type="integer">
         <cfquery name="reserve_res" result="reserve">
@@ -282,10 +317,12 @@
         <cfreturn reserve_res>
     </cffunction>
 
+    <!------------------------Get Booking Details------------------->
     <cffunction name="getBookDetails" access="remote">
         <cfargument name="id" type="integer">
         <cfquery name="book_res" result="res_book">
-            SELECT t.ticket_id ,t.payment_id, book_date,book_time,r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
+            SELECT t.ticket_id ,t.payment_id, book_date,book_time,
+                r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
                 m.movie_name,m.language,m.genre,m.movie_format,
                 th.theatre_name,th.address,
                 s.screen_name,
@@ -303,9 +340,11 @@
         <cfreturn book_res>
     </cffunction>
 
+    <!------------------------Get Bookings of a user------------------->
     <cffunction name="getBookings" access="remote">        
         <cfquery name="book_res" result="res_book">
-            SELECT t.ticket_id ,t.payment_id, t.book_date,t.book_time,r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
+            SELECT t.ticket_id ,t.payment_id, t.book_date,t.book_time,
+                r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
                 m.movie_name,m.language,m.genre,m.movie_format,
                 th.theatre_name,th.address,
                 s.screen_name,
@@ -322,10 +361,11 @@
         </cfquery>
         <cfreturn book_res>
     </cffunction>
-
+    <!------------------------Get Bookings of all users------------------->
     <cffunction name="getAllBookings" access="remote">        
         <cfquery name="book_all_res" result="res_book">
-             SELECT t.ticket_id ,l.user_name,l.email_id,payment_id, t.book_date,t.book_time,r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
+             SELECT t.ticket_id ,l.user_name,l.email_id,payment_id, t.book_date,t.book_time,
+                r.seats,r.seat_num,r.select_date, r.price ,r.show_id,r.id,
                 m.movie_name,m.language,m.genre,m.movie_format,
                 th.theatre_name,th.address,
                 s.screen_name,
@@ -343,6 +383,7 @@
         <cfreturn book_all_res>
     </cffunction>
 
+    <!------------------------Payment confirmation------------------->
     <cffunction name="confirmPayment" access="remote">
         <cfargument  name="reserve_id" type="integer">
         <cfargument  name="pay_id" type="string">
@@ -392,45 +433,11 @@
                     WHERE r.id=<cfqueryparam value="#arguments.reserve_id#" cfsqltype="CF_SQL_INTEGER">
                 </cfquery>
             </cftransaction>
-        </cfif>
-        
+        </cfif>        
         <cfif ins_ticket.RecordCount  NEQ 0 && booked_res.RecordCount NEQ 0> 
             <cflocation  url="../ticket_download.cfm?reserve_id=#toBase64(arguments.reserve_id)#" addtoken="no">
         </cfif>
-    </cffunction>
-
-    <cffunction name="contactUs" access="remote">
-        <cfargument  name="name" type="string">
-        <cfargument  name="email" type="string">
-        <cfargument  name="subject" type="string">
-        <cfargument  name="message" type="string">
-        <cfif arguments.name!="" && arguments.email!="" && arguments.subject!="" && arguments.message!="">
-            <cfquery name="contact_us" result="result">
-                INSERT INTO movie_ticket.contact_us(
-                    name,
-                    email_id,
-                    subject,
-                    message,
-                    ondate,
-                    ontime) 
-                VALUES(
-                    <cfqueryparam value="#arguments.name#" cfsqltype="CF_SQL_VARCHAR">,                    
-                    <cfqueryparam value="#arguments.email#" cfsqltype="CF_SQL_VARCHAR">,
-                    <cfqueryparam value="#arguments.subject#" cfsqltype="CF_SQL_VARCHAR">,
-                    <cfqueryparam value="#arguments.message#" cfsqltype="CF_SQL_VARCHAR"> ,  
-                    <cfqueryparam value="#dateformat(now(),"yyyy-mm-dd")#" cfsqltype="CF_SQL_DATE">,
-                    <cfqueryparam value="#timeformat(now(),"HH:n:ss")#" cfsqltype="CF_SQL_TIME">                    
-                    )
-            </cfquery>
-            <cfif result.RecordCount EQ 1>
-                <cfset local.status=hash('1','sha')>
-            </cfif>
-        <cfelse>
-            <cfset local.status=hash('2','sha')>
-        </cfif>
-        <cflocation  url="../contact-us.cfm?status=#local.status#">
-    </cffunction>
-
+    </cffunction>    
 </cfcomponent>
 
 

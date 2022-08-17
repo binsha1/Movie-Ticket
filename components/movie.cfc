@@ -68,17 +68,17 @@
                                 <cfqueryparam value="#arguments.duration#" cfsqltype="CF_SQL_VARCHAR">,
                                 <cfqueryparam value="#arguments.trailer_url#" cfsqltype="CF_SQL_VARCHAR">,
                                 <cfqueryparam value="#local.poster#" cfsqltype="CF_SQL_VARCHAR">,
-                                <cfqueryparam value="#local.wallpaper#" cfsqltype="CF_SQL_VARCHAR">,                
+                                <cfqueryparam value="#local.wallpaper#" cfsqltype="CF_SQL_VARCHAR"> ,              
                                 <cfqueryparam value="#arguments.description#" cfsqltype="CF_SQL_VARCHAR">                                                          
                                 )
                         </cfquery>
+                        <cfif movie_res.RecordCount EQ 1>
+                            <cfset local.status=hash("1","sha")>
+                        </cfif>
                         <cfcatch type="any">
                             Error: <cfoutput>#cfcatch.message#</cfoutput>
                         </cfcatch>
-                    </cftry>
-                <cfif movie_res.RecordCount EQ 1>
-                    <cfset local.status=hash("1","sha")>
-                </cfif>
+                </cftry>                
             <cfelse>
                 <cflocation  url="../admin/movie_list.cfm?status=#local.status#" AddToken="no">
             </cfif>                
@@ -175,7 +175,7 @@
                 </cfif>
             <cfelse>
                  <cflocation  url="../admin/movie_list.cfm?status=#local.status#" AddToken="no">                        
-            </cfif>      
+            </cfif>     
             
         <cfelse>
             <cfset local.status=hash('4','sha')>
@@ -236,7 +236,8 @@
     <cffunction name="allMovieNames" access="remote" output="true" returnFormat="json">
         <cfargument  name="search_text" type="string">       
         <cfquery name="movie_details"  result="res" returntype="array">
-            SELECT * FROM movie_ticket.movie WHERE movie_name LIKE <cfqueryparam value="#arguments.search_text#%" cfsqltype="CF_SQL_VARCHAR">
+            SELECT * FROM movie_ticket.movie WHERE movie_name 
+            LIKE <cfqueryparam value="#arguments.search_text#%" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         <cfreturn movie_details>
     </cffunction>
@@ -396,8 +397,7 @@
         <cfquery name="movie_cast_crew" result="m_res">
             SELECT m.movie_name,m.id,cr.role_name,cr.person_name,ca.actor_name,m.language,m.trailer_url,
             m.language,m.genre,m.poster,m.movie_format,m.release_date, m.duration ,m.description,m.wallpaper
-            FROM
-            movie_ticket.movie m INNER JOIN movie_ticket.cast ca ON m.id=ca.movie_id
+            FROM movie_ticket.movie m INNER JOIN movie_ticket.cast ca ON m.id=ca.movie_id
             INNER JOIN movie_ticket.crew cr ON cr.movie_id=m.id 
             WHERE m.id=<cfqueryparam value="#arguments.movId#" cfsqltype="CF_SQL_INTEGER">
             group by m.movie_name 
@@ -408,8 +408,6 @@
     <cffunction  name="searchMovie" access="remote">
         <cfargument name="movie_id" type="string">
         <cfset local.id=toBase64(movie_id)>
-
         <cflocation  url="../movie-details.cfm?id=#local.id#" addtoken="no">
-
     </cffunction>
 </cfcomponent>

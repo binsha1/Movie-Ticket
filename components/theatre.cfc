@@ -279,6 +279,7 @@
         </cfquery>        
         <cflocation  url="../admin/screen_time.cfm?theatre_id=#local.enc_theatre#&status=#local.status#" addtoken="no">  
     </cffunction>
+
     <!------------------------Get all screen details of a theatre --------------------------->
     <cffunction name="screenDetails" access="remote" output="true" returnFormat = "json">
         <cfargument  name="theatre_id" type="integer">
@@ -399,8 +400,7 @@
             SELECT st.id, st.screen_id,s.screen_name, st.theatre_id,st.start_time,st.show_name
             FROM movie_ticket.screen_show_time st
             INNER JOIN movie_ticket.screen s ON s.id = st.screen_id
-        WHERE 
-        st.theatre_id= <cfqueryparam CFSQLType="CF_SQL_INTEGER" value="#arguments.theatre_id#">
+            WHERE st.theatre_id= <cfqueryparam CFSQLType="CF_SQL_INTEGER" value="#arguments.theatre_id#">
         </cfquery>
         <cfreturn time_details>
     </cffunction>
@@ -413,9 +413,8 @@
             SELECT st.id, st.screen_id,s.screen_name, st.theatre_id,st.start_time,st.show_name
             FROM movie_ticket.screen_show_time st
             INNER JOIN movie_ticket.screen s ON s.id = st.screen_id
-        WHERE 
-        st.theatre_id= <cfqueryparam CFSQLType="CF_SQL_INTEGER" value="#arguments.theatre_id#"> AND
-        st.screen_id=<cfqueryparam CFSQLType="CF_SQL_INTEGER" value="#arguments.screen_id#">
+            WHERE st.theatre_id= <cfqueryparam CFSQLType="CF_SQL_INTEGER" value="#arguments.theatre_id#"> 
+            AND st.screen_id=<cfqueryparam CFSQLType="CF_SQL_INTEGER" value="#arguments.screen_id#">
         </cfquery>
         <cfreturn time_details>
     </cffunction> 

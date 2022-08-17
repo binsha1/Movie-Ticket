@@ -9,9 +9,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <!-- Modal body -->
-                <div class="modal-body">
-                    <!---<h3 class="text-left ">Add Theatre</h3>---->
-                    
+                <div class="modal-body">                                      
                     <div class='row'> 
                         <div class="col-lg-9">                                                 
                             <div class="form-group row">                        

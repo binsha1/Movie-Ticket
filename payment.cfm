@@ -2,19 +2,6 @@
 <cfparam  name="reserve_id" default="0">
 <cfset id=toString(toBinary(reserve_id))>
 <cfset reserve_res=application.obj.getReservation(id)>
-<!---<cfparam  name="seat_num" default="0">
-<cfparam  name="show_id" default="0">
-<cfparam  name="ts" default="0">
-<cfparam  name="tprice" default="0">
-<cfparam  name="date" default="#dateFormat(now(),'yyyy-mm-dd')#">
-<cfset pdate=toString(toBinary(date))>
-<cfset showId=toString(toBinary(show_id))>
-<cfset seat_s=toString(toBinary(seat_num))>
-<cfset seat_split =seat_s.Split(",")>
-<cfset time_id=toString(toBinary(ts))>
-<cfset total_price=toString(toBinary(tprice))>
-<cfset show_res=application.show.getShowDetails(showId)>
-<cfset time_res=application.theatre.getScreenTime(time_id)>--->
 <cfoutput query="reserve_res">
 	<div class="container p-5">
 		<div class="row">

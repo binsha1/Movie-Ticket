@@ -23,8 +23,8 @@
     <cffunction name="onSessionStart" returnType="void" output="false" access="public">
         <cfset session.started = now()>       
     </cffunction>
-    <!---OnRequestStart Method--->
 
+    <!---OnRequestStart Method--->
     <cffunction name="OnRequestStart"  access="public">        
         <cfif NOT structKeyExists(session, 'sessionUser') >   
             <cfif findNoCase("/admin/dashboard.cfm",cgi.SCRIPT_NAME) GT 0||
@@ -61,30 +61,27 @@
         </cfif> 
     </cffunction>      
 
-    <!---<cffunction name="onSessionEnd" returntype="void" access="public">
+    <!----
+    <cffunction name="onSessionEnd" returntype="void" access="public">
+        <cfargument name="sessionScope" type="any" required="true" hint="Session Scope">    
         <cfoutput>
             <center>
                 <h3>Your Session expired. Please login again</h3>
                 <a href="index.cfm">Click Here</a>
             </center>
-        </cfoutput>
-        <cfargument name="sessionScope" type="any" required="true" hint="Session Scope"/>
-        <cfdump var="#sessionScope#">
-        <cfdump var="#arguments.sessionScope.dateInitialized# : #now()#"/> 
-    </cffunction>
-
+        </cfoutput>            
+        <cfdump var="#arguments.sessionScope.dateInitialized# : #now()#"> 
+    </cffunction>--->
 
     <cffunction  name="onError" access="public" returntype="void" output="true">
         <cfargument name="Exception" type="any" required="true"/>
-        <cfargument name="EventName" type="string" required="false" default=""/>
+        <cfargument name="EventName" type="string" required="false" default="">
         <cfoutput>
             #Exception.Message#
         </cfoutput>        
-    </cffunction>---->
+    </cffunction>
     
     <cffunction name="onMissingTemplate" access="public" returntype="void">
         <cflocation url="404.cfm" addtoken="no">        
-    </cffunction> 
-
-
+    </cffunction>
 </cfcomponent>
