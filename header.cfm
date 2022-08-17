@@ -10,4 +10,8 @@
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>        
     </head>
+<<<<<<< HEAD
+=======
+
+>>>>>>> c9ce06c53972e8969fa44048facbc5f308484a78
     <body>
