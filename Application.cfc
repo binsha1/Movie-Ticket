@@ -83,11 +83,6 @@
     
     <cffunction name="onMissingTemplate" access="public" returntype="void">
         <cflocation url="404.cfm" addtoken="no">        
-<<<<<<< HEAD
     </cffunction>
-=======
-    </cffunction> 
-
-
->>>>>>> c9ce06c53972e8969fa44048facbc5f308484a78
-</cfcomponent>
+    
+    </cfcomponent>

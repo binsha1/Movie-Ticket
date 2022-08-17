@@ -1,4 +1,3 @@
-
 <cfparam  name="id" default="0">
 <cfinclude  template="user_header.cfm">
 <cfset movId=toString(toBinary(id))>

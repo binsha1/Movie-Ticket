@@ -1,4 +1,3 @@
-
 <cfparam  name="status" default="v">
 <cfinclude  template="dash_header.cfm">
 <cfset res=application.movie.movieDetails()> 
