@@ -1,4 +1,3 @@
-
 <cfinclude template="../admin/dash_header.cfm">
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -103,4 +102,3 @@
     </div>
 </div>
 <cfinclude template="../admin/dash_footer.cfm">
-

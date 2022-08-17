@@ -112,5 +112,3 @@
 </div>
 <cfinclude  template="../modals/create_movie.cfm">
 <cfinclude  template="dash_footer.cfm">
-
-		

@@ -36,8 +36,7 @@
                                 <td>#email_id#</td>
                                 <td>#subject#</td>
                                 <td>#message#</td>
-                                <td>#dateformat(ondate,"dd-mm-yyyy")# #ontime#</td>   
-                                                        
+                                <td>#dateformat(ondate,"dd-mm-yyyy")# #ontime#</td>                                                           
                             </tr>
                         </cfoutput>                   
                     </tbody>
@@ -45,9 +44,7 @@
             </div>
         </div>
     </div>
-
 </div>
-
 <cfinclude  template="dash_footer.cfm">
 
 		
