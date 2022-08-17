@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 
 <cfparam  name="id" default="0">
+=======
+<<<<<<< HEAD
+<cfparam  name="id" default="0">
+=======
+<cfparam  name="id" default="val">
+>>>>>>> c9ce06c53972e8969fa44048facbc5f308484a78
+>>>>>>> ca26044de6296187d7ed7381a77c5f7ad804b358
 <cfinclude  template="user_header.cfm">
 <cfset movId=toString(toBinary(id))>
 <cfset mov_res=application.movie.getMovie(movId)>
